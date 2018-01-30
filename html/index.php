@@ -17,7 +17,7 @@ include('../Connections/connection.php');
 
 if(isset($_POST['save']))
 {
-    $sql = "INSERT INTO comment (user_id, comment)
+    $sql = "INSERT INTO comment (user_id, text)
     VALUES ('".$_POST["user_id"]."','".$_POST["comment"]."')";
 
     $result = mysqli_query($conn,$sql);
@@ -27,7 +27,7 @@ if(isset($_POST['save']))
 
 <div class="input">
     <form action ="index.php" method="post">
-        <select name="user"> <!-- Need back-end connection here -->
+        <select name="user_id"> <!-- Need back-end connection here -->
             <option value="1">User 1</option>
         </select>
         <input type="text" name="comment" x-webkit-speech />

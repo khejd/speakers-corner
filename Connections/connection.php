@@ -1,6 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
+$database = "speakers-corner";
 $password = "password";
 
 // Create connection
