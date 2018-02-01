@@ -16,7 +16,7 @@ if (isset($_POST['submit'])){
         echo "Inserted";
     }
 
-    header('Location: index.php');
+    header('Location: index.php?phone='.$phone);
     exit;
 }
 

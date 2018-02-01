@@ -16,29 +16,29 @@
     </form>
 </div>
 
+<?php
+    $phone = $_GET['phone'];
+    $sql = "SELECT * FROM user WHERE phone_number = $phone ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+
+    if ($phone){
+        echo "<p>Din kode er:" . $row['code'] . ".";
+    }
+
+?>
+
+</br>
 <div class="comment">
     <form action="commentHandler.php" method="post">
-          Kommentar: <input type="text" name="comment" required>
-                     <input type="submit" name="submit" value="Lagre">
+        Kommentar: <input type="text" name="comment" required>
+                   <input type="submit" name="submit" value="Lagre">
     </form>
 </div>
 
-<div class="comments">
-    <?php
-    $sql = "SELECT * FROM comment";
-    $result = mysqli_query($conn, $sql);
-
-    echo "<table>";
-
-        while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-        echo "<tr><td>" . $row['text'] . "</td><td>" . $row['vote'] . "</td></tr>";
-        }
-
-        echo "</table>";
-    ?>
-
-</div>
-
+<a href="comments.php"><button>Gå til kommentarer</button></a>
 
 </body>
+
+
 </html>
