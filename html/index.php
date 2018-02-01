@@ -12,27 +12,17 @@
 </head>
 <body>
 
+<div class="phone">
+    <form action="userHandler.php" method="post">
+        Telefonnummer: <input type="number" name="phone" required>
+        <input type="submit" name="submit" value="Lagre">
+    </form>
+</div>
 
-<?php
-
-if(isset($_POST['save']))
-{
-    $comment = $_POST['comment'];
-    $user_id = 1;
-    $sql = "INSERT INTO comment (user_id, text) VALUES ('$user_id', '$comment')";
-    if(!mysqli_query($conn,$sql)){
-        echo "Not inserted";
-    } else {
-        echo "Inserted";
-    }
-}
-
-?>
-
-<div class="input">
-    <form action="index.php" method="post">
-          Kommentar: <input type="text" name="comment">
-                     <input type="submit" value="Lagre">
+<div class="comment">
+    <form action="commentHandler.php" method="post">
+          Kommentar: <input type="text" name="comment" required>
+                     <input type="submit" name="submit" value="Lagre">
     </form>
 </div>
 
