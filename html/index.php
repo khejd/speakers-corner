@@ -10,8 +10,8 @@
 <body>
 
 <div class="phone">
-    <form action="userHandler.php" method="post">
-        Telefonnummer: <input type="number" name="phone" required>
+    <form action="../handlers/userHandler.php" method="post">
+        Telefonnummer: <input type="number" name="phone" required min="10000000" max="99999999">
                        <input type="submit" name="submit" value="Lagre">
     </form>
 </div>
@@ -23,14 +23,19 @@
     $row = mysqli_fetch_array($result);
 
     if ($phone){
-        echo "<p>Din kode er:" . $row['code'] . ".";
+        echo "<div>Din kode er: ". $row['code'] . "</div>";
+        echo "Skriv inn koden for å verifisere at det er deg: ";
+        echo "<form action='../handlers/codeHandler.php?phone=$phone' method='post'>
+                <input type='number' name='code' max='9999'>
+                <input type='submit' name='submit' value='Send inn'>
+              </form>";
     }
 
 ?>
 
 </br>
 <div class="comment">
-    <form action="commentHandler.php" method="post">
+    <form action="../handlers/commentHandler.php?phone=<?php echo $_GET['phone'] ?>" method="post">
         Kommentar: <input type="text" name="comment" required>
                    <input type="submit" name="submit" value="Lagre">
     </form>

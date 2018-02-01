@@ -3,7 +3,14 @@ include_once("../Connections/connection.php");
 
 if (isset($_POST['submit'])){
     $comment = $_POST['comment'];
-    $user_id = 1;
+    $phone = $_GET['phone'];
+
+    $sql = "SELECT * FROM user WHERE phone_number = $phone ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+
+    $user_id = $row['id'];
+
     $sql = "INSERT INTO comment (user_id, text) VALUES ('$user_id', '$comment')";
     if(!mysqli_query($conn,$sql)){
         echo "Not inserted";
@@ -11,7 +18,7 @@ if (isset($_POST['submit'])){
         echo "Inserted";
     }
 
-    header('Location: index.php');
+    header('Location: comments.php');
     exit;
 }
 
