@@ -1,4 +1,4 @@
-include('../Connections/connection.php');
+<?php include_once("../Connections/connection.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,21 +17,22 @@ include('../Connections/connection.php');
 
 if(isset($_POST['save']))
 {
-    $sql = "INSERT INTO comment (user_id, text)
-    VALUES ('".$_POST["user_id"]."','".$_POST["comment"]."')";
-
-    $result = mysqli_query($conn,$sql);
+    $comment = $_POST['comment'];
+    $user_id = 1;
+    $sql = "INSERT INTO comment (user_id, text) VALUES ('$user_id', '$comment')";
+    if(!mysqli_query($conn,$sql)){
+        echo "Not inserted";
+    } else {
+        echo "Inserted";
+    }
 }
 
 ?>
 
 <div class="input">
-    <form action ="index.php" method="post">
-        <select name="user_id"> <!-- Need back-end connection here -->
-            <option value="1">User 1</option>
-        </select>
-        <input type="text" name="comment" x-webkit-speech />
-        <button type="submit">Send inn</button>
+    <form action="index.php" method="post">
+          Kommentar: <input type="text" name="comment">
+                     <input type="submit" value="Lagre">
     </form>
 </div>
 
