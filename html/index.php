@@ -18,11 +18,12 @@
 
 <?php
     $phone = $_GET['phone'];
+    $verified = $_GET['user'];
     $sql = "SELECT * FROM user WHERE phone_number = $phone ";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
 
-    if ($phone){
+    if ($phone && !$verified){
         echo "<div>Din kode er: ". $row['code'] . "</div>";
         echo "Skriv inn koden for å verifisere at det er deg: ";
         echo "<form action='codeHandler.php?phone=$phone' method='post'>
@@ -31,15 +32,15 @@
               </form>";
     }
 
+    if ($verified){
+        echo "<div class='comment'>
+                <form action='commentHandler.php?phone=$phone' method='post'>
+                    Kommentar: <input type='text' name='comment' required>
+                    <input type='submit' name='submit' value='Lagre'>
+                </form>
+              </div>";
+        }
 ?>
-
-</br>
-<div class="comment">
-    <form action="commentHandler.php?phone=<?php echo $_GET['phone'] ?>" method="post">
-        Kommentar: <input type="text" name="comment" required>
-                   <input type="submit" name="submit" value="Lagre">
-    </form>
-</div>
 
 <a href="comments.php"><button>Gå til kommentarer</button></a>
 

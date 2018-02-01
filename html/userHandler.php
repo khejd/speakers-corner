@@ -10,13 +10,15 @@ if (isset($_POST['submit'])){
 
     $phone = $_POST['phone'];
     $sql = "INSERT INTO user (phone_number, code) VALUES ('$phone', '$code')";
-    if(!mysqli_query($conn,$sql)){
-        echo "Not inserted";
-    } else {
-        echo "Inserted";
-    }
+    mysqli_query($conn, $sql);
 
-    header('Location: index.php?phone='.$phone);
+    $sql = "SELECT * FROM user WHERE phone_number = $phone";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    $verified = $row['verified'];
+
+    header('Location: index.php?phone='.$phone.'&user='.$verified);
+
     exit;
 }
 
