@@ -10,7 +10,7 @@
 <body>
 
 <div class="phone">
-    <form action="../handlers/userHandler.php" method="post">
+    <form action="userHandler.php" method="post">
         Telefonnummer: <input type="number" name="phone" required min="10000000" max="99999999">
                        <input type="submit" name="submit" value="Lagre">
     </form>
@@ -35,7 +35,7 @@
 
 </br>
 <div class="comment">
-    <form action="../handlers/commentHandler.php?phone=<?php echo $_GET['phone'] ?>" method="post">
+    <form action="commentHandler.php?phone=<?php echo $_GET['phone'] ?>" method="post">
         Kommentar: <input type="text" name="comment" required>
                    <input type="submit" name="submit" value="Lagre">
     </form>
