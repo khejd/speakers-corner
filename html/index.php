@@ -1,5 +1,3 @@
-<?php include_once("../Connections/connection.php"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +12,7 @@
 
 <div class="phone">
     <form action="userHandler.php" method="post">
-        Telefonnummer: <input type="number" name="phone" required>
+        Telefonnummer: <input type="number" name="phone" required maxlength="8" minlength="8">
         <input type="submit" name="submit" value="Lagre">
     </form>
 </div>
