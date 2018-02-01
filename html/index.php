@@ -1,3 +1,4 @@
+<?php include_once("../Connections/connection.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,13 @@
     <link rel="stylesheet" type="text/css" href="../css/app.css">
     <title>Speakers-corner test site</title>
 
-
-
 </head>
 <body>
 
 <div class="phone">
     <form action="userHandler.php" method="post">
-        Telefonnummer: <input type="number" name="phone" required maxlength="8" minlength="8">
-        <input type="submit" name="submit" value="Lagre">
+        Telefonnummer: <input type="number" name="phone" required>
+                       <input type="submit" name="submit" value="Lagre">
     </form>
 </div>
 
@@ -24,6 +23,21 @@
     </form>
 </div>
 
+<div class="comments">
+    <?php
+    $sql = "SELECT * FROM comment";
+    $result = mysqli_query($conn, $sql);
+
+    echo "<table>";
+
+        while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+        echo "<tr><td>" . $row['text'] . "</td><td>" . $row['vote'] . "</td></tr>";
+        }
+
+        echo "</table>";
+    ?>
+
+</div>
 
 
 </body>

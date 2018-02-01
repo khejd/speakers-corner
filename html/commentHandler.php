@@ -10,6 +10,9 @@ if (isset($_POST['submit'])){
     } else {
         echo "Inserted";
     }
+
+    header('Location: index.php');
+    exit;
 }
 
 ?>
