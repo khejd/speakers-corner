@@ -9,9 +9,10 @@ if (isset($_POST['submit'])){
     $sql = "SELECT * FROM user WHERE phone_number = $phone ";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
+    $id = $row['id'];
 
     if ($row['code'] == $code){
-        $sql = "INSERT INTO user (verified) VALUES (1)";
+        $sql = "UPDATE user SET 'verified' = 1 WHERE `user` . `id` = $id";
         $result = mysqli_query($conn, $sql);
         header('Location: index.php?phone='.$phone.'?user=verified');
     } else {

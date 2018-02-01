@@ -25,7 +25,7 @@
     if ($phone){
         echo "<div>Din kode er: ". $row['code'] . "</div>";
         echo "Skriv inn koden for å verifisere at det er deg: ";
-        echo "<form action='../handlers/codeHandler.php?phone=$phone' method='post'>
+        echo "<form action='codeHandler.php?phone=$phone' method='post'>
                 <input type='number' name='code' max='9999'>
                 <input type='submit' name='submit' value='Send inn'>
               </form>";
