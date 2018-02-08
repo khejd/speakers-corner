@@ -12,4 +12,4 @@
 7. ```git checkout design```
 8. Åpne filene og gjør de endrigne du har lyst til. 
 9. ```git commit -m "skriv hva du har gjort"```
-10. ```git push``` (for at det skal lastes opp til GitHub)
+10. ```git push origin design``` (for at det skal lastes opp til GitHub)
