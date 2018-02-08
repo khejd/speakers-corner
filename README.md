@@ -6,7 +6,7 @@
 
 ##### Hvis du kjører Mac/Linux må du skrive ```sudo``` før ```git``` #####
 
-4. Skriv ```git clone https://github.com/khejd/speakers-corner.git```
+4. ```git clone https://github.com/khejd/speakers-corner.git```
 5. ```cd speakers-corner```
 6. ```git pull origin design```
 7. ```git checkout design```
