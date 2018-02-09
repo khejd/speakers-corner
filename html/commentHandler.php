@@ -2,7 +2,7 @@
 include_once("../Connections/connection.php");
 
 if (isset($_POST['submit'])){
-    $comment = $_POST['comment'];
+    $comment = $_GET['comment'];
     $phone = $_GET['phone'];
 
     $sql = "SELECT * FROM user WHERE phone_number = $phone";
