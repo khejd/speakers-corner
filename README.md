@@ -14,3 +14,7 @@ Start av arbeidsøkt:
 3. Gjør endringer
 4. Commit ofte
 `git commit -m "Mine endringer"`
+
+Slutten av arbeidøkten
+1. Laste opp endringer til GitHub
+`git push origin my_branch`
