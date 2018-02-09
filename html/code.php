@@ -20,12 +20,14 @@
             <?php
             $phone = $_GET['phone'];
             $comment = $_GET['comment'];
-            $sql = "SELECT * FROM user WHERE phone_number = $phone ";
+            $sql = "SELECT * FROM user WHERE phone_number = $phone";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
 
+            echo $row['code'];
+
                 echo "<h4 class='card-title'>Din kode er</h4>
-                      <h5 class='card-title'>". $row['code'] . "</h5>
+                      <h5 class='card-title'>".$row['code']."</h5>
                       <br>";
                 echo "<div class='container center_div'>
                         <form class='form-inline' method='post' action='codeHandler.php?phone=$phone&comment=$comment'>
