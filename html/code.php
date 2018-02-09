@@ -1,3 +1,4 @@
+<?php include_once("../Connections/connection.php"); ?>
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -23,8 +24,6 @@
             $sql = "SELECT * FROM user WHERE phone_number = $phone";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
-
-            echo $row['code'];
 
                 echo "<h4 class='card-title'>Din kode er</h4>
                       <h5 class='card-title'>".$row['code']."</h5>
