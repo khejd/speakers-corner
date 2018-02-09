@@ -7,10 +7,6 @@
     <script src="../../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
-    <!-- Speech recognition -->
-    <style>
-        .speech img {float: right; width: 40px }
-    </style>
 
 </head>
 <body>
@@ -27,7 +23,7 @@
             <img onclick="startDictation()" src="//i.imgur.com/cHidSVu.gif" class="speech"/>
             <form action="code.html" method="post">
                 <div class="form-group">
-                    <textarea class="form-control" id="transcript" placeholder="Si din mening"></textarea>
+                    <textarea class="form-control" id="transcript" name="comment" placeholder="Si din mening"></textarea>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="phone" placeholder="Telefonnummer" required>
