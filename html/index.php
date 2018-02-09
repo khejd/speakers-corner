@@ -3,7 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/app.css">
+    <link rel="stylesheet" type="text/css" href="../../css/app.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <script src="../../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
 </head>
