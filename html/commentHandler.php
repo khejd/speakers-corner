@@ -12,6 +12,7 @@ if (isset($_POST['submit'])){
     $user_id = $row['id'];
 
     $sql = "INSERT INTO comment (user_id, text) VALUES ('$user_id', '$comment')";
+    $result = mysqli_query($conn, $sql);
 
     header('Location: comments.php');
     exit;
