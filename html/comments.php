@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <script src="../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
 </head>
 <body>
-    <div class="comments">
-        <?php
-        $sql = "SELECT * FROM comment";
-        $result = mysqli_query($conn, $sql);
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Speakers corner
+        </div>
+        <div class="card-body text-center">
+            <br>
+            <div class="container center_div">
+                <?php
+                $sql = "SELECT * FROM comment";
+                $result = mysqli_query($conn, $sql);
 
-        echo "<table>";
-        echo "<tr><th>Kommentar</th></tr>";
+                echo "<table class='table table-hover'>
+                        <tbody>";
 
-        while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-            echo "<tr><td>" . $row['text'] . "</td><td>" . $row['vote'] . "</td></tr>";
-        }
+                while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+                    echo "<tr><td>" . $row['text'] . "</td><td>" . $row['vote'] . "</td></tr>";
+                }
 
-        echo "</table>";
-        ?>
-
+                echo "</tbody>
+                </table>";
+                ?>
+                <a href="index.php" role="button" class="btn btn-secondary left">Hjem</a>
+            </div>
+        </div>
     </div>
-
-    <a href="index.php"><button>Gå til startside</button></a>
+</div>
 </body>
 </html>
