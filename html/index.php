@@ -4,47 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <script src="../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
 </head>
 <body>
 
-<div class="phone">
-    <form action="userHandler.php" method="post">
-        Telefonnummer: <input type="number" name="phone" required min="10000000" max="99999999">
-                       <input type="submit" name="submit" value="Lagre">
-    </form>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Speakers corner
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Hva brenner du for?</h5>
+            <img onclick="startDictation()" src="../img/mic.gif" class="speech"/>
+            <form action="handler/phoneHandler.php" method="post">
+                <div class="form-group">
+                    <textarea class="form-control" id="transcript" name="comment" placeholder="Si din mening"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="phone" placeholder="Telefonnummer" required>
+                    <small class="form-text text-muted">
+                        Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisen.
+                    </small>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Neste</button>
+            </form>
+        </div>
+    </div>
 </div>
-
-<?php
-    $phone = $_GET['phone'];
-    $verified = $_GET['user'];
-    $sql = "SELECT * FROM user WHERE phone_number = $phone ";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
-
-    if ($phone && !$verified){
-        echo "<div>Din kode er: ". $row['code'] . "</div>";
-        echo "Skriv inn koden for å verifisere at det er deg: ";
-        echo "<form action='codeHandler.php?phone=$phone' method='post'>
-                <input type='number' name='code' max='9999'>
-                <input type='submit' name='submit' value='Send inn'>
-              </form>";
-    }
-
-    if ($verified){
-        echo "<div class='comment'>
-                <form action='commentHandler.php?phone=$phone' method='post'>
-                    Kommentar: <input type='text' name='comment' required>
-                    <input type='submit' name='submit' value='Lagre'>
-                </form>
-              </div>";
-        }
-?>
 
 <a href="comments.php"><button>Gå til kommentarer</button></a>
 
 </body>
+
+<!-- HTML5 Speech Recognition API -->
+<script>
+    function startDictation() {
+
+        if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+            var recognition = new webkitSpeechRecognition();
+
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.lang = "no-NO";
+            recognition.start();
+
+            recognition.onresult = function(e) {
+                document.getElementById('transcript').value
+                    = e.results[0][0].transcript;
+                recognition.stop();
+            };
+
+            recognition.onerror = function(e) {
+                recognition.stop();
+            }
+        }
+    }
+</script>
 
 
 </html>

@@ -1,8 +1,8 @@
 <?php
-include_once("../Connections/connection.php");
+include_once("../../Connections/connection.php");
 
 if (isset($_POST['submit'])){
-    $comment = $_POST['comment'];
+    $comment = $_GET['comment'];
     $phone = $_GET['phone'];
 
     $sql = "SELECT * FROM user WHERE phone_number = $phone";
@@ -12,13 +12,9 @@ if (isset($_POST['submit'])){
     $user_id = $row['id'];
 
     $sql = "INSERT INTO comment (user_id, text) VALUES ('$user_id', '$comment')";
-    if(!mysqli_query($conn,$sql)){
-        echo "Not inserted";
-    } else {
-        echo "Inserted";
-    }
+    $result = mysqli_query($conn, $sql);
 
-    header('Location: comments.php');
+    header('Location: ../comments.php');
     exit;
 }
 
