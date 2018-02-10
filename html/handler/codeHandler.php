@@ -12,7 +12,7 @@ if (isset($_POST['submit'])){
     $row = mysqli_fetch_array($result);
 
     if ($row['code'] != $code){
-        header('Location: ../comment.php');
+        header('Location: ../comments.php');
     } else {
         header('Location: commentHandler.php?phone='.$phone.'&comment='.$comment);
     }
