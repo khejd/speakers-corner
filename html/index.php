@@ -31,13 +31,12 @@
                         Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisen.
                     </small>
                 </div>
+                <a href="comments.php" role="button" class="btn btn-secondary">Kommentarer</a>
                 <button type="submit" name="submit" class="btn btn-primary">Neste</button>
             </form>
         </div>
     </div>
 </div>
-
-<a href="comments.php"><button>Gå til kommentarer</button></a>
 
 </body>
 
