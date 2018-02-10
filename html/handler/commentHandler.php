@@ -1,7 +1,6 @@
 <?php
 include_once("../../Connections/connection.php");
 
-if (isset($_POST['submit'])){
     $comment = $_GET['comment'];
     $phone = $_GET['phone'];
 
@@ -16,6 +15,5 @@ if (isset($_POST['submit'])){
 
     header('Location: ../comments.php');
     exit;
-}
 
 ?>
