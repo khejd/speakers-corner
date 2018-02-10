@@ -9,8 +9,9 @@ if (isset($_POST['submit'])){
 
     $sql = "SELECT * FROM user WHERE phone_number = $phone";
     $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
 
-    if ($row['code'] == $code){
+    if ($row['code'] != $code){
         header('Location: comment.php');
     } else {
         header('Location: commentHandler.php?phone='.$phone.'&comment='.$comment);
