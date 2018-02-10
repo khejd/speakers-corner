@@ -29,7 +29,7 @@
                       <h5 class='card-title'>".$row['code']."</h5>
                       <br>";
                 echo "<div class='container center_div'>
-                        <form class='form-inline' method='post' action='commentHandler.php?phone=$phone&comment=$comment'>
+                        <form class='form-inline' method='post' action='handler/commentHandler.php?phone=$phone&comment=$comment'>
                             <div class='form-group mx-sm-3 mb-2'>
                                 <input type='number' class='form-control' name='code' placeholder='Skriv inn kode'>
                             </div>
@@ -40,11 +40,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 
 </body>
 </html>

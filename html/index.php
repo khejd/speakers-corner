@@ -21,7 +21,7 @@
         <div class="card-body">
             <h5 class="card-title">Hva brenner du for?</h5>
             <img onclick="startDictation()" src="../img/mic.gif" class="speech"/>
-            <form action="phoneHandler.php" method="post">
+            <form action="handler/phoneHandler.php" method="post">
                 <div class="form-group">
                     <textarea class="form-control" id="transcript" name="comment" placeholder="Si din mening"></textarea>
                 </div>

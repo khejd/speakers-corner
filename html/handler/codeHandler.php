@@ -1,5 +1,5 @@
 <?php
-include_once("../Connections/connection.php");
+include_once("../../Connections/connection.php");
 
 if (isset($_POST['submit'])){
 

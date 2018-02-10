@@ -1,5 +1,5 @@
 <?php
-include_once("../Connections/connection.php");
+include_once("../../Connections/connection.php");
 
 if (isset($_POST['submit'])){
 
@@ -9,15 +9,11 @@ if (isset($_POST['submit'])){
     $code = rand($min, $max);
 
     $phone = $_POST['phone'];
+    $comment = $_POST['comment'];
     $sql = "INSERT INTO user (phone_number, code) VALUES ('$phone', '$code')";
     mysqli_query($conn, $sql);
 
-    $sql = "SELECT * FROM user WHERE phone_number = $phone";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
-    $verified = $row['verified'];
-
-    header('Location: index.php?phone='.$phone.'&user='.$verified);
+    header('Location: ../code.php?phone='.$phone.'&comment='.$comment);
 
     exit;
 }

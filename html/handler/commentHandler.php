@@ -1,5 +1,5 @@
 <?php
-include_once("../Connections/connection.php");
+include_once("../../Connections/connection.php");
 
 if (isset($_POST['submit'])){
     $comment = $_GET['comment'];
@@ -14,7 +14,7 @@ if (isset($_POST['submit'])){
     $sql = "INSERT INTO comment (user_id, text) VALUES ('$user_id', '$comment')";
     $result = mysqli_query($conn, $sql);
 
-    header('Location: comments.php');
+    header('Location: ../comments.php');
     exit;
 }
 
