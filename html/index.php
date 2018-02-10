@@ -25,7 +25,7 @@
                     <textarea class="form-control" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="phone" placeholder="Telefonnummer" required>
+                    <input type="text" class="form-control" name="phone" placeholder="Telefonnummer" required autofocus>
                     <small class="form-text text-muted">
                         Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisen.
                     </small>
