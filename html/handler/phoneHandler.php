@@ -10,7 +10,7 @@ if (isset($_POST['submit'])){
 
     $phone = $_POST['phone'];
     $comment = $_POST['comment'];
-    $sql = "INSERT INTO user (phone_number, code) VALUES ('$phone', '$code')";
+    $sql = "INSERT INTO `user` (`phone_number`, `code`) VALUES ('$phone', '$code')";
     mysqli_query($conn, $sql);
 
     header('Location: ../code.php?phone='.$phone.'&comment='.$comment);

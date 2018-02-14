@@ -21,7 +21,7 @@
             <?php
             $phone = $_GET['phone'];
             $comment = $_GET['comment'];
-            $sql = "SELECT * FROM user WHERE phone_number = $phone";
+            $sql = "SELECT * FROM `user` WHERE phone_number = $phone";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
 

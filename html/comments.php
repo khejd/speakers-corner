@@ -19,7 +19,7 @@
             <br>
             <div class="container center_div">
                 <?php
-                $sql = "SELECT * FROM comment";
+                $sql = "SELECT * FROM `comment`";
                 $result = mysqli_query($conn, $sql);
 
                 echo "<table class='table table-hover'>
