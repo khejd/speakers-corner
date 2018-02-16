@@ -8,10 +8,14 @@ if (isset($_POST['submit'])){
     $max = pow(10,$x+1)-1;
     $code = rand($min, $max);
 
+
+    $stmt = $conn->prepare("INSERT INTO `user` (`phone_number`, `code`) VALUES (?, ?)");
+    $stmt->bind_param("ii", $phone, $comment);
+
     $phone = $_POST['phone'];
     $comment = $_POST['comment'];
-    $sql = "INSERT INTO `user` (`phone_number`, `code`) VALUES ('$phone', '$code')";
-    mysqli_query($conn, $sql);
+    $stmt->execute();
+    $stmt->close();
 
     header('Location: ../code.php?phone='.$phone.'&comment='.$comment);
 
