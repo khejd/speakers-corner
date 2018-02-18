@@ -1,4 +1,7 @@
-<?php include_once("../Connections/connection.php"); ?>
+<?php
+include_once("../Connections/connection.php");
+include_once("../Connections/sms.php");
+?>
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -24,9 +27,12 @@
             $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
+            $code = $row['code'];
 
-                echo "<h4 class='card-title'>Din kode er</h4>
-                      <h5 class='card-title'>".$row['code']."</h5>
+            $result = $smsGateway->sendMessageToNumber($phone, $code, $deviceID);
+
+
+                echo "<h4 class='card-title'>Koden er sendt på SMS til ".$phone."</h4>
                       <br>";
                 echo "<div class='container center_div'>
                         <form class='form-inline' method='post' action='handler/codeHandler.php?phone=$phone&comment=$comment'>
