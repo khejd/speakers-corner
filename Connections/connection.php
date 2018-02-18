@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "admin";
-$password = "EgD6hLTKQF";
-$database = "speakers_corner";
+$username = "root";
+$password = "password";
+$database = "db";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
