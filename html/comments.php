@@ -48,8 +48,7 @@
 
 <script>
     function upVote(id) {
-        window.location = "?id=" + id;
-        console.log('click');
+        history.pushState({}, "","?id=" + id);
         "<?php
             $id = $_GET['id'];
             $sql = "UPDATE `comment` SET `vote` = `vote` + 1 WHERE `comment`.`id` = $id";
@@ -58,8 +57,7 @@
     }
 
     function downVote(id) {
-        window.location = "?id=" + id;
-        console.log('click');
+        history.pushState({}, "","?id=" + id);
         "<?php
         $id = $_GET['id'];
         $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
