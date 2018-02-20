@@ -28,12 +28,13 @@
                         <tbody>";
 
                 while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+                    $id = $row['id'];
                     echo "<tr>
                             <td>" . $row['text'] . "</td>
                             <td>
-                                <span onClick='upVote(".$row['id'].")'><i class='fa fa-angle-up'></i></span>
-                                " . $row['vote'] . "
-                                <span onClick='downVote(".$row['id'].")'><i class='fa fa-angle-down'></i></span>
+                                <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
+                                <span id='vote-".$id."'>" . $row['vote'] . "</span>
+                                <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
                           </tr>";
                 }
 
@@ -54,10 +55,9 @@
             type: 'POST',
             data: {id: id},
             success: function(data){
-                console.log('upvoted');
+                $('#vote' + id).text($('#vote' + id).text()+1);
             }
         })
-
     }
 
     function downVote(id) {
@@ -66,7 +66,7 @@
             type: 'POST',
             data: {id: id},
             success: function (data) {
-                console.log('downvoted')
+                $('#vote' + id).text($('#vote' + id).text()-1);
             }
         })
     }
