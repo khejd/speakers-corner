@@ -49,20 +49,20 @@
 <script>
     function upVote(id) {
         window.location = "?id=" + id;
-        <?php
+        "<?php
             $id = $_GET['id'];
             $sql = "UPDATE `comment` SET `vote` = `vote` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
-        ?>
+        ?>"
     }
 
     function downVote(id) {
         window.location = "?id=" + id;
-        <?php
+        "<?php
         $id = $_GET['id'];
         $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
         $result = mysqli_query($conn, $sql);
-        ?>
+        ?>"
     }
 </script>
 
