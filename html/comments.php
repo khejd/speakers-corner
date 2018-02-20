@@ -55,7 +55,7 @@
             type: 'POST',
             data: {id: id},
             success: function(data){
-                $('#vote' + id).text(parseInt($('#vote' + id).text())+1);
+                $('#vote-' + id).text(parseInt($('#vote-' + id).text())+1);
             }
         })
     }
@@ -66,7 +66,7 @@
             type: 'POST',
             data: {id: id},
             success: function (data) {
-                $('#vote' + id).text(parseInt($('#vote' + id).text())-1);
+                $('#vote-' + id).text(parseInt($('#vote-' + id).text())-1);
             }
         })
     }
