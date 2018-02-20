@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
@@ -26,7 +27,13 @@
                         <tbody>";
 
                 while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-                    echo "<tr><td>" . $row['text'] . "</td><td>" . $row['vote'] . "</td></tr>";
+                    echo "<tr>
+                            <td>" . $row['text'] . "</td>
+                            <td>
+                                <span onClick='upVote(".$row['id'].")'><i class='fa fa-angle-up'></i></span>
+                                " . $row['vote'] . "
+                                <span onClick='downVote(".$row['id'].")'><i class='fa fa-angle-down'></i></span>
+                          </tr>";
                 }
 
                 echo "</tbody>
@@ -38,4 +45,26 @@
     </div>
 </div>
 </body>
+
+<script>
+    function upVote(id) {
+        window.location = "?id=" + id;
+        <?php
+            $id = $_GET['id'];
+            $sql = "UPDATE `comment` SET `vote` = `vote` + 1 WHERE `comment`.`id` = $id";
+            $result = mysqli_query($conn, $sql);
+        ?>
+    }
+
+    function downVote(id) {
+        window.location = "?id=" + id;
+        <?php
+        $id = $_GET['id'];
+        $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
+        $result = mysqli_query($conn, $sql);
+        ?>
+    }
+</script>
+
+
 </html>
