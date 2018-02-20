@@ -50,7 +50,7 @@
 <script>
     function upVote(id) {
         $.ajax({
-            url: "handlers/upVoteHandler.php",
+            url: "handler/upVoteHandler.php",
             type: 'POST',
             data: {id: id},
             success: function(data){
@@ -62,7 +62,7 @@
 
     function downVote(id) {
         $.ajax({
-            url: "handlers/upVoteHandler.php",
+            url: "handler/upVoteHandler.php",
             type: 'POST',
             data: {id: id},
             success: function (data) {
