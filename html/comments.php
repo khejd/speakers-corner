@@ -48,21 +48,26 @@
 
 <script>
     function upVote(id) {
-        history.pushState({}, "","?id=" + id);
-        "<?php
-            $id = $_GET['id'];
-            $sql = "UPDATE `comment` SET `vote` = `vote` + 1 WHERE `comment`.`id` = $id";
-            $result = mysqli_query($conn, $sql);
-        ?>"
+        $.ajax({
+            url: "handlers/upVoteHandler.php",
+            type: 'POST',
+            data: {id: id},
+            success: function(data){
+                console.log('upvoted');
+            }
+        })
+
     }
 
     function downVote(id) {
-        history.pushState({}, "","?id=" + id);
-        "<?php
-        $id = $_GET['id'];
-        $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
-        $result = mysqli_query($conn, $sql);
-        ?>"
+        $.ajax({
+            url: "handlers/upVoteHandler.php",
+            type: 'POST',
+            data: {id: id},
+            success: function (data) {
+                console.log('downvoted')
+            }
+        })
     }
 </script>
 
