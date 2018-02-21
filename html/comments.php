@@ -1,4 +1,8 @@
-<?php include_once("../Connections/connection.php"); ?>
+<?php include_once("../Connections/connection.php");
+$cookie_name = "vote";
+$cookie_value = 0;
+setcookie($cookie_name, $cookie_value);
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
