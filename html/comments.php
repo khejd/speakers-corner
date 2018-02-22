@@ -49,15 +49,14 @@
 </body>
 
 <script>
-    var up = 0;
-    var down = 0;
+
     function upVote(id) {
         $.ajax({
             url: "handler/upVoteHandler.php",
             type: 'POST',
             data: {id: id},
-            success: function(data){
-                if (up++){
+            success: function(result){
+                if (result == 'up'){
                     $('#vote-' + id).text(parseInt($('#vote-' + id).text())+1);
                 }
             }
@@ -69,8 +68,8 @@
             url: "handler/downVoteHandler.php",
             type: 'POST',
             data: {id: id},
-            success: function (data) {
-                if (down++){
+            success: function (result) {
+                if (result == 'down'){
                     $('#vote-' + id).text(parseInt($('#vote-' + id).text())-1);
                 }
             }
