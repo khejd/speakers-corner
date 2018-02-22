@@ -8,7 +8,7 @@ include_once("../../Connections/connection.php");
         'vote' => 1
     );
 
-    if(!isset($_COOKIE)){
+    if(!isset($_COOKIE[$cookie_name])){
         $cookie_value = array();
         array_push($cookie_value, $new_entry);
 
