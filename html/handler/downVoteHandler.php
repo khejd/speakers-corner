@@ -5,7 +5,7 @@ include_once("../../Connections/connection.php");
     $cookie_name = "vote";
     $new_entry = array(
         'id' => $id,
-        'vote' => 0
+        'vote' => 'down'
     );
 
     if(!isset($_COOKIE[$cookie_name])){
@@ -16,7 +16,7 @@ include_once("../../Connections/connection.php");
         $cookie_value = json_decode($_COOKIE[$cookie_name], true);
         $key = array_search($id, array_column($cookie_value, 'id'));
         if ($cookie_value[$key]['id'] == $id){
-            $cookie_value[$key]['vote'] = 0;
+            $cookie_value[$key]['vote'] = 'down';
         } else {
             array_push($cookie_value, $new_entry);
         }
@@ -28,13 +28,20 @@ include_once("../../Connections/connection.php");
     $data = json_decode($_COOKIE[$cookie_name], true);
     $key = array_search($id, array_column($data, 'id'));
 
-    if($data[$key]['vote'] == 1){
-        $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
-        $result = mysqli_query($conn, $sql);
-    }
+    if(isset($_COOKIE[$cookie_name])){
+        if($data[$key]['vote'] == 'none'){ // one reload behind
+            $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
+            $result = mysqli_query($conn, $sql);
+        }
 
-    if($data[$key]['vote'] == 0){
-        $sql = "UPDATE `comment` SET `vote` = `vote` + 1 WHERE `comment`.`id` = $id";
+        if($data[$key]['vote'] == 'up'){
+            $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
+            $result = mysqli_query($conn, $sql);
+            $cookie_value[$key]['vote'] = 'none';
+            setcookie($cookie_name, json_encode($cookie_value), time() + 86400, "/");
+        }
+    } else {
+        $sql = "UPDATE `comment` SET `vote` = `vote` - 1 WHERE `comment`.`id` = $id";
         $result = mysqli_query($conn, $sql);
     }
 ?>
