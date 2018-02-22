@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
@@ -26,7 +28,14 @@
                         <tbody>";
 
                 while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-                    echo "<tr><td>" . $row['text'] . "</td><td>" . $row['vote'] . "</td></tr>";
+                    $id = $row['id'];
+                    echo "<tr>
+                            <td>" . $row['text'] . "</td>
+                            <td>
+                                <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
+                                <span id='vote-".$id."'>" . $row['vote'] . "</span>
+                                <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
+                          </tr>";
                 }
 
                 echo "</tbody>
@@ -38,4 +47,35 @@
     </div>
 </div>
 </body>
+
+<script>
+
+    function upVote(id) {
+        $.ajax({
+            url: "handler/upVoteHandler.php",
+            type: 'POST',
+            data: {id: id},
+            success: function(result){
+                if (result == 'up'){
+                    $('#vote-' + id).text(parseInt($('#vote-' + id).text())+1);
+                }
+            }
+        })
+    }
+
+    function downVote(id) {
+        $.ajax({
+            url: "handler/downVoteHandler.php",
+            type: 'POST',
+            data: {id: id},
+            success: function (result) {
+                if (result == 'down'){
+                    $('#vote-' + id).text(parseInt($('#vote-' + id).text())-1);
+                }
+            }
+        })
+    }
+</script>
+
+
 </html>
