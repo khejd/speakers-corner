@@ -11,12 +11,16 @@ include_once("../../Connections/connection.php");
     if(!isset($_COOKIE[$cookie_name])){
         $cookie_value = array();
         array_push($cookie_value, $new_entry);
-
     } else {
         $cookie_value = json_decode($_COOKIE[$cookie_name], true);
         $key = array_search($id, array_column($cookie_value, 'id'));
+
         if ($cookie_value[$key]['id'] == $id){
-            $cookie_value[$key]['vote'] = 'up';
+            if ($cookie_value[$key]['vote'] == 'down'){
+                $cookie_value[$key]['vote'] = 'none';
+            } else if ($cookie_value[$key]['vote'] == 'none'){
+                $cookie_value[$key]['vote'] = 'up';
+            }
         } else {
             array_push($cookie_value, $new_entry);
         }

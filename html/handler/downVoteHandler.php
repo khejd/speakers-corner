@@ -16,7 +16,11 @@ include_once("../../Connections/connection.php");
         $cookie_value = json_decode($_COOKIE[$cookie_name], true);
         $key = array_search($id, array_column($cookie_value, 'id'));
         if ($cookie_value[$key]['id'] == $id){
-            $cookie_value[$key]['vote'] = 'down';
+            if ($cookie_value[$key]['vote'] == 'none'){
+                $cookie_value[$key]['vote'] = 'down';
+            } else if ($cookie_value[$key]['vote'] == 'up'){
+                $cookie_value[$key]['vote'] = 'none';
+            }
         } else {
             array_push($cookie_value, $new_entry);
         }

@@ -49,24 +49,32 @@
 </body>
 
 <script>
+    var up = 0;
+    var down = 0;
     function upVote(id) {
+        up++;
         $.ajax({
             url: "handler/upVoteHandler.php",
             type: 'POST',
             data: {id: id},
             success: function(data){
-                $('#vote-' + id).text(parseInt($('#vote-' + id).text())+1);
+                if (!up){
+                    $('#vote-' + id).text(parseInt($('#vote-' + id).text())+1);
+                }
             }
         })
     }
 
     function downVote(id) {
+        down++;
         $.ajax({
             url: "handler/downVoteHandler.php",
             type: 'POST',
             data: {id: id},
             success: function (data) {
-                $('#vote-' + id).text(parseInt($('#vote-' + id).text())-1);
+                if (!down){
+                    $('#vote-' + id).text(parseInt($('#vote-' + id).text())-1);
+                }
             }
         })
     }
