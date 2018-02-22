@@ -25,8 +25,5 @@ include_once("../../Connections/connection.php");
         $result = mysqli_query($conn, $sql);
     }
 
-    while(true){
-
-    }
 
 ?>
