@@ -1,0 +1,21 @@
+body {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #3dabff;
+}
+
+div {
+  color: white;
+  margin: 0 auto;
+  width:. 200px;
+  padding: 100px;
+  text-align: center;
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+  font-size: 80px;
+}
+
+h2 {
+}
