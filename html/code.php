@@ -34,7 +34,7 @@ include_once("../Connections/connection.php");
                 echo "<div class='container center_div'>
                         <form class='form-inline' method='post' action='handler/codeHandler.php?phone=$phone&comment=$comment'>
                             <div class='form-group mx-sm-3 mb-2'>
-                                <input type='number' class='form-control' name='code' placeholder='Skriv inn kode' required autofocus>
+                                <input type='number' maxlength='4' minlength='4' class='form-control' name='code' placeholder='Skriv inn kode' required autofocus>
                             </div>
                             <button type='submit' name='submit' class='btn btn-primary mb-2'>Publiser mening</button>
                         </form>";
