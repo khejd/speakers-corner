@@ -34,6 +34,21 @@
                     return ($score_a > $score_b) ? -1 : 1;
                 }
 
+                function wilsonScore($commentVar)
+                {
+                    $n = $commentVar["ups"] + $commentVar["downs"];
+                    if ($n==0)
+                    {
+                        return 0;
+                    }
+                    $z = 1.28155156;
+                    $p = $commentVar["ups"]/$n;
+                    $left = $p + 1/(2*$n)*$z*$z;
+                    $right = $z*sqrt($p*(1-$p)/$n +  $z*$z/(4*$n*$n));
+                    $under = 1+ (1/$n)*$z*$z;
+                    return ($left-$right)/$under;
+                }
+
                 $newArray = array();
 
                 while ($row = mysqli_fetch_array($result)){
