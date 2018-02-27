@@ -67,7 +67,7 @@
                             <td>" . $row['text'] . "</td>
                             <td>
                                 <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
-                                <span id='vote-".$id."'>" . $row['vote'] . "</span>
+                                <span id='vote-".$id."'>" . $row['ups'] - $row['downs'] . "</span>
                                 <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
                           </tr>";
                 }
