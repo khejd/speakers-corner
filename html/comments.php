@@ -25,13 +25,13 @@
                 $result = mysqli_query($conn, $sql);
 
                 function cmpByTimeAndVote($a, $b){
-                    $score_a = $a["vote"] - pow(strtotime($a["time"])-time(), 2);
-                    $score_b = $b["vote"] - pow(strtotime($b["time"])-time(), 2);
+                    $score_a = $a["vote"] - pow(strtotime($a["time"])-time(), 1);
+                    $score_b = $b["vote"] - pow(strtotime($b["time"])-time(), 1);
 
                     if ($score_a == $score_b) {
                         return 0;
                     }
-                    return ($score_a < $score_b) ? -1 : 1;
+                    return ($score_a > $score_b) ? -1 : 1;
                 }
 
                 $newArray = array();
