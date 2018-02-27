@@ -21,13 +21,32 @@
             <br>
             <div class="container center_div">
                 <?php
-                $sql = "SELECT * FROM `comment`";
+                $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
                 $result = mysqli_query($conn, $sql);
+
+                function cmpByTimeAndVote($a, $b){
+                    $score_a = $a["vote"] - pow(strtotime($a["time"])-time(), 2);
+                    $score_b = $b["vote"] - pow(strtotime($b["time"])-time(), 2);
+
+                    if ($score_a == $score_b) {
+                        return 0;
+                    }
+                    return ($score_a < $score_b) ? -1 : 1;
+                }
+
+                $newArray = array();
+
+                while ($row = mysqli_fetch_array($result)){
+                    echo strtotime($row["time"])-time();
+                    array_push($newArray, $row);
+                }
+
+                usort($newArray, "cmpByTimeAndVote");
 
                 echo "<table class='table table-hover'>
                         <tbody>";
 
-                while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+                foreach ($newArray as $row){   //Creates a loop to loop through results
                     $id = $row['id'];
                     echo "<tr>
                             <td>" . $row['text'] . "</td>
