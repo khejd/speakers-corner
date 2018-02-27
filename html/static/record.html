@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../css/noselect.css">
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/timeout.js"></script>
     <title>Speakers-corner test site</title>
 
 
@@ -90,24 +91,5 @@
         };
     }
 
-    function idleLogout() {
-    var t;
-    window.onload = resetTimer;
-    window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer; // catches touchscreen presses
-    window.onclick = resetTimer;     // catches touchpad clicks
-    window.onscroll = resetTimer;    // catches scrolling with arrow keys
-    window.onkeypress = resetTimer;
-
-    function logout() {
-        window.location.href = 'index.html';
-    }
-
-    function resetTimer() {
-        clearTimeout(t);
-        t = setTimeout(logout, 3000);  // time is in milliseconds
-    }
-}
-idleLogout();
 </script>
 </html>
