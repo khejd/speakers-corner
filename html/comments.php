@@ -34,11 +34,9 @@
                     return ($score_a > $score_b) ? -1 : 1;
                 }
 
-                function wilsonScore($commentVar)
-                {
+                function wilsonScore($commentVar){
                     $n = $commentVar["ups"] + $commentVar["downs"];
-                    if ($n==0)
-                    {
+                    if ($n==0) {
                         return 0;
                     }
                     $z = 1.28155156;
@@ -63,11 +61,12 @@
 
                 foreach ($newArray as $row){   //Creates a loop to loop through results
                     $id = $row['id'];
+                    $value = intval($row['ups']) - intval($row['downs']);
                     echo "<tr>
                             <td>" . $row['text'] . "</td>
                             <td>
                                 <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
-                                <span id='vote-".$id."'>" . $row['ups'] - $row['downs'] . "</span>
+                                <span id='vote-".$id."'>" . $value . "</span>
                                 <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
                           </tr>";
                 }
