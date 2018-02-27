@@ -34,20 +34,20 @@ include_once("../../Connections/connection.php");
 
     if(isset($_COOKIE[$cookie_name])){
         if($data[$key]['vote'] == 'none'){ // one reload behind
-            $sql = "UPDATE `comment` SET `up` = `up` + 1 WHERE `comment`.`id` = $id";
+            $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
             echo 'up';
         }
 
         if($data[$key]['vote'] == 'down'){
-            $sql = "UPDATE `comment` SET `up` = `up` + 1 WHERE `comment`.`id` = $id";
+            $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
             $cookie_value[$key]['vote'] = 'none';
             setcookie($cookie_name, json_encode($cookie_value), time() + 86400, "/");
             echo 'up';
         }
     } else {
-        $sql = "UPDATE `comment` SET `up` = `up` + 1 WHERE `comment`.`id` = $id";
+        $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
         $result = mysqli_query($conn, $sql);
         echo 'up';
     }
