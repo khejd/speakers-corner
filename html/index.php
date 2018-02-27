@@ -22,12 +22,12 @@
             <h5 class="card-title">Hva brenner du for?</h5>
             <form action="handler/phoneHandler.php" method="post">
                 <div class="form-group">
-                    <textarea class="form-control" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
+                    <textarea class="form-control" maxlength="256" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="phone" placeholder="Telefonnummer" required autofocus>
+                    <input type="text" class="form-control" maxlength="8" minlength="8" name="phone" placeholder="Telefonnummer" required autofocus>
                     <small class="form-text text-muted">
-                        Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisen.
+                        Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisa.
                     </small>
                 </div>
                 <a href="comments.php" role="button" class="btn btn-secondary">Kommentarer</a>
