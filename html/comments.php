@@ -25,8 +25,8 @@
                 $result = mysqli_query($conn, $sql);
 
                 function cmpByTimeAndVote($a, $b){
-                    $score_a = $a["vote"] - pow((strtotime($a["time"])-time())/3600, 2);
-                    $score_b = $b["vote"] - pow((strtotime($b["time"])-time())/3600, 2);
+                    $score_a = wilsonScore($a);
+                    $score_b = wilsonScore($b);
 
                     if ($score_a == $score_b) {
                         return 0;
