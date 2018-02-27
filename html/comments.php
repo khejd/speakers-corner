@@ -27,11 +27,12 @@
 
                 while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
                     $id = $row['id'];
+                    $value = intval($row['ups']) - intval($row['downs']);
                     echo "<tr>
                             <td>" . $row['text'] . "</td>
                             <td>
                                 <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
-                                <span id='vote-".$id."'>" . $row['vote'] . "</span>
+                                <span id='vote-".$id."'>" . $value . "</span>
                                 <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
                           </tr>";
                 }
