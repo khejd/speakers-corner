@@ -2,8 +2,7 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../css/app.css">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/recordstyle.css">
     <link rel="stylesheet" href="../../css/noselect.css">
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/timeout.js"></script>
@@ -16,21 +15,12 @@
 <br>
 
 <div class="container">
-    <div class="card">
-        <div class="card-header">
-            Speakers corner
+    <h1 class="card-title">HVA BRENNER DU FOR?</h1>
+    <form action="phone.html" method="post">
+        <div class="form-group">
+            <textarea class="form-control" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Hva brenner du for?</h5>
-            <form action="phone.html" method="post">
-                <div class="form-group">
-                    <textarea class="form-control" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
-                </div>
-                <a href="comments.html" role="button" class="btn btn-secondary">Kommentarer</a>
-                <button type="submit" name="submit" class="btn btn-primary">Neste</button>
-            </form>
-        </div>
-    </div>
+    </form>
 </div>
 
 
@@ -59,6 +49,8 @@
         if (event.keyCode == 17){ // stop when keyup ctrl
             active = false;
             recognition.stop();
+            window.location.href = "confirm.html"
+
         }
     };
 
