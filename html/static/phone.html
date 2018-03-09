@@ -2,10 +2,9 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../css/app.css">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/phonestyle.css">
     <link rel="stylesheet" href="../../css/noselect.css">
-    <script src="../../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../../js/timeout.js"></script>
     <title>Speakers-corner test site</title>
 
@@ -15,99 +14,27 @@
 
 <br>
 
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            Speakers corner
-        </div>
-        <div class="card-body">
-            <form action="code.html" method="post">
-                    <input type="text" class="form-control" id ="phone" name="phone" placeholder="Telefonnummer" required>
-                    <small id="passwordHelpBlock" class="form-text text-muted">
+<h1 class="">
+  SKRIV INN TELEFONNUMMER
+</h1>
+
+<br>
+
+<div class="left">
+        <div class="">
+            <form action="code.html" autocomplete="off" method="post">
+                    <input type="text" class="size" id ="phone" placeholder="Telefonnummer" required>
+                    <p><small id="disclaimer" class="">
                         Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.
                     </small>
-                <a href="index.html" role="button" class="btn btn-secondary">Hjem</a>
-                <a href="comments.html" role="button" class="btn btn-secondary">Kommentarer</a>
-                <button type="submit" name="submit" class="btn btn-primary">Neste</button>
+                <button type="submit" name="submit" class="button">NESTE</button>
             </form>
         </div>
-    </div>
 </div>
 <center>
-<style>
-#numpad {
-    justify-content: center;
-font: 71%/1.5 Verdana, Sans-Serif;
-background: #eee;
 
-margin: 100px auto;
-width: 50%;
 
-}
-#keyboard {
-margin: 0;
-padding: 0;
-list-style: none;
-}
-    #keyboard li {
-    float: left;
-    margin: 0 5px 5px 0;
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    line-height: 60px;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #f9f9f9;
-    border-radius: 5px;
-    }
-        .capslock, .tab, .left-shift, .clearl, .switch {
-        clear: left;
-        }
-            #keyboard .tab, #keyboard .delete {
-            width: 70px;
-            }
-            #keyboard .capslock {
-            width: 80px;
-            }
-            #keyboard .return {
-            width: 90px;
-            }
-            #keyboard .left-shift{
-            width: 70px;
-            }
-
-            #keyboard .switch {
-            width: 90px;
-            }
-            #keyboard .rightright-shift {
-            width: 109px;
-            }
-        .lastitem {
-        margin-right: 0;
-        }
-        .uppercase {
-        text-transform: uppercase;
-        }
-        #keyboard .space {
-        float: left;
-        width: 556px;
-        }
-        #keyboard .switch, #keyboard .space, #keyboard .return{
-        font-size: 16px;
-        }
-        .on {
-        display: none;
-        }
-        #keyboard li:hover {
-        position: relative;
-        top: 1px;
-        left: 1px;
-        border-color: #e5e5e5;
-        cursor: pointer;
-        }
-    </style>
-<div class = "numpad" id = "numpad">
+<div class = "numpad right " id = "numpad">
     <ul id="keyboard">
 
         <li class="letter" id="1" onclick="typeNumber(1)">1</li>
@@ -120,9 +47,9 @@ list-style: none;
         <li class="letter clearl" id ="7" onclick="typeNumber(7)">7</li>
         <li class="letter " id ="8" onclick="typeNumber(8)">8</li>
         <li class="letter" id ="9" onclick="typeNumber(9)">9</li>
-        <li class="letter clearl" id ="clear" onclick="deleteNumber()"><-</li>
+        <li class="letter clearl fa fa-arrow-left" id ="clear" onclick="deleteNumber()"></li>
         <li class="letter" id = "0" onclick="typeNumber(0)">0</li>
-         <li class="delete lastitem" id ="clear" onclick="clearNumber()">CLEAR</li>
+         <li class="delete lastitem" id ="clear" onclick="clearNumber()">CLR</li>
     </ul>
 </div>
 </center>
