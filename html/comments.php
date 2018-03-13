@@ -108,8 +108,17 @@ function sortBy(argument)
     {
         ar.sort(function(a, b)
             {
-                return -1;
+                var d1 = new Date(a['time']);
+                var d2 = new Date(b['time']);
+                return d1> d2 ? -1:1;
             });
+    }
+    if (argument=="popularity")
+    {
+        ar.sort(function(a,b)
+        {
+            return a['ups']-a['downs'] -(b['ups']-b['downs']);
+        });
     }
 }
 
