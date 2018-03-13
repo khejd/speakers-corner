@@ -26,7 +26,7 @@
             <div class="container center_div">
                 <?php
                 $ar = array('apple', 'orange', 'banana', 'strawberry');
-                echo json_encode($ar); 
+                json_encode($ar); 
                 $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
                 $result = mysqli_query($conn, $sql);
 
