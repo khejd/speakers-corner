@@ -25,8 +25,7 @@
             <br>
             <div class="container center_div">
                 <?php
-                $ar = array('apple', 'orange', 'banana', 'strawberry');
-                json_encode($ar); 
+                
                 $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
                 $result = mysqli_query($conn, $sql);
 
@@ -64,6 +63,9 @@
                     echo strtotime($row["time"])-time();
                     array_push($newArray, $row);
                 }
+
+                $ar = array('apple', 'orange', 'banana', 'strawberry');
+                json_encode($ar); 
 
                 usort($newArray, "cmpByTimeAndVote");
 
