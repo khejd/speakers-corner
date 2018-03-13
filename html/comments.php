@@ -69,7 +69,7 @@
 
                 
 
-                echo "<table class='table table-hover id = table-sort-id '>
+                echo "<table class='table table-hover' id = 'table-sort-id'>
                         <tbody>";
 
                 foreach ($newArray as $row){   //Creates a loop to loop through results
