@@ -122,8 +122,9 @@ function sortBy(argument)
     }
     console.log(ar);
     var table = "";
-    for (var arg in ar)
+    for (let arg of ar)
     {
+        console.log(arg);
         table +="<tr> <td>";
         table += arg[1];
         table += "</td></tr>";
