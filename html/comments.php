@@ -69,7 +69,7 @@
 
                 
 
-                echo "<table class='table table-hover'>
+                echo "<table class='table table-hover table-sort'>
                         <tbody>";
 
                 foreach ($newArray as $row){   //Creates a loop to loop through results
@@ -126,7 +126,7 @@ function sortBy(argument)
     attrs: {class: 'table'}
     });
 
-$('body').replaceWith(table);
+$('table-sort').replaceWith(table);
 }
 
 
