@@ -120,15 +120,12 @@ function sortBy(argument)
             return a['ups']-a['downs'] -(b['ups']-b['downs']);
         });
     }
+    console.log(ar);
 }
 
 
 
 
-
-</script>
-
-<script>
 
     function upVote(id) {
         $.ajax({
