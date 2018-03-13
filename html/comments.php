@@ -69,7 +69,7 @@
 
                 
 
-                echo "<table class='table table-hover table-sort5000'>
+                echo "<table class='table table-hover id = table-sort-id '>
                         <tbody>";
 
                 foreach ($newArray as $row){   //Creates a loop to loop through results
@@ -126,7 +126,8 @@ function sortBy(argument)
     attrs: {class: 'table'}
     });
 
-    $('table-sort5000').replaceWith(table);
+    document.getElementById('table-sort-id').innerHTML="NOE SKJEDDE";
+    
 }
 
 
