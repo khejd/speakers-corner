@@ -64,10 +64,10 @@
                     array_push($newArray, $row);
                 }
 
-                $ar = array('apple', 'orange', 'banana', 'strawberry');
-                json_encode($ar); 
-
                 usort($newArray, "cmpByTimeAndVote");
+                
+
+                
 
                 echo "<table class='table table-hover'>
                         <tbody>";
@@ -86,6 +86,8 @@
 
                 echo "</tbody>
                 </table>";
+
+                json_encode($newArray); 
                 ?>
                 <a href="index.php" role="button" class="btn btn-secondary left">Hjem</a>
             </div>
@@ -97,8 +99,23 @@
 
 <script>
 
-var ar = <?php echo json_encode($ar) ?>;
+var ar = <?php echo json_encode($newArray) ?>;
 console.log(ar);
+
+function sortBy(argument)
+{
+    if (argument=="time")
+    {
+        ar.sort(function(a, b)
+            {
+                return -1;
+            });
+    }
+}
+
+
+
+
 
 </script>
 
