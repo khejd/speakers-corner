@@ -126,7 +126,7 @@ function sortBy(argument)
     attrs: {class: 'table'}
     });
 
-    document.getElementById('table-sort-id').innerHTML="NOE SKJEDDE";
+    document.getElementById('table-sort-id').innerHTML=table;
     
 }
 
