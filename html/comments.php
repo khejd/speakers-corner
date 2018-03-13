@@ -98,7 +98,7 @@
 <script>
 
 var ar = <?php echo json_encode($ar) ?>;
-alert(ar[0]);
+console.log(ar);
 
 </script>
 
