@@ -125,7 +125,7 @@ function sortBy(argument)
     for (var arg in ar)
     {
         table +="<tr> <td>";
-        table += arg['text'];
+        table += arg[1];
         table += "</td></tr>";
         
 
