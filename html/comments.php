@@ -11,19 +11,6 @@
 
 </head>
 <body>
-<?php
-    if($_GET)
-    {
-        if(isset($_GET['testFunction1']))
-        {
-            testFunction1();
-        }
-    }
-    function testFunction1()
-    {
-        echo "<div> IT WRORKED :) :D L:)D:)D</div>";
-    }
-    ?>
 <br>
 <div class="container">
 
@@ -132,47 +119,7 @@
         })
     }
 
-    function sortBy(argument)
-    {
-        $.ajax({
-           
-                $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
-                $result = mysqli_query($conn, $sql);
-                $newArray = array();
-                while ($row = mysqli_fetch_array($result)){
-                    echo strtotime($row["time"])-time();
-                    array_push($newArray, $row);
-                }
-                if(argument=="trending")
-                {
-                    usort($newArray, "cmpByTimeAndVote");
-                }
-                if(argument=="popularity")
-                {
-                    usort($newArray, "cmpByPopularity")
-                }
-                echo "<table class='table table-hover'>
-                        <tbody>";
-
-                foreach ($newArray as $row){   //Creates a loop to loop through results
-                    $id = $row['id'];
-                    $value = intval($row['ups']) - intval($row['downs']);
-                    echo "<tr>
-                            <td>" . $row['text'] . "</td>
-                            <td>
-                                <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
-                                <span id='vote-".$id."'>" . $value . "</span>
-                                <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
-                          </tr>";
-                }
-
-                echo "</tbody>
-                </table>";
-                ?>
-            }
-
-        });
-    }
+    
 </script>
 
 
