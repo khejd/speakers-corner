@@ -28,8 +28,8 @@
 <div class="container">
 
 <a href="#" class="sort_selecter" onclick="sortBy(trending)">Trending</a>
-<a href="#" class="sort_selecter">Most recent</a>
-<a href="#" class="sort_selecter">Most Populare</a> 
+<a href="#" class="sort_selecter" onclick="sortBy(popularity)">Most recent</a>
+<a href="#" class="sort_selecter"onclick="sortBy(time)">Most Populare</a> 
     <div class="card">
         <div class="card-header">
             Speakers corner
