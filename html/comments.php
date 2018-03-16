@@ -131,7 +131,7 @@ function sortBy(argument)
         table += "</td>";
 
 
-        table += " <span onClick='upVote(";
+        table += "<td> <span onClick='upVote(";
         table += arg['id'];
         table += ")'><i class='fa fa-angle-up'></i></span><span id='vote-";
 
@@ -142,6 +142,7 @@ function sortBy(argument)
         
 
     }
+    table += "</tbody></table>";
 
     document.getElementById('table-sort-id').innerHTML=table;
     console.log(ar);
