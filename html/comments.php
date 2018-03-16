@@ -121,7 +121,7 @@ function sortBy(argument)
         );
     }
 
-    var table = "";
+    var table = "<tbody>";
     for (let arg of ar)
     {
         var votes =  Number(arg['ups'])-Number(arg['downs']);
