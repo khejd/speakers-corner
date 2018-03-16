@@ -117,14 +117,14 @@ function sortBy(argument)
     {
         ar.sort(function(a,b)
         {
-            return a['ups']-a['downs'] -(b['ups']-b['downs']);
+            return (a['ups']-a['downs']) < (b['ups']-b['downs']) ? 1 : -1;
         });
     }
     console.log(ar);
     var table = "";
     for (let arg of ar)
     {
-        console.log(arg);
+        //console.log(arg);
         table +="<tr> <td>";
         table += arg[1];
         table += "</td></tr>";
