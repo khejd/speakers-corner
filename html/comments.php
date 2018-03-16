@@ -128,7 +128,7 @@ function sortBy(argument)
         table +="<tr> <td>";
         table += arg[1];
         table += " votes = ";
-        table += parsInt(arg['ups'],10)-parsInt(arg['downs'],10);
+        table += Number(arg['ups'])-Number(arg['downs']);
         table += "</td></tr>";
         
 
