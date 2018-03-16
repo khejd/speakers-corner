@@ -116,7 +116,14 @@ function sortBy(argument)
     {
         ar.sort(function(a,b)
         {
-            return (Number(b['ups'])-Number(b['downs'])) - (Number(a['ups'])-Number(a['downs']));
+            var va = Number(a['ups'])-Number(a['downs']);
+            var vb = Number(b['ups'])-Number(b['downs']);
+            if (va==vb)
+            {
+                var d1 = new Date(a['time']);
+                var d2 = new Date(b['time']);
+            }
+            return vb-va;
         }
         );
     }
@@ -126,25 +133,7 @@ function sortBy(argument)
     {
         var votes =  Number(arg['ups'])-Number(arg['downs']);
        console.log(arg['ups']-arg['downs']);
-       table += ("<tr>                            <td>" +arg[1] + "</td>                            <td>                                <span onClick='upVote("+arg['id']+")'><i class='fa fa-angle-up'></i></span>                                <span id='vote-"+arg['id']+"'>" +votes+ "</span>                                <span onClick='downVote("+arg['id']+")'><i class='fa fa-angle-down'></i></span>                          </tr>")
-       /*
-        table +="<tr> <td>";
-        table += arg[1];
-        table += "</td>";
-
-
-        table += "<td> <span onClick='upVote(";
-        table += arg['id'];
-        table += ")'><i class='fa fa-angle-up'></i></span><span id='vote-";
-
-        table += arg['id'];
-        table += "'>"
-        table += votes;
-        table += "</span><span onClick='downVote('";
-        table += arg['id'];
-        table += ")'><i class='fa fa-angle-down'></i></span></tr>";
-        */
-        
+       table += ("<tr>                            <td>" +arg[1] + "</td>                            <td>                                <span onClick='upVote("+arg['id']+")'><i class='fa fa-angle-up'></i></span>                                <span id='vote-"+arg['id']+"'>" +votes+ "</span>                                <span onClick='downVote("+arg['id']+")'><i class='fa fa-angle-down'></i></span>                          </tr>") 
 
     }
     table += "</tbody></table>";
