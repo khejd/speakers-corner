@@ -100,6 +100,19 @@
 <script>
 
 var ar = <?php echo json_encode($newArray) ?>;
+function commentScore(commentVar){
+                    var n = commentVar["ups"] + commentVar["downs"];
+                    if (n==0) {
+                        return 0;
+                    }
+                    var z = 1.28155156;
+                    var p = commentVar["ups"]/$n;
+                    var left = p + 1/(2*n)*z*z;
+                    var right = z*sqrt(p*(1-p)/n +  z*z/(4*n*n));
+                    var under = 1+ (1/n)*z*z;
+                    return (left-right)/under;
+                }
+
 
 function sortBy(argument)
 {
@@ -128,6 +141,10 @@ function sortBy(argument)
             return vb-va;
         }
         );
+    }
+    if (argument == "trending")
+    {
+        ar.sort(commentScore);
     }
 
     var table = "<tbody>";
