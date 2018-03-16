@@ -123,7 +123,7 @@ function sortBy(argument)
     var table = "";
     for (let arg of ar)
     {
-       console.log(arg['ups']);
+       console.log(arg['ups']-arg['downs']);
         table +="<tr> <td>";
         table += arg[1];
         table += "</td></tr>";
