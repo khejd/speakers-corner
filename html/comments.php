@@ -132,6 +132,7 @@ function sortBy(argument)
     }
 
     document.getElementById('table-sort-id').innerHTML=table;
+    console.log(ar);
     
 }
 
