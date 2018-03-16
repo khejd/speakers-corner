@@ -144,7 +144,7 @@ function sortBy(argument)
     }
     if (argument == "trending")
     {
-        ar.sort(commentScore);
+        ar.sort(function(a,b){return commentScore(b)-commentScore(a);});
     }
 
     var table = "<tbody>";
