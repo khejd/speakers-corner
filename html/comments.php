@@ -135,8 +135,10 @@ function sortBy(argument)
         table += arg['id'];
         table += ")'><i class='fa fa-angle-up'></i></span><span id='vote-";
 
+        table += arg['id'];
+        table += "'>"
         table += votes;
-        table += "</span><span onClick='downVote(";
+        table += "</span><span onClick='downVote('";
         table += arg['id'];
         table += ")'><i class='fa fa-angle-down'></i></span></tr>";
         
