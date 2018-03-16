@@ -122,6 +122,8 @@ function sortBy(argument)
             {
                 var d1 = new Date(a['time']);
                 var d2 = new Date(b['time']);
+                return d1> d2 ? -1:1;
+
             }
             return vb-va;
         }
