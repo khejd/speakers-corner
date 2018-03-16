@@ -116,7 +116,7 @@ function sortBy(argument)
     {
         ar.sort(function(a,b)
         {
-            return (Number(a['ups'])-Number(a['downs'])) - (Number(b['ups'],10)-Number(b['downs'],10));
+            return (Number(b['ups'])-Number(b['downs'])) - (Number(a['ups'])-Number(a['downs']));
         }
         );
     }
