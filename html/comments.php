@@ -124,7 +124,7 @@ function sortBy(argument)
     var table = "";
     for (let arg of ar)
     {
-        console.log("arg-comment =" +arg[1] +" vote = " +(arg['ups']-arg['downs']);
+       
         table +="<tr> <td>";
         table += arg[1];
         table += "</td></tr>";
