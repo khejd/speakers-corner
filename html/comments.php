@@ -124,12 +124,21 @@ function sortBy(argument)
     var table = "";
     for (let arg of ar)
     {
+        var votes =  Number(arg['ups'])-Number(arg['downs']);
        console.log(arg['ups']-arg['downs']);
         table +="<tr> <td>";
         table += arg[1];
-        table += " votes = ";
-        table += Number(arg['ups'])-Number(arg['downs']);
-        table += "</td></tr>";
+        table += "</td>";
+
+
+        table += " <span onClick='upVote(";
+        table += arg['id'];
+        table += ")'><i class='fa fa-angle-up'></i></span><span id='vote-";
+
+        table += votes;
+        table += "</span><span onClick='downVote(";
+        table += arg['id'];
+        table += ")'><i class='fa fa-angle-down'></i></span></tr>";
         
 
     }
