@@ -127,6 +127,8 @@ function sortBy(argument)
        console.log(arg['ups']-arg['downs']);
         table +="<tr> <td>";
         table += arg[1];
+        table += " votes = ";
+        table += parsInt(arg['ups'])-parsInt(arg['downs']);
         table += "</td></tr>";
         
 
