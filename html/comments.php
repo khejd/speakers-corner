@@ -100,7 +100,6 @@
 <script>
 
 var ar = <?php echo json_encode($newArray) ?>;
-console.log(ar);
 
 function sortBy(argument)
 {
@@ -120,7 +119,7 @@ function sortBy(argument)
             return (a['ups']-a['downs']) < (b['ups']-b['downs']) ? 1 : -1;
         });
     }
-    console.log(ar);
+
     var table = "";
     for (let arg of ar)
     {
