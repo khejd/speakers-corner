@@ -106,7 +106,7 @@ function commentScore(commentVar){
                         return 0;
                     }
                     var z = 1.28155156;
-                    var p = commentVar["ups"]/$n;
+                    var p = commentVar["ups"]/n;
                     var left = p + 1/(2*n)*z*z;
                     var right = z*sqrt(p*(1-p)/n +  z*z/(4*n*n));
                     var under = 1+ (1/n)*z*z;
