@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Speakers-corner test site</title>
 
 </head>
@@ -22,12 +21,12 @@
             <h5 class="card-title">Hva brenner du for?</h5>
             <form action="handler/phoneHandler.php" method="post">
                 <div class="form-group">
-                    <textarea class="form-control" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
+                    <textarea class="form-control" maxlength="256" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="phone" placeholder="Telefonnummer" required autofocus>
+                    <input type="text" class="form-control" maxlength="8" minlength="8" name="phone" placeholder="Telefonnummer" required autofocus>
                     <small class="form-text text-muted">
-                        Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisen.
+                        Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adressavisa.
                     </small>
                 </div>
                 <a href="comments.php" role="button" class="btn btn-secondary">Kommentarer</a>
@@ -38,6 +37,12 @@
 </div>
 
 </body>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- HTML5 Speech Recognition API -->
 <script>
