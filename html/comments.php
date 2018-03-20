@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/app.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../js/bootstrap.min.js"></script>
     <title>Speakers-corner test site</title>
 
 </head>
 <body>
 <br>
 <div class="container">
-
-<a href="#" class="sort_selecter" onclick= "sortBy('trending')">Trending</a>
-<a href="#" class="sort_selecter" onclick= "sortBy('popularity')" >Most Populare</a>
-<a href="#" class="sort_selecter" onclick=  "sortBy('time')">Most Recent</a> 
-    <div class = "card">
+    <div class="card">
         <div class="card-header">
             Speakers corner
         </div>
@@ -25,135 +19,41 @@
             <br>
             <div class="container center_div">
                 <?php
-                
-                $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
+                $sql = "SELECT * FROM `comment`";
                 $result = mysqli_query($conn, $sql);
 
-
-                
-
-                $newArray = array();
-
-                while ($row = mysqli_fetch_array($result)){
-                    
-                    array_push($newArray, $row);
-                }
-
-                usort($newArray, "cmpByTimeAndVote");
-                
-
-                
-
-                echo "<table class='table table-hover' id = 'table-sort-id'>
+                echo "<table class='table table-hover'>
                         <tbody>";
 
-                
+                while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+                    $id = $row['id'];
+                    $value = intval($row['ups']) - intval($row['downs']);
+                    echo "<tr>
+                            <td>" . $row['text'] . "</td>
+                            <td>
+                                <span onClick='upVote(".$id.")'><i class='fa fa-angle-up'></i></span>
+                                <span id='vote-".$id."'>" . $value . "</span>
+                                <span onClick='downVote(".$id.")'><i class='fa fa-angle-down'></i></span>
+                          </tr>";
+                }
+
                 echo "</tbody>
                 </table>";
-
-                json_encode($newArray); 
                 ?>
                 <a href="index.php" role="button" class="btn btn-secondary left">Hjem</a>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script>
-
-var ar = <?php echo json_encode($newArray) ?>;
-function wilsonScore(commentVar){
-                    var n = commentVar["ups"] + commentVar["downs"];
-                    if (n==0) {
-                        return 0;
-                    }
-                    var z = 1.28155156;
-                    var p = commentVar["ups"]/n;
-                    var left = p + 1/(2*n)*z*z;
-                    var right = z*Math.sqrt(p*(1-p)/n +  z*z/(4*n*n));
-                    var under = 1+ (1/n)*z*z;
-                    return (left-right)/under;
-                }
-
-function hot(commentVar)
-{
-    var s = commentVar['ups']-commentVar['downs'];
-    var order = Math.log10(Math.max(Math.abs(s),1)); 
-    var sign = 0;
-    if (s>0)
-    {
-        sign = 1;
-    }
-    if (s<0)
-    {
-        sign =-1;
-    }
-    var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
-    return order + sign*seconds/45000;
-
-}
-
-function wilsonScoreWithTime(commentVar)
-{
-    var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar)//-Math.log10(seconds);
-}
-
-function sortBy(argument)
-{
-
-    if (argument=="time")
-    {
-        ar.sort(function(a, b)
-            {
-                var d1 = new Date(a['time']);
-                var d2 = new Date(b['time']);
-                return d1> d2 ? -1:1;
-            });
-    }
-    if (argument=="popularity")
-    {
-        ar.sort(function(a,b)
-        {
-            var va = Number(a['ups'])-Number(a['downs']);
-            var vb = Number(b['ups'])-Number(b['downs']);
-            if (va==vb)
-            {
-                var d1 = new Date(a['time']);
-                var d2 = new Date(b['time']);
-                return d1> d2 ? -1:1;
-
-            }
-            return vb-va;
-        }
-        );
-    }
-    if (argument == "trending")
-    {
-       
-        ar.sort(function(a,b){return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);});
-    }
-
-    var table = "<tbody>";
-    for (let arg of ar)
-    {
-        var votes =  Number(arg['ups'])-Number(arg['downs']);
-       
-       table += ("<tr>                            <td>" +arg[1] + "</td>                            <td>                                <span onClick='upVote("+arg['id']+")'><i class='fa fa-angle-up'></i></span>                                <span id='vote-"+arg['id']+"'>" +votes+ "</span>                                <span onClick='downVote("+arg['id']+")'><i class='fa fa-angle-down'></i></span>                          </tr>") 
-
-    }
-    table += "</tbody></table>";
-
-    document.getElementById('table-sort-id').innerHTML=table;
-    
-    
-}
-
-
-
-
 
     function upVote(id) {
         $.ajax({
@@ -168,8 +68,7 @@ function sortBy(argument)
         })
     }
 
-    function downVote(id) 
-    {
+    function downVote(id) {
         $.ajax({
             url: "handler/downVoteHandler.php",
             type: 'POST',
@@ -181,12 +80,6 @@ function sortBy(argument)
             }
         })
     }
-
-
-    //sorter listen forstegang
-    sortBy("trending");
-
-
 </script>
 
 
