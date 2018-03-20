@@ -60,7 +60,7 @@
                 $newArray = array();
 
                 while ($row = mysqli_fetch_array($result)){
-                    echo strtotime($row["time"])-time();
+                    
                     array_push($newArray, $row);
                 }
 
@@ -100,7 +100,7 @@
 <script>
 
 var ar = <?php echo json_encode($newArray) ?>;
-function commentScore(commentVar){
+function wilsonScore(commentVar){
                     var n = commentVar["ups"] + commentVar["downs"];
                     if (n==0) {
                         return 0;
@@ -113,9 +113,33 @@ function commentScore(commentVar){
                     return (left-right)/under;
                 }
 
+function hot(commentVar)
+{
+    var s = commentVar['ups']-commentVar['downs'];
+    var order = Math.log10(Math.max(Math.abs(s),1)); 
+    var sign = 0;
+    if (s>0)
+    {
+        sign = 1;
+    }
+    if (s<0)
+    {
+        sign =-1;
+    }
+    var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
+    return order + sign*seconds/45000;
+
+}
+
+function wilsonScoreWithTime(commentVar)
+{
+    var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
+    return wilsonScore(commentVar)-Math.log10(seconds);
+}
 
 function sortBy(argument)
 {
+
     if (argument=="time")
     {
         ar.sort(function(a, b)
@@ -144,7 +168,7 @@ function sortBy(argument)
     }
     if (argument == "trending")
     {
-        ar.sort(function(a,b){return commentScore(b)-commentScore(a);});
+        ar.sort(function(a,b){return wilsonScoreWithTime(b)-commentScoreWithTime(a);});
     }
 
     var table = "<tbody>";
