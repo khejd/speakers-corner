@@ -143,7 +143,8 @@ function sortBy(argument)
     }
     if (argument == "trending")
     {
-        ar.sort(function(a,b){return wilsonScoreWithTime(b)-commentScoreWithTime(a);});
+        log.console("trenging blir kallet paa");
+        ar.sort(function(a,b){return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);});
     }
 
     var table = "<tbody>";
