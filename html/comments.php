@@ -109,7 +109,7 @@ function hot(commentVar)
 function wilsonScoreWithTime(commentVar)
 {
     var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar)-Math.log10(seconds);
+    return wilsonScore(commentVar)//-Math.log10(seconds);
 }
 
 function sortBy(argument)
