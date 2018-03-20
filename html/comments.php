@@ -143,7 +143,7 @@ function sortBy(argument)
     }
     if (argument == "trending")
     {
-        console.log("trenging blir kallet paa");
+       
         ar.sort(function(a,b){return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);});
     }
 
@@ -151,14 +151,14 @@ function sortBy(argument)
     for (let arg of ar)
     {
         var votes =  Number(arg['ups'])-Number(arg['downs']);
-       console.log(arg['ups']-arg['downs']);
+       
        table += ("<tr>                            <td>" +arg[1] + "</td>                            <td>                                <span onClick='upVote("+arg['id']+")'><i class='fa fa-angle-up'></i></span>                                <span id='vote-"+arg['id']+"'>" +votes+ "</span>                                <span onClick='downVote("+arg['id']+")'><i class='fa fa-angle-down'></i></span>                          </tr>") 
 
     }
     table += "</tbody></table>";
 
     document.getElementById('table-sort-id').innerHTML=table;
-    console.log(ar);
+    
     
 }
 
