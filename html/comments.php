@@ -143,7 +143,7 @@ function sortBy(argument)
     }
     if (argument == "trending")
     {
-        log.console("trenging blir kallet paa");
+        console.log("trenging blir kallet paa");
         ar.sort(function(a,b){return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);});
     }
 
