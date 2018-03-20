@@ -29,33 +29,8 @@
                 $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
                 $result = mysqli_query($conn, $sql);
 
-                function cmpByPopularity($a, $b)
-                {
-                    return (($a["ups"]-$a["downs"])>($b["ups"]-$b["downs"])) ? -1:1;
-                }
 
-                function cmpByTimeAndVote($a, $b){
-                    $score_a = wilsonScore($a);
-                    $score_b = wilsonScore($b);
-
-                    if ($score_a == $score_b) {
-                        return 0;
-                    }
-                    return ($score_a > $score_b) ? -1 : 1;
-                }
-
-                function wilsonScore($commentVar){
-                    $n = $commentVar["ups"] + $commentVar["downs"];
-                    if ($n==0) {
-                        return 0;
-                    }
-                    $z = 1.28155156;
-                    $p = $commentVar["ups"]/$n;
-                    $left = $p + 1/(2*$n)*$z*$z;
-                    $right = $z*sqrt($p*(1-$p)/$n +  $z*$z/(4*$n*$n));
-                    $under = 1+ (1/$n)*$z*$z;
-                    return ($left-$right)/$under;
-                }
+                
 
                 $newArray = array();
 
@@ -203,7 +178,8 @@ function sortBy(argument)
         })
     }
 
-    function downVote(id) {
+    function downVote(id) 
+    {
         $.ajax({
             url: "handler/downVoteHandler.php",
             type: 'POST',
@@ -215,6 +191,10 @@ function sortBy(argument)
             }
         })
     }
+
+
+    //sorter listen forstegang
+    sortBy("trending");
 
 
 </script>
