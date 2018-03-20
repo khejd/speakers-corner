@@ -6,7 +6,7 @@ body {
 div {
   color: white;
   margin: 0 auto;
-  width:. 200px;
+  width: 200px;
   padding: 0px;
   text-align: center;
 }
@@ -17,11 +17,7 @@ h1 {
   font-size: 60px;
 }
 
-.form-control{
-  font-size: 28px;
-  width: 710px;
-  height: 35px;
-}
+
 
 #submit {
     background-color: #3dabff;

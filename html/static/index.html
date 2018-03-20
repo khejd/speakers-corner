@@ -2,20 +2,140 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../css/indexstyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../css/app.css">
     <link rel="stylesheet" href="../../css/noselect.css">
     <title>Speakers-corner test site</title>
 
 </head>
 
-<body onclick='window.location.href="record.html"'>
+<body>
 
-<div>
-    <h1> DEL DINE MENINGER </h1>
-    <h2> TRYKK PÅ SKJERMEN FOR Å STARTE </h2>
+<div id="layer1" class="container-fluid visible">
+    <div class="row">
+        <div  class="col-md-8 offset-md-2 text-center">
+            <h1 class="text-uppercase text-white">Del dine meninger!</h1>
+            <h2 class="text-uppercase text-white">Trykk på skjermen for å starte</h2>
+        </div>
+    </div>
 </div>
+
+<div id="layer2" class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+        <h1 class="text-uppercase text-white text-center">Hva brenner du for?</h1>
+            <br>
+        <form method="post" action="phone.html">
+            <div class="form-group">
+                <textarea class="form-control" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLongTitle">Vil du publisere din mening?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Kommentaren kommer her
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="start">Nei</button>
+                            <button type="submit" class="btn btn-primary">Ja</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
 
 </body>
 
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script>
+    var layer1 = document.getElementById('layer1');
+    var layer2 = document.getElementById('layer2');
+    var backToStart = document.getElementById('start');
+
+    backToStart.addEventListener('click', function(){
+       window.location.reload();
+    });
+
+    layer1.addEventListener('click', function (){
+        layer1.classList.remove('visible');
+        layer2.classList.add('visible');
+    });
+
+
+    // Speech recognition
+    var active = false;
+
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+        var recognition = new webkitSpeechRecognition();
+    }
+
+    document.onkeydown = function(e){
+        if (e.keyCode == 17){ //ctrl
+            if (!active){
+                active = true;
+                startDictation();
+            }
+        }
+    };
+
+    document.onkeyup = function(event){
+        if (event.keyCode == 17){ // stop when keyup ctrl
+            active = false;
+            recognition.stop();
+            $('#confirmationModal').modal('show');
+            layer2.style.zIndex = 'auto';
+        }
+    };
+
+    function startDictation() {
+
+        var final_transcript = '';
+
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        recognition.lang = "no-NO";
+        recognition.start();
+
+        recognition.onresult = function(e) {
+            var interim_transcript = '';
+            for (var i = e.resultIndex; i < e.results.length; ++i) {
+                if (e.results[i].isFinal) {
+                    final_transcript += e.results[i][0].transcript;
+                } else {
+                    interim_transcript += e.results[i][0].transcript;
+                }
+            }
+
+            document.getElementById('transcript').value = final_transcript + interim_transcript;
+
+        };
+
+        recognition.onerror = function(e) {
+            recognition.stop();
+        };
+    }
+
+
+</script>
 
 </html>

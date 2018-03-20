@@ -12,3 +12,30 @@
     float: left;
 }
 
+div#layer1 {
+    width: 100%;
+    height: 100%;
+    background: #3dabff;
+    position: absolute;
+    padding-top: 100px;
+}
+
+div#layer2 {
+    width: 100%;
+    height: 100%;
+    background: #3dabff;
+    position: absolute;
+    opacity: 0;
+    padding-top: 100px;
+}
+
+
+.visible {
+    z-index: 10;
+    transition: opacity 0.5s;
+    opacity: 1 !important;
+}
+
+.form-control{
+    font-size: 28px;
+}
