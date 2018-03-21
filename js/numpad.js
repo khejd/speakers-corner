@@ -14,7 +14,6 @@ $('#numpad li').click(function (e) {
             break;
         }
     }
-    console.log(element);
 });
 
 $('#delete').click(function () {

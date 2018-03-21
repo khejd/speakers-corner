@@ -1,8 +1,8 @@
 <?php
 include_once("../../Connections/connection.php");
 
-    $code = $_POST['code'];
-    $phone = $_POST['phone'];
+    $code = intval($_POST['code']);
+    $phone = intval($_POST['phone']);
     $comment =  $_POST['comment'];
 
     $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
