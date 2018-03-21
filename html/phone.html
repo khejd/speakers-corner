@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/noselect.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script src="../js/timeout.js"></script> -->
+    <title>Speakers-corner test site</title>
+
+
+</head>
+<body>
+
+<br>
+
+<div id="layer1" class="container-fluid visible">
+    <div class="row">
+        <div  class="col-md-8 offset-md-2">
+            <h1 class="text-uppercase text-white">Skriv inn telefonnummer</h1>
+        <br>
+            <form id="phoneForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" id ="phone" placeholder="Telefonnummer" required>
+                    <small class="form-text text-muted">Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.</small>
+                </div>
+                <button type="button" class="btn btn-primary">Neste</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="layer2" class="container-fluid">
+    <div class="row">
+        <div  class="col-md-8 offset-md-2">
+            <h1 class="text-uppercase text-white">Skriv inn kode</h1>
+            <br>
+            <form action="" id="codeForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" id ="code" placeholder="Kode" required>
+                    <small class="form-text text-muted" id="commentText"></small>
+                </div>
+                <button type="button" class="btn btn-primary">Publiser</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="numpad right" id="numpad">
+    <ul id="keyboard">
+        <li class="letter" id="1">1</li>
+        <li class="letter" id="2">2</li>
+        <li class="letter" id ="3">3</li>
+        <li class="letter clearl" id ="4">4</li>
+        <li class="letter" id ="5"> 5</li>
+        <li class="letter" id ="6">6</li>
+
+        <li class="letter clearl" id ="7">7</li>
+        <li class="letter " id ="8">8</li>
+        <li class="letter" id ="9">9</li>
+        <li class="letter clearl fa fa-arrow-left" id ="delete"></li>
+        <li class="letter" id = "0">0</li>
+         <li class="delete lastitem" id ="clear">CLR</li>
+    </ul>
+</div>
+
+
+</body>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="../js/numpad.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        console.log(localStorage.getItem('commentText'));
+        $('#commentText').text(localStorage.getItem("commentText"));
+    });
+
+
+    $('#phoneForm button').click(function () {
+        $.ajax({
+            url: 'handler/phoneHandler.php',
+            type: 'POST',
+            datatype: 'json',
+            data: {data: $('#phoneForm').serialize()},
+            success: function () {
+                $('#layer1').removeClass('visible');
+                $('#layer2').addClass('visible');
+            }
+        });
+    });
+
+    $('#codeForm button').click(function () {
+        $.ajax({
+            url: 'handler/codeHandler.php',
+            type: 'POST',
+            datatype: 'json',
+            data: {
+                data: $('#phoneForm').serialize(),
+                comment: localStorage.getItem("commentText"),
+                phone: $('#phone').text()
+            },
+            success: function () {
+               window.location.href = 'comments.php'
+            }
+        });
+    });
+
+</script>
+
+</html>

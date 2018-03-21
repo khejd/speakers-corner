@@ -40,7 +40,7 @@
                 echo "</tbody>
                 </table>";
                 ?>
-                <a href="index.php" role="button" class="btn btn-secondary left">Hjem</a>
+                <a href="index.html" role="button" class="btn btn-secondary left">Hjem</a>
             </div>
         </div>
     </div>

@@ -1,23 +1,21 @@
 <?php
 include_once("../../Connections/connection.php");
 
-if (isset($_POST['submit'])){
-
-    $code = $_POST['code'];
-    $phone = $_GET['phone'];
-    $comment =  $_GET['comment'];
+    $data = json_decode($_POST['data']);
+    $code = $data['code'];
+    $phone = $_POST['phone'];
+    $comment =  $_POST['comment'];
 
     $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
 
-    if ($row['code'] != $code){
-        header('Location: ../comments.php');
-    } else {
-        header('Location: commentHandler.php?phone='.$phone.'&comment='.$comment);
-    }
+    $stmt = $conn->prepare("INSERT INTO `comment` (`user_id`, `text`) VALUES (?, ?)");
+    $stmt->bind_param("is", $user_id, $comment);
 
-    exit;
-}
+    $user_id = $row['id'];
+    $stmt->execute();
+    $stmt->close();
+
 
 ?>
