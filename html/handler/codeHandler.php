@@ -2,7 +2,7 @@
 include_once("../../Connections/connection.php");
 
     $data = json_decode($_POST['data']);
-    $code = $data['code'];
+    $code = $data['value'];
     $phone = $_POST['phone'];
     $comment =  $_POST['comment'];
 

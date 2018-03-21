@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/noselect.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--<script src="../js/timeout.js"></script> -->
+    <script src="../js/timeout.js"></script>
     <title>Speakers-corner test site</title>
 
 
@@ -22,7 +22,7 @@
         <br>
             <form id="phoneForm">
                 <div class="form-group">
-                    <input type="text" class="form-control" id ="phone" placeholder="Telefonnummer" required>
+                    <input type="text" class="form-control" id="name" name="phone" placeholder="Telefonnummer" required>
                     <small class="form-text text-muted">Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.</small>
                 </div>
                 <button type="button" class="btn btn-primary">Neste</button>
@@ -38,7 +38,7 @@
             <br>
             <form action="" id="codeForm">
                 <div class="form-group">
-                    <input type="text" class="form-control" id ="code" placeholder="Kode" required>
+                    <input type="text" class="form-control" id="code" name="code" placeholder="Kode" required>
                     <small class="form-text text-muted" id="commentText"></small>
                 </div>
                 <button type="button" class="btn btn-primary">Publiser</button>
@@ -91,7 +91,7 @@
             url: 'handler/phoneHandler.php',
             type: 'POST',
             datatype: 'json',
-            data: {data: $('#phoneForm').serialize()},
+            data: {data: JSON.stringify( $('#phoneForm').serializeArray() )},
             success: function () {
                 $('#layer1').removeClass('visible');
                 $('#layer2').addClass('visible');
@@ -105,7 +105,7 @@
             type: 'POST',
             datatype: 'json',
             data: {
-                data: $('#phoneForm').serialize(),
+                data: JSON.stringify( $('#codeForm').serializeArray() ),
                 comment: localStorage.getItem("commentText"),
                 phone: $('#phone').text()
             },
