@@ -91,7 +91,8 @@
             data: {
                 phone: $('#phone').val()
             },
-            success: function () {
+            success: function (result) {
+                console.log(result);
                 $('#layer1').removeClass('visible');
                 $('#layer2').addClass('visible');
             }
