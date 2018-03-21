@@ -22,7 +22,7 @@
         <br>
             <form id="phoneForm">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefonnummer" required>
+                    <input type="text" class="form-control" id="phone" placeholder="Telefonnummer" required>
                     <small class="form-text text-muted">Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.</small>
                 </div>
                 <button type="button" class="btn btn-primary">Neste</button>
@@ -38,7 +38,7 @@
             <br>
             <form action="" id="codeForm">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="code" name="code" placeholder="Kode" required>
+                    <input type="text" class="form-control" id="code" placeholder="Kode" required>
                     <small class="form-text text-muted" id="commentText"></small>
                 </div>
                 <button type="button" class="btn btn-primary">Publiser</button>
@@ -90,8 +90,7 @@
         $.ajax({
             url: 'handler/phoneHandler.php',
             type: 'POST',
-            datatype: 'json',
-            data: {data: JSON.stringify( $('#phoneForm').serializeArray() )},
+            data: {phone: $('#phone').val()},
             success: function (result) {
                 console.log(result);
                 $('#layer1').removeClass('visible');
@@ -104,11 +103,10 @@
         $.ajax({
             url: 'handler/codeHandler.php',
             type: 'POST',
-            datatype: 'json',
             data: {
-                data: JSON.stringify( $('#codeForm').serializeArray() ),
+                code: $('#code').val(),
                 comment: localStorage.getItem("commentText"),
-                phone: $('#phone').text()
+                phone: $('#phone').val()
             },
             success: function () {
                window.location.href = 'comments.php'
