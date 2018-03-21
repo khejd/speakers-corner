@@ -107,8 +107,12 @@
                 comment: localStorage.getItem("commentText"),
                 phone: $('#phone').val()
             },
-            success: function () {
-               window.location.href = 'comments.php'
+            success: function (result) {
+                if (result == "error"){
+                    $('#code').text('Wrong code');
+                } else {
+                    window.location.href = 'comments.php'
+                }
             }
         });
     });
