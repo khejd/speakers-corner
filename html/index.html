@@ -98,8 +98,10 @@
         if (event.keyCode == 17){ // stop when keyup ctrl
             active = false;
             recognition.stop();
-            $('#confirmationModal').modal('show');
-            layer2.css('z-index', 'auto');
+            if (layer2.hasClass('visible')){
+                $('#confirmationModal').modal('show');
+                layer2.css('z-index', 'auto');
+            }
         }
     };
 

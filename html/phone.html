@@ -81,7 +81,6 @@
 <script>
 
     $(document).ready(function () {
-        console.log(localStorage.getItem('commentText'));
         $('#commentText').text(localStorage.getItem("commentText"));
     });
 
@@ -90,9 +89,10 @@
         $.ajax({
             url: 'handler/phoneHandler.php',
             type: 'POST',
-            data: {phone: $('#phone').val()},
-            success: function (result) {
-                console.log(result);
+            data: {
+                phone: $('#phone').val()
+            },
+            success: function () {
                 $('#layer1').removeClass('visible');
                 $('#layer2').addClass('visible');
             }
