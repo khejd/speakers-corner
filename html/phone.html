@@ -96,6 +96,9 @@
                 $('#layer1').removeClass('visible');
                 $('#layer2').addClass('visible');
             }
+            error: function (result) {
+                console.log(result);
+            }
         });
     });
 
