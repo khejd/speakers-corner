@@ -10,7 +10,7 @@ include_once("../../Connections/connection.php");
     $stmt->execute();
     $stmt->close();
 
-    echo $phone;
+    exit;
 
 
     //Send SMS with code

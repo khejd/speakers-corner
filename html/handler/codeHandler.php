@@ -16,5 +16,7 @@ include_once("../../Connections/connection.php");
     $stmt->execute();
     $stmt->close();
 
+    exit;
+
 
 ?>
