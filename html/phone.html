@@ -92,7 +92,8 @@
             type: 'POST',
             datatype: 'json',
             data: {data: JSON.stringify( $('#phoneForm').serializeArray() )},
-            success: function () {
+            success: function (result) {
+                console.log(result);
                 $('#layer1').removeClass('visible');
                 $('#layer2').addClass('visible');
             }
