@@ -47,7 +47,7 @@
 
         deferred.then(function () {
 
-            $('.sort_selecter').on('click', 'span', (function (e) {
+            $('.sort_selecter').on('click', 'span', function (e) {
                 var id = e.target.id;
                 sortBy(id);
             });
