@@ -51,6 +51,7 @@ function sortBy(argument){
             }
         );
     }
+
     if (argument === "trending"){
         myArray.sort(function(a,b){
             return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);
@@ -69,4 +70,6 @@ function sortBy(argument){
     }
     table += "</tbody></table>";
     document.getElementById('comments-table').innerHTML=table;
+
+    return 0;
 }
