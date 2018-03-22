@@ -11,9 +11,9 @@
 <br>
 <div class="container">
 
-<a href="#" class="sort_selecter" onclick= "sortBy('trending')">Trending</a>
-<a href="#" class="sort_selecter" onclick= "sortBy('popularity')" >Most Popular</a>
-<a href="#" class="sort_selecter" onclick=  "sortBy('time')">Most Recent</a> 
+    <a href="#" class="sort_selecter" onclick= "sortBy('trending')">Trending</a>
+    <a href="#" class="sort_selecter" onclick= "sortBy('popularity')" >Most Popular</a>
+    <a href="#" class="sort_selecter" onclick=  "sortBy('time')">Most Recent</a>
     <div class = "card">
         <div class="card-header">
             Speakers corner
@@ -29,7 +29,7 @@
 </div>
 
 </body>
-    
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -86,23 +86,23 @@
 
         if (argument=="time"){
             array.sort(function(a, b){
-                    var d1 = new Date(a['time']);
-                    var d2 = new Date(b['time']);
-                    return d1> d2 ? -1:1;
+                var d1 = new Date(a['time']);
+                var d2 = new Date(b['time']);
+                return d1> d2 ? -1:1;
             });
         }
         if (argument=="popularity"){
             ar.sort(function(a,b){
-                var va = Number(a['ups'])-Number(a['downs']);
-                var vb = Number(b['ups'])-Number(b['downs']);
-                if (va==vb){
-                    var d1 = new Date(a['time']);
-                    var d2 = new Date(b['time']);
-                    return d1> d2 ? -1:1;
+                    var va = Number(a['ups'])-Number(a['downs']);
+                    var vb = Number(b['ups'])-Number(b['downs']);
+                    if (va==vb){
+                        var d1 = new Date(a['time']);
+                        var d2 = new Date(b['time']);
+                        return d1> d2 ? -1:1;
 
+                    }
+                    return vb-va;
                 }
-                return vb-va;
-            }
             );
         }
         if (argument == "trending"){
@@ -137,7 +137,7 @@
         })
     }
 
-    function downVote(id) 
+    function downVote(id)
     {
         $.ajax({
             url: "handler/downVoteHandler.php",

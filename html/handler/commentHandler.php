@@ -1,22 +1,15 @@
 <?php
 include_once("../../Connections/connection.php");
 
-
-    $phone = $_GET['phone'];
-
-    $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
+    $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
 
-    $stmt = $conn->prepare("INSERT INTO `comment` (`user_id`, `text`) VALUES (?, ?)");
-    $stmt->bind_param("is", $user_id, $comment);
+    $array = array();
 
-    $user_id = $row['id'];
-    $comment = $_GET['comment'];
-    $stmt->execute();
-    $stmt->close();
+    while ($row = mysqli_fetch_array($result)){
+        array_push($array, $row);
+    }
 
-    header('Location: ../comments.php');
-    exit;
+    echo json_encode($array);
 
 ?>
