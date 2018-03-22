@@ -43,9 +43,10 @@
     var myArray = '';
 
     $(function () {
-        $.when(getComments()).then(sortBy('trending'));
-
-        console.log('ready');
+        var promise = getComments();
+        promise.then(function () {
+            console.log('ready');
+        });
 
         $('.param').click(function (e) {
             console.log('click');
@@ -57,14 +58,17 @@
     });
 
     function getComments(){
-        var r = $.Deferred();
+        var deferred =  $.Deferred();
         $.ajax({
             url: 'handler/commentHandler.php',
             type: 'GET',
             success: function (result) {
                 myArray = JSON.parse(result);
+                sortBy('trending');
+                deferred.done();
             }
         });
+        return deferred.promise();
     }
 
     function vote(action, id) {
