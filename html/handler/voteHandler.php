@@ -27,9 +27,7 @@
     $data = json_decode($_COOKIE[$cookie_name], true);
     $key = array_search($id, array_column($data, 'id'));
 
-    echo $key;
-
-    /*if ($cookie_value[$key]['id'] != $id){
+    if (isset($_COOKIE[$cookie_name])){
         if($data[$key]['vote'] == 'up'){
             $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
@@ -39,6 +37,6 @@
             $result = mysqli_query($conn, $sql);
             echo -1;
         }
-    }*/
+    }
 
 ?>
