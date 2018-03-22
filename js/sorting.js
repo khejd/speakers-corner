@@ -67,8 +67,9 @@ function sortBy(argument){
             "<span id='vote-" + arg['id'] + "'>" + votes + "</span>" +
             "<span id='down-" + arg['id'] + "'><i class='fa fa-angle-down param'></i></span></tr>"
         );
+
     }
     table += "</tbody></table>";
-    document.getElementById('comments-table').innerHTML=table;
+    $('#comments-table').append(table);
 
 }

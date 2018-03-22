@@ -11,9 +11,9 @@
 <br>
 <div class="container">
 
-    <a href="#" class="sort_selecter" onclick="sortBy('trending')">Trending</a>
-    <a href="#" class="sort_selecter" onclick="sortBy('popularity')" >Most Popular</a>
-    <a href="#" class="sort_selecter" onclick="sortBy('time')">Most Recent</a>
+    <a href="#" class="sort_selecter" id="trending">Trending</a>
+    <a href="#" class="sort_selecter" id="popularity">Most Popular</a>
+    <a href="#" class="sort_selecter" id="time">Most Recent</a>
     <div class = "card">
         <div class="card-header">
             Speakers corner
@@ -46,6 +46,13 @@
         var deferred = getComments();
 
         deferred.then(function () {
+
+            $('.sort_selecter').click(function (e) {
+                var id = e.target.id;
+                sortBy(id);
+            });
+
+
             $('.param').click(function (e) {
                 console.log('click');
                 var action = e.target.id.split('-')[0];
