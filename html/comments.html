@@ -43,16 +43,15 @@
     var myArray = '';
 
     $(function () {
-        $.when(getComments()).done(function(){
+        $.when(getComments()).done(sortBy('trending'));
 
-            console.log('ready');
+        console.log('ready');
 
-            $('.param').click(function (e) {
-                console.log('click');
-                var action = e.target.id.split('-')[0];
-                var id = e.target.id.replace(action + '-','');
-                vote(action, id);
-            });
+        $('.param').click(function (e) {
+            console.log('click');
+            var action = e.target.id.split('-')[0];
+            var id = e.target.id.replace(action + '-','');
+            vote(action, id);
         });
 
     });
@@ -63,7 +62,6 @@
             type: 'GET',
             success: function (result) {
                 myArray = JSON.parse(result);
-                sortBy("trending");
             }
         });
     }
