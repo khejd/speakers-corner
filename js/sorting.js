@@ -71,6 +71,4 @@ function sortBy(argument){
     table += "</tbody></table>";
     document.getElementById('comments-table').innerHTML=table;
 
-    console.log('done');
-
 }
