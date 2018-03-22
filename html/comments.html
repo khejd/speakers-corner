@@ -56,7 +56,10 @@
                 var action = e.target.id.split('-')[0];
                 var id = e.target.id.replace(action + '-','');
                 console.log('action: ' + action + ', id: ' + id);
-                vote(action, id);
+                var res = vote(action, id);
+                if (res === -1 || res === 1){
+                    $('#vote-' + id).text(parseInt($('#vote-' + id).text()) + res);
+                }
             });
         });
 
@@ -77,6 +80,7 @@
     }
 
     function vote(action, id) {
+        var res = '';
         $.ajax({
             url: "handler/voteHandler.php",
             type: 'POST',
@@ -85,11 +89,10 @@
                 id: id
             },
             success: function(result){
-                if (result === -1 || result === 1){
-                    $('#vote-' + id).text(parseInt($('#vote-' + id).text()) + result);
-                }
+                res = result;
             }
         });
+        return res;
     }
 
 
