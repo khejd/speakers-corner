@@ -47,15 +47,15 @@
 
         deferred.then(function () {
 
-            $('.sort_selecter').click(function () {
-                var id = $(this).id;
+            $('.sort_selecter').click(function (e) {
+                var id = e.target.id;
                 sortBy(id);
             });
 
-            $('span').on('click', 'i', function () {
+            $('span').on('click', 'i', function (e) {
                 console.log('click');
-                var action = $(this).id.split('-')[0];
-                var id = $(this).id.replace(action + '-','');
+                var action = e.target.id.split('-')[0];
+                var id = e.target.id.replace(action + '-','');
                 vote(action, id);
             });
         });
