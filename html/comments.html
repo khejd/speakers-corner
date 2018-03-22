@@ -43,6 +43,21 @@
     var myArray = '';
 
     $(function () {
+        $.when(getComments()).done(function(){
+
+            console.log('ready');
+
+            $('.param').click(function (e) {
+                console.log('click');
+                var action = e.target.id.split('-')[0];
+                var id = e.target.id.replace(action + '-','');
+                vote(action, id);
+            });
+        });
+
+    });
+
+    function getComments(){
         $.ajax({
             url: 'handler/commentHandler.php',
             type: 'GET',
@@ -51,17 +66,7 @@
                 sortBy("trending");
             }
         });
-
-        console.log('ready');
-
-        $('.param').click(function (e) {
-            console.log('click');
-            var action = e.target.id.split('-')[0];
-            var id = e.target.id.replace(action + '-','');
-            vote(action, id);
-        });
-
-    });
+    }
 
     function vote(action, id) {
         $.ajax({
