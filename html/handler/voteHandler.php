@@ -27,18 +27,16 @@
     $data = json_decode($_COOKIE[$cookie_name], true);
     $key = array_search($id, array_column($data, 'id'));
 
-    if ($cookie_value[$key]['id'] != $id) {
+    echo $cookie_value[$key]['id'];
         if (isset($_COOKIE[$cookie_name])) {
             if ($data[$key]['vote'] == 'up') {
                 $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
                 $result = mysqli_query($conn, $sql);
-                echo 1;
             } else if ($data[$key]['vote'] == 'down') {
                 $sql = "UPDATE `comment` SET `downs` = `downs` - 1 WHERE `comment`.`id` = $id";
                 $result = mysqli_query($conn, $sql);
-                echo -1;
             }
         }
-    }
+
 
 ?>
