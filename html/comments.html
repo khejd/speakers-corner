@@ -52,7 +52,7 @@
                 sortBy(id);
             });
 
-            $('span').on('click', 'i', function (e) {
+            $('#comments').on('click', 'i', function (e) {
                 console.log('click');
                 var action = e.target.id.split('-')[0];
                 var id = e.target.id.replace(action + '-','');
