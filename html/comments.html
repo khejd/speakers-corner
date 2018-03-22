@@ -24,8 +24,8 @@
                 <table class='table' id='comments-table'>
                     <tbody></tbody>
                 </table>
-                <a href="index.php" role="button" class="btn btn-secondary left">Hjem</a>
             </div>
+            <a href="index.php" role="button" class="btn btn-secondary left">Hjem</a>
         </div>
     </div>
 </div>
@@ -47,7 +47,7 @@
 
         deferred.then(function () {
 
-            $('.sort_selecter').click(function (e) {
+            $('.sort_selecter').on('click', 'span', (function (e) {
                 var id = e.target.id;
                 sortBy(id);
             });
