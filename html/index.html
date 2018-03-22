@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,6 +9,7 @@
 
 </head>
 <body>
+<br><br><br>
 
 <div id="layer1" class="container-fluid visible">
     <div class="row">
@@ -23,7 +24,6 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h1 class="text-uppercase text-white text-center">Hva brenner du for?</h1>
-            <br>
             <form method="post" action="phone.html">
                 <div class="form-group">
                     <textarea class="form-control" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
@@ -31,7 +31,7 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="confirmationModalLongTitle">Vil du publisere din mening?</h5>
@@ -132,7 +132,7 @@
         $('#commentText span').text(transcript.val());
         localStorage.setItem("commentText", transcript.val());
 
-        recognition.onerror = function(e) {
+        recognition.onerror = function() {
             recognition.stop();
         };
     }

@@ -8,8 +8,8 @@
     <title>Speakers-corner test site</title>
 
 </head>
-
 <body>
+<br><br><br>
 
 <div id="layer1" class="container-fluid visible">
     <div class="row">
@@ -23,39 +23,36 @@
 <div id="layer2" class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-        <h1 class="text-uppercase text-white text-center">Hva brenner du for?</h1>
-            <br>
-        <form method="post" action="phone.html">
-            <div class="form-group">
-                <textarea class="form-control" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
-            </div>
+            <h1 class="text-uppercase text-white text-center">Hva brenner du for?</h1>
+            <form method="post" action="phone.html">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
+                </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="confirmationModalLongTitle">Vil du publisere din mening?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Kommentaren kommer her
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="start">Nei</button>
-                            <button type="submit" class="btn btn-primary">Ja</button>
+                <!-- Modal -->
+                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmationModalLongTitle">Vil du publisere din mening?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="commentText">
+                                <span></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" id="start">Nei</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Ja</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
         </div>
     </div>
 </div>
-
-
 
 </body>
 
@@ -65,19 +62,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
+<!-- HTML5 Speech Recognition API -->
 <script>
-    var layer1 = document.getElementById('layer1');
-    var layer2 = document.getElementById('layer2');
-    var backToStart = document.getElementById('start');
+    var layer1 = $('#layer1');
+    var layer2 = $('#layer2');
+    var backToStart = $('#start');
 
-    backToStart.addEventListener('click', function(){
-       window.location.reload();
+    backToStart.click(function(){
+        window.location.reload();
     });
 
-    layer1.addEventListener('click', function (){
-        layer1.classList.remove('visible');
-        layer2.classList.add('visible');
+    layer1.click(function (){
+        layer1.removeClass('visible');
+        layer2.addClass('visible');
     });
 
 
@@ -101,14 +98,17 @@
         if (event.keyCode == 17){ // stop when keyup ctrl
             active = false;
             recognition.stop();
-            $('#confirmationModal').modal('show');
-            layer2.style.zIndex = 'auto';
+            if (layer2.hasClass('visible')){
+                $('#confirmationModal').modal('show');
+                layer2.css('z-index', 'auto');
+            }
         }
     };
 
     function startDictation() {
 
         var final_transcript = '';
+        var transcript = $('#transcript');
 
         recognition.continuous = true;
         recognition.interimResults = true;
@@ -126,16 +126,17 @@
                 }
             }
 
-            document.getElementById('transcript').value = final_transcript + interim_transcript;
-
+            transcript.val(final_transcript + interim_transcript);
         };
 
-        recognition.onerror = function(e) {
+        $('#commentText span').text(transcript.val());
+        localStorage.setItem("commentText", transcript.val());
+
+        recognition.onerror = function() {
             recognition.stop();
         };
     }
-
-
 </script>
+
 
 </html>

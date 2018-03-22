@@ -13,20 +13,22 @@
 </head>
 <body>
 
-<br>
-
 <div id="layer1" class="container-fluid visible">
     <div class="row">
         <div  class="col-md-8 offset-md-2">
             <h1 class="text-uppercase text-white">Skriv inn telefonnummer</h1>
         <br>
-            <form id="phoneForm">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="phone" placeholder="Telefonnummer" required>
-                    <small class="form-text text-muted">Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.</small>
+            <div id="phoneInput">
+                <div class="form-row">
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="Telefonnummer" required>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary btn-lg">Neste</button>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg">Neste</button>
-            </form>
+                <small class="form-text text-dark">Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.</small>
+            </div>
         </div>
     </div>
 </div>
@@ -36,13 +38,18 @@
         <div  class="col-md-8 offset-md-2">
             <h1 class="text-uppercase text-white">Skriv inn kode</h1>
             <br>
-            <form action="" id="codeForm">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="code" placeholder="Kode" required>
-                    <small class="form-text text-muted" id="commentText"></small>
+            <div id="codeInput">
+                <div class="form-row">
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control form-control-lg" id="code" placeholder="Kode" required>
+                        <div id="errorMsg" class="form-text text-danger"></div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary btn-lg">Publiser</button>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg">Publiser</button>
-            </form>
+                <small class="form-text text-muted" id="commentText"></small>
+            </div>
         </div>
     </div>
 </div>
@@ -84,21 +91,23 @@
         $('#commentText').text(localStorage.getItem("commentText"));
     });
 
-    $('#phoneForm button').click(function () {
+    $('#phoneInput button').click(function () {
         $.ajax({
             url: 'handler/phoneHandler.php',
             type: 'POST',
             data: {
                 phone: $('#phone').val()
             },
-            success: function () {
+            success: function (result) {
                 $('#layer1').removeClass('visible');
                 $('#layer2').addClass('visible');
+
+                console.log(result) //code, remove when not developing
             }
         });
     });
 
-    $('#codeForm button').click(function () {
+    $('#codeInput button').click(function () {
         $.ajax({
             url: 'handler/codeHandler.php',
             type: 'POST',
@@ -109,7 +118,8 @@
             },
             success: function (result) {
                 if (result == "error"){
-                    $('#code').val('Wrong code');
+                    $('#code').addClass('is-invalid');
+                    $('#errorMsg').text('Wrong code');
                 } else {
                     window.location.href = 'comments.php'
                 }

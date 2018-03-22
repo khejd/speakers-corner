@@ -21,7 +21,7 @@ div#layer1 {
     height: 100%;
     position: absolute;
     background: linear-gradient(to bottom right, #3dabff, lightgrey)  no-repeat center center fixed;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 div#layer2 {
@@ -30,7 +30,7 @@ div#layer2 {
     position: absolute;
     background: linear-gradient(to bottom right, #3dabff, lightgrey)  no-repeat center center fixed;
     opacity: 0;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 
@@ -40,15 +40,9 @@ div#layer2 {
     opacity: 1 !important;
 }
 
-.form-control{
-    font-size: 28px;
-}
-
-
 div.numpad{
     background-color: transparent;
     z-index: 10;
-
 }
 
 #numpad {

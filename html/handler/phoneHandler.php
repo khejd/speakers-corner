@@ -12,6 +12,7 @@ include_once("../../Connections/connection.php");
 
 
     //Send SMS with code
+    echo $code; // remove when not developing
 
 
 ?>

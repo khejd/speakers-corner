@@ -16,6 +16,7 @@ include_once("../../Connections/connection.php");
         $user_id = $row['id'];
         $stmt->execute();
         $stmt->close();
+
     } else {
         echo "error";
     }
