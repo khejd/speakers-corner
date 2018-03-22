@@ -45,7 +45,8 @@
             url: 'handler/commentHandler.php',
             type: 'GET',
             success: function (result) {
-                myArray = result;
+                myArray = JSON.parse(result);
+                console.log(myArray);
             }
         })
     });
