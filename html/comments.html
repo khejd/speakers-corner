@@ -52,13 +52,11 @@
                 sortBy(id);
             });
 
-            $('.table').on('click', 'span', function () {
-                if ($(this).hasClass('param')){
-                    console.log('click');
-                    var action = $(this).id.split('-')[0];
-                    var id = $(this).id.replace(action + '-','');
-                    vote(action, id);
-                }
+            $('span').on('click', 'i', function () {
+                console.log('click');
+                var action = $(this).id.split('-')[0];
+                var id = $(this).id.replace(action + '-','');
+                vote(action, id);
             });
         });
 
