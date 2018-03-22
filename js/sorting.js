@@ -58,7 +58,7 @@ function sortBy(argument){
         });
     }
 
-    var table = "<tbody>";
+    var table = " <table class='table' id='comments-table'><tbody>";
     for (let arg of myArray){
         var votes =  parseInt(arg['ups'])-parseInt(arg['downs']);
         table += (
@@ -70,6 +70,7 @@ function sortBy(argument){
 
     }
     table += "</tbody></table>";
-    $('#comments-table').append(table);
+    $('#comments-table').remove();
+    $('#comments').append(table);
 
 }
