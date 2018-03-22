@@ -27,7 +27,7 @@
     $data = json_decode($_COOKIE[$cookie_name], true);
     $key = array_search($id, array_column($data, 'id'));
 
-    echo json_encode($cookie_value);
+    echo $key;
 
     /*if ($cookie_value[$key]['id'] != $id){
         if($data[$key]['vote'] == 'up'){
