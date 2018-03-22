@@ -55,9 +55,12 @@
             $('#comments').on('click', 'i', function (e) {
                 var action = e.target.id.split('-')[0];
                 var id = e.target.id.replace(action + '-','');
-                var res = parseInt(vote(action, id));
-                if (res === -1 || res === 1){
-                    $('#vote-' + id).text(parseInt($('#vote-' + id).text()) + res);
+                var votes =  $('#vote-' + id);
+                vote(action, id);
+                if (action === 'up'){ // and not disabled
+                    votes.text(parseInt(votes.text()) + 1);
+                } else if(action === 'down'){ // and not disabled
+                    votes.text(parseInt(votes.text()) - 1);
                 }
             });
         });
@@ -79,20 +82,14 @@
     }
 
     function vote(action, id) {
-        var res = '';
         $.ajax({
             url: "handler/voteHandler.php",
             type: 'POST',
             data: {
                 action: action,
                 id: id
-            },
-            success: function(result){
-                console.log(result);
-                res = result;
             }
         });
-        return res;
     }
 
 

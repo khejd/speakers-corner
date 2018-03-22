@@ -18,6 +18,8 @@
 
         if ($cookie_value[$key]['id'] != $id){
             array_push($cookie_value, $new_entry);
+        } else {
+            echo 0;
         }
 
     }
