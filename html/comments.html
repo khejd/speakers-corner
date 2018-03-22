@@ -50,13 +50,15 @@
                 myArray = JSON.parse(result);
                 sortBy("trending");
             }
-        })
-    });
+        });
 
-    $('.param').click(function (e) {
-        var action = e.target.id.split('-')[0];
-        var id = e.target.id.replace(action,'');
-        vote(action, id);
+        $('.param').click(function (e) {
+            console.log('click');
+            var action = e.target.id.split('-')[0];
+            var id = e.target.id.replace(action,'');
+            vote(action, id);
+        });
+
     });
 
     function vote(action, id) {
