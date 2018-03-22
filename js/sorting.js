@@ -62,9 +62,9 @@ function sortBy(argument){
         var votes =  parseInt(arg['ups'])-parseInt(arg['downs']);
         table += (
             "<tr><td>" + arg[1] + "</td><td>" +
-            "<span onClick='upVote(" + arg['id'] + ")'><i class='fa fa-angle-up'></i></span>" +
+            "<span id='up-" + arg['id'] + "'><i class='fa fa-angle-up'></i></span>" +
             "<span id='vote-" + arg['id'] + "'>" + votes + "</span>" +
-            "<span onClick='downVote("+arg['id']+")'><i class='fa fa-angle-down'></i></span></tr>"
+            "<span id='down-" + arg['id'] + "'><i class='fa fa-angle-down'></i></span></tr>"
         );
     }
     table += "</tbody></table>";

@@ -51,31 +51,31 @@
         })
     });
 
-    function upVote(id) {
-        $.ajax({
-            url: "handler/upVoteHandler.php",
-            type: 'POST',
-            data: {id: id},
-            success: function(result){
-                if (result === 'up'){
-                    $('#vote-' + id).text(parseInt($('#vote-' + id).text())+1);
-                }
-            }
-        })
-    }
+    $('table span').click(function (e) {
+        if (e.target.id.split('-')[0] === 'vote'){
+            return 0;
+        }
+        var action = e.target.id.split('-')[0];
+        var id = e.target.id.replace(action,'');
+        vote(action, id);
+    });
 
-    function downVote(id) {
+    function vote(action, id) {
         $.ajax({
-            url: "handler/downVoteHandler.php",
+            url: "handler/voteHandler.php",
             type: 'POST',
-            data: {id: id},
-            success: function (result){
-                if (result === 'down'){
-                    $('#vote-' + id).text(parseInt($('#vote-' + id).text())-1);
+            data: {
+                action: action,
+                id: id
+            },
+            success: function(result){
+                if (result === -1 || result === 1){
+                    $('#vote-' + id).text(parseInt($('#vote-' + id).text()) + result);
                 }
             }
         })
     }
+    
 
 
 </script>
