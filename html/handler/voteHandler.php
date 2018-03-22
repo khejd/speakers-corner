@@ -25,7 +25,7 @@
 
     $data = json_decode($_COOKIE[$cookie_name], true);
 
-    if (isset($_COOKIE[$cookie_name]) && !in_array($id, array_column($cookie_value, 'id'))) {
+    if (isset($_COOKIE[$cookie_name]) && !in_array($id, array_column($data, 'id'))) {
         if ($action == 'up') {
             $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
