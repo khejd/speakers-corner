@@ -14,9 +14,8 @@
         array_push($cookie_value, $new_entry);
     } else {
         $cookie_value = json_decode($_COOKIE[$cookie_name], true);
-        $key = array_search($id, array_column($cookie_value, 'id'));
 
-        if ($cookie_value[$key]['id'] != $id){
+        if (!in_array($id, array_column($cookie_value, 'id'))){
             array_push($cookie_value, $new_entry);
         }
 
@@ -25,18 +24,15 @@
     setcookie($cookie_name, json_encode($cookie_value), time() + 86400, "/"); // 86400 = expires in one day
 
     $data = json_decode($_COOKIE[$cookie_name], true);
-    $key = array_search($id, array_column($data, 'id'));
 
-    echo $cookie_value[$key]['id'];
-        if (isset($_COOKIE[$cookie_name])) {
-            if ($data[$key]['vote'] == 'up') {
-                $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
-                $result = mysqli_query($conn, $sql);
-            } else if ($data[$key]['vote'] == 'down') {
-                $sql = "UPDATE `comment` SET `downs` = `downs` - 1 WHERE `comment`.`id` = $id";
-                $result = mysqli_query($conn, $sql);
-            }
+    if (isset($_COOKIE[$cookie_name]) && !in_array($id, array_column($cookie_value, 'id'))) {
+        if ($action == 'up') {
+            $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
+            $result = mysqli_query($conn, $sql);
+        } else if ($action == 'down') {
+            $sql = "UPDATE `comment` SET `downs` = `downs` - 1 WHERE `comment`.`id` = $id";
+            $result = mysqli_query($conn, $sql);
         }
-
+    }
 
 ?>
