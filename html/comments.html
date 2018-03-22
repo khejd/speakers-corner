@@ -43,7 +43,7 @@
     var myArray = '';
 
     $(function () {
-        $.when(getComments()).done(sortBy('trending'));
+        $.when(getComments()).then(sortBy('trending'));
 
         console.log('ready');
 
@@ -65,7 +65,6 @@
                 myArray = JSON.parse(result);
             }
         });
-        return r;
     }
 
     function vote(action, id) {
