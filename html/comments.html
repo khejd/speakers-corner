@@ -43,7 +43,7 @@
     var myArray = '';
 
     $(function () {
-        getComments();
+        $.when(getComments()).done(sortBy('trending'));
 
         console.log('ready');
 
@@ -57,12 +57,12 @@
     });
 
     function getComments(){
+        var r = $.Deferred();
         $.ajax({
             url: 'handler/commentHandler.php',
             type: 'GET',
             success: function (result) {
                 myArray = JSON.parse(result);
-                sortBy("trending");
             }
         });
     }
