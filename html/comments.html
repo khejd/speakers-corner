@@ -40,9 +40,9 @@
 <script src="../js/sorting.js"></script>
 
 <script>
-    var myArray = '';
+    $(function () {
+        var myArray = '';
 
-    $(document).ready(function () {
         $.ajax({
             url: 'handler/commentHandler.php',
             type: 'GET',
@@ -52,10 +52,12 @@
             }
         });
 
+        console.log('ready');
+
         $('.param').click(function (e) {
             console.log('click');
             var action = e.target.id.split('-')[0];
-            var id = e.target.id.replace(action,'');
+            var id = e.target.id.replace(action + '-','');
             vote(action, id);
         });
 
@@ -74,7 +76,7 @@
                     $('#vote-' + id).text(parseInt($('#vote-' + id).text()) + result);
                 }
             }
-        })
+        });
     }
 
 
