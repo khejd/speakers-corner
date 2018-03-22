@@ -43,8 +43,9 @@
     var myArray = '';
 
     $(function () {
-        var promise = getComments();
-        promise.then(function () {
+        var deferred = getComments();
+
+        deferred.then(function () {
             console.log('ready');
         });
 
@@ -65,10 +66,10 @@
             success: function (result) {
                 myArray = JSON.parse(result);
                 sortBy('trending');
-                deferred.done();
+                deferred.resolve();
             }
         });
-        return deferred.promise();
+        return deferred;
     }
 
     function vote(action, id) {
