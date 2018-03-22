@@ -68,5 +68,5 @@ function sortBy(argument){
         );
     }
     table += "</tbody></table>";
-    document.getElementById('table-sort-id').innerHTML=table;
+    document.getElementById('comments-table').innerHTML=table;
 }
