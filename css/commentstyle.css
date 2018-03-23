@@ -1,0 +1,31 @@
+body{
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: linear-gradient(to bottom right, #3dabff, lightgrey)  no-repeat center center fixed;
+}
+
+
+input.size{
+height:40px;
+font-size: 150%;
+}
+
+h1 {
+  font-weight:bold;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+#h1{
+  font-weight:bold;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+
+h2{
+  color: white;
+  font-size: 50px;
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-left: 0;
+  margin-right: 0;
+}
