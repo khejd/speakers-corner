@@ -46,6 +46,7 @@
         var deferred = getComments();
 
         deferred.then(function () {
+            sortBy('trending');
 
             $('.sort_selecter').click(function (e) {
                 var id = e.target.id;
@@ -74,7 +75,6 @@
             type: 'GET',
             success: function (result) {
                 myArray = JSON.parse(result);
-                sortBy('trending');
                 deferred.resolve();
             }
         });
