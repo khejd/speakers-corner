@@ -2,41 +2,57 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../../css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../css/app.css">
+    <link rel="stylesheet" href="../../css/noselect.css">
     <title>Speakers-corner test site</title>
-
 
 </head>
 <body>
+<br><br><br>
 
-<br>
-
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            Speakers corner
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Hva brenner du for?</h5>
-            <form action="code.html" method="post">
-                <div class="form-group">
-                    <textarea class="form-control" maxlength="256" id="transcript" name="comment" placeholder="Hold inne ctrl for å si din mening"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="phone" minlength="8" maxlength="8" placeholder="Telefonnummer" required>
-                    <small id="passwordHelpBlock" class="form-text text-muted">
-                        Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisa.
-                    </small>
-                </div>
-                <a href="comments.html" role="button" class="btn btn-secondary">Kommentarer</a>
-                <button type="submit" name="submit" class="btn btn-primary">Neste</button>
-            </form>
+<div id="layer1" class="container-fluid visible">
+    <div class="row">
+        <div  class="col-md-8 offset-md-2 text-center">
+            <h1 class="text-uppercase text-white">Del dine meninger!</h1>
+            <h2 class="text-uppercase text-white">Trykk på skjermen for å starte</h2>
         </div>
     </div>
 </div>
 
+<div id="layer2" class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-uppercase text-white text-center">Hva brenner du for?</h1>
+            <form method="post" action="phone.html">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
+                </div>
 
+                <!-- Modal -->
+                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmationModalLongTitle">Vil du publisere din mening?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="commentText">
+                                <span></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" id="start">Nei</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Ja</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 
@@ -48,7 +64,21 @@
 
 <!-- HTML5 Speech Recognition API -->
 <script>
+    var layer1 = $('#layer1');
+    var layer2 = $('#layer2');
+    var backToStart = $('#start');
 
+    backToStart.click(function(){
+        window.location.reload();
+    });
+
+    layer1.click(function (){
+        layer1.removeClass('visible');
+        layer2.addClass('visible');
+    });
+
+
+    // Speech recognition
     var active = false;
 
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
@@ -68,12 +98,17 @@
         if (event.keyCode == 17){ // stop when keyup ctrl
             active = false;
             recognition.stop();
+            if (layer2.hasClass('visible')){
+                $('#confirmationModal').modal('show');
+                layer2.css('z-index', 'auto');
+            }
         }
     };
 
     function startDictation() {
 
         var final_transcript = '';
+        var transcript = $('#transcript');
 
         recognition.continuous = true;
         recognition.interimResults = true;
@@ -91,13 +126,17 @@
                 }
             }
 
-            document.getElementById('transcript').value = final_transcript + interim_transcript;
-
+            transcript.val(final_transcript + interim_transcript);
         };
 
-        recognition.onerror = function(e) {
+        $('#commentText span').text(transcript.val());
+        localStorage.setItem("commentText", transcript.val());
+
+        recognition.onerror = function() {
             recognition.stop();
         };
     }
 </script>
+
+
 </html>
