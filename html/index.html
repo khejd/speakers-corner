@@ -12,11 +12,8 @@
 <br><br><br>
 
 <div id="layer1" class="container-fluid visible">
-    <div class="row">
-        <div  class="col-md-8 offset-md-2 text-center">
-            <h1 class="text-uppercase text-white">Del dine meninger!</h1>
-            <h2 class="text-uppercase text-white">Trykk på skjermen for å starte</h2>
-        </div>
+    <div class="flag">
+        <a href="#">Et flagg</a>
     </div>
 </div>
 
@@ -72,7 +69,7 @@
         window.location.reload();
     });
 
-    layer1.click(function (){
+    $('.flag').click(function (){
         layer1.removeClass('visible');
         layer2.addClass('visible');
     });
