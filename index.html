@@ -63,6 +63,7 @@
 <script>
     var layer1 = $('#layer1');
     var layer2 = $('#layer2');
+    var transcript = $('#transcript');
     var backToStart = $('#start');
 
     backToStart.click(function(){
@@ -107,7 +108,6 @@
     function startDictation() {
 
         var final_transcript = '';
-        var transcript = $('#transcript');
 
         recognition.continuous = true;
         recognition.interimResults = true;
