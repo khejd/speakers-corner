@@ -63,16 +63,17 @@ function sortBy(argument){
     }
 
     var cookie = getCookie('vote');
-    console.log(cookie);
 
     var table = "<table class='table' id='comments-table'><tbody>";
     for (let arg of myArray){
         var disable = false;
         var bold = '';
-        for (var i = 0; i < cookie.length; i++){
-            if (cookie[i]['id'] === arg['id']){
-                disable = true;
-                bold = cookie[i]['vote'];
+        if (typeof cookie !== undefined){
+            for (var i = 0; i < cookie.length; i++){
+                if (cookie[i]['id'] === arg['id']){
+                    disable = true;
+                    bold = cookie[i]['vote'];
+                }
             }
         }
         var votes =  parseInt(arg['ups'])-parseInt(arg['downs']);
