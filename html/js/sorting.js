@@ -68,7 +68,7 @@ function sortBy(argument){
     for (let arg of myArray){
         var disable = false;
         var bold = '';
-        if (typeof cookie !== undefined){
+        if (typeof cookie !== 'undefined'){
             for (var i = 0; i < cookie.length; i++){
                 if (cookie[i]['id'] === arg['id']){
                     disable = true;
