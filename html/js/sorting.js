@@ -76,11 +76,12 @@ function sortBy(argument){
             }
         }
         var votes =  parseInt(arg['ups'])-parseInt(arg['downs']);
+
         table += (
             "<tr><td>" + arg[1] + "</td><td>" +
-            "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up " + bold === 'up' ? 'fa-lg' : '' + " param " + disable ? 'disabled' : '' + "'></i></span>" +
+            "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>" +
             "<span id='vote-" + arg['id'] + "'>" + votes + "</span>" +
-            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + bold === 'down' ? 'fa-lg' : '' + " param " + disable ? 'disabled' : '' + "'></i></span></tr>"
+            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span></tr>"
         );
 
     }
