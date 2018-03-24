@@ -45,6 +45,7 @@
 
 <script>
     var myArray = '';
+    var ids = [];
 
     $(function () {
         var deferred = getComments();
@@ -62,12 +63,14 @@
                 var id = e.target.id.replace(action + '-','');
                 var votes =  $('#vote-' + id);
                 vote(action, id);
-                if (action === 'up' && !$(e.target).hasClass('disabled')){ // and not disabled
+                if (action === 'up' && !$(e.target).hasClass('disabled') && !(id in ids)){ // and not disabled
                     votes.text(parseInt(votes.text()) + 1);
                     $(e.target).addClass('fa-lg disabled');
-                } else if(action === 'down' && !$(e.target).hasClass('disabled')){ // and not disabled
+                    ids.push(id);
+                } else if(action === 'down' && !$(e.target).hasClass('disabled') && !(id in ids)){ // and not disabled
                     votes.text(parseInt(votes.text()) - 1);
                     $(e.target).addClass('fa-lg disabled');
+                    ids.push(id);
                 }
             });
         });
