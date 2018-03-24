@@ -17,7 +17,7 @@
             $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
         } else if ($action == 'down') {
-            $sql = "UPDATE `comment` SET `downs` = `downs` - 1 WHERE `comment`.`id` = $id";
+            $sql = "UPDATE `comment` SET `downs` = `downs` + 1 WHERE `comment`.`id` = $id";
             $result = mysqli_query($conn, $sql);
         }
     } else {
@@ -29,7 +29,7 @@
                 $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
                 $result = mysqli_query($conn, $sql);
             } else if ($action == 'down') {
-                $sql = "UPDATE `comment` SET `downs` = `downs` - 1 WHERE `comment`.`id` = $id";
+                $sql = "UPDATE `comment` SET `downs` = `downs` + 1 WHERE `comment`.`id` = $id";
                 $result = mysqli_query($conn, $sql);
             }
         }
