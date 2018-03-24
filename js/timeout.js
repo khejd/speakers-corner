@@ -8,7 +8,7 @@ function idleLogout() {
     window.onkeypress = resetTimer;
 
 function logout() {
-    window.location.href = '../index.html';
+    window.location.href = '../html/index.html';
 }
 
 function resetTimer() {
