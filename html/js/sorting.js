@@ -1,5 +1,5 @@
 function getCookie(name){
-    return Cookie.readJSON(name);
+    return Cookie.getJSON(name);
 }
 
 function wilsonScore(commentVar){
