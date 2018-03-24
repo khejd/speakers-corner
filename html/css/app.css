@@ -118,3 +118,7 @@ div.numpad{
     cursor: pointer;
 }
 
+.flag-icon {
+    line-height: 10em;
+    width: 18em;
+}

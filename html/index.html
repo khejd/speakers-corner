@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" href="css/noselect.css">
     <title>Speakers-corner test site</title>
@@ -12,8 +13,16 @@
 <br><br><br>
 
 <div id="layer1" class="container-fluid visible">
-    <div class="flag">
-        <a href="#">Et flagg</a>
+    <div class="row flag">
+        <div class="col-md-3 offset-md-1">
+            <span class="flag-icon flag-icon-no" id="no-NO"></span>
+        </div>
+        <div class="col-md-3">
+            <span class="flag-icon flag-icon-gb" id="en-GB"></span>
+        </div>
+        <div class="col-md-3">
+            <span class="flag-icon flag-icon-se" id="sv-SE"></span>
+        </div>
     </div>
 </div>
 
@@ -65,14 +74,16 @@
     var layer2 = $('#layer2');
     var transcript = $('#transcript');
     var backToStart = $('#start');
+    var language = 'no-NO'; // default
 
     backToStart.click(function(){
         window.location.reload();
     });
 
-    $('.flag').click(function (){
+    $('.flag span').click(function (e){
         layer1.removeClass('visible');
         layer2.addClass('visible');
+        language = $(e.target).id();
     });
 
 
@@ -112,7 +123,7 @@
         recognition.continuous = true;
         recognition.interimResults = true;
 
-        recognition.lang = "no-NO";
+        recognition.lang = language;
         recognition.start();
 
         recognition.onresult = function(e) {
