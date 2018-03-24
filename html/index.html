@@ -99,6 +99,8 @@
                 $('#confirmationModal').modal('show');
                 layer2.css('z-index', 'auto');
             }
+            $('#commentText span').text(transcript.val());
+            localStorage.setItem("commentText", transcript.val());
         }
     };
 
@@ -125,9 +127,6 @@
 
             transcript.val(final_transcript + interim_transcript);
         };
-
-        $('#commentText span').text(transcript.val());
-        localStorage.setItem("commentText", transcript.val());
 
         recognition.onerror = function() {
             recognition.stop();
