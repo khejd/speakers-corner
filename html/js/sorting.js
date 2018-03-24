@@ -1,3 +1,7 @@
+function getCookie(name){
+    return Cookies.getJSON(name);
+}
+
 function wilsonScore(commentVar){
     var n = commentVar['ups'] + commentVar['downs'];
     if (n===0) {
@@ -58,14 +62,27 @@ function sortBy(argument){
         });
     }
 
+    var cookie = getCookie('vote');
+
     var table = "<table class='table' id='comments-table'><tbody>";
     for (let arg of myArray){
+        var disable = false;
+        var bold = '';
+        if (typeof cookie !== 'undefined'){
+            for (var i = 0; i < cookie.length; i++){
+                if (cookie[i]['id'] === arg['id']){
+                    disable = true;
+                    bold = cookie[i]['vote'];
+                }
+            }
+        }
         var votes =  parseInt(arg['ups'])-parseInt(arg['downs']);
+
         table += (
             "<tr><td>" + arg[1] + "</td><td>" +
-            "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up param'></i></span>" +
+            "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>" +
             "<span id='vote-" + arg['id'] + "'>" + votes + "</span>" +
-            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down param'></i></span></tr>"
+            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span></tr>"
         );
 
     }
