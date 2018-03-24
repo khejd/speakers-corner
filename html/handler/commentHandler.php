@@ -1,5 +1,5 @@
 <?php
-include_once("../../Connections/connection.php");
+include_once("../Connections/connection.php");
 
     $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
     $result = mysqli_query($conn, $sql);

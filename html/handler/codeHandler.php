@@ -1,5 +1,5 @@
 <?php
-include_once("../../Connections/connection.php");
+include_once("../Connections/connection.php");
 
     $code = intval($_POST['code']);
     $phone = intval($_POST['phone']);
