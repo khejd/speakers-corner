@@ -91,14 +91,18 @@
     }
 
     function vote(action, id) {
-        $.ajax({
-            url: "handler/voteHandler.php",
-            type: 'POST',
-            data: {
-                action: action,
-                id: id
-            }
-        });
+        if (navigator.cookieEnabled){
+            $.ajax({
+                url: "handler/voteHandler.php",
+                type: 'POST',
+                data: {
+                    action: action,
+                    id: id
+                }
+            });
+        } else {
+            alert('Please enable cookies to use vote.');
+        }
     }
 
 </script>
