@@ -13,6 +13,7 @@
 <br><br><br>
 
 <div id="layer1" class="container-fluid visible">
+  <h1 class="text-uppercase text-white text-center">Choose your language</h1>
     <div class="row flag">
         <div class="col-md-3 offset-md-1">
             <span class="flag-icon flag-icon-no" id="no-NO"></span>
@@ -29,10 +30,10 @@
 <div id="layer2" class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h1 class="text-uppercase text-white text-center">Hva brenner du for?</h1>
+            <h1 class="text-uppercase text-white text-center change-language" text-en="What is on your mind?" text-sv="Vad bränner du for?" >Hva brenner du for?</h1>
             <form method="post" action="phone.html">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening"></textarea>
+                    <textarea class="form-control change-language" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening" text-en="Press the red button" text-sv="Hold inne den röda knappen"></textarea>
                 </div>
 
                 <!-- Modal -->
@@ -40,7 +41,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="confirmationModalLongTitle">Vil du publisere din mening?</h5>
+                                <h5 class="modal-title change-language" id="confirmationModalLongTitle" text-en="Do you want to publish your opinion?" text-sv="Vill du publisera din mening?">Vil du publisere din mening?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -49,8 +50,8 @@
                                 <span></span>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal" id="start">Nei</button>
-                                <button type="submit" class="btn btn-primary btn-lg">Ja</button>
+                                <button type="button" class="btn btn-secondary btn-lg change-language" data-dismiss="modal" id="start" text-en="No" text-sv="Nej" >Nei</button>
+                                <button type="submit" class="btn btn-primary btn-lg change-language" text-en="Yes" text-sv="Ja" >Ja</button>
                             </div>
                         </div>
                     </div>
@@ -84,6 +85,23 @@
         layer1.removeClass('visible');
         layer2.addClass('visible');
         language = e.target.id;
+
+        //Changing language
+
+        var elements=document.getElementsByClassName('change-language');
+        if (language=='en-GB'){
+          for (var i=0; i<elements.length ; i++){
+          elements[i].innerHTML=elements[i].getAttribute('text-en');
+          elements[i].setAttribute('placeholder', elements[i].getAttribute('text-en'));
+          }
+        }
+        else if (language=='sv-SE'){
+          for (var i=0; i<elements.length ; i++){
+          elements[i].innerHTML=elements[i].getAttribute('text-sv');
+          elements[i].setAttribute('placeholder', elements[i].getAttribute('text-sv'));
+          }
+        }
+        else{}
     });
 
 
@@ -142,7 +160,10 @@
         recognition.onerror = function() {
             recognition.stop();
         };
-    }
+
+}
+
+
 </script>
 
 
