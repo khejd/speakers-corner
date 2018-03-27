@@ -8,8 +8,8 @@ $('#numpad li').click(function (e) {
         element = 'code';
     }
 
-    for (let i = 0; i< 10; i++){
-        if (e.target.id === i){
+    for (let i = 0; i < 10; i++){
+        if (parseInt(e.target.id) === i){
             typeNumber(element, i);
             break;
         }
