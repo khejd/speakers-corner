@@ -15,9 +15,10 @@ $('.flag').click(function (){
 
 // Speech recognition
 let active = false;
+let recognition = '';
 
 if (window.hasOwnProperty('webkitSpeechRecognition')) {
-    let recognition = new webkitSpeechRecognition();
+    recognition = new webkitSpeechRecognition();
 }
 
 document.onkeydown = function(e){
