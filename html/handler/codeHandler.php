@@ -24,6 +24,9 @@ include_once("../Connections/connection.php");
 
     try {
         insert($code, $phone, $comment, $conn);
+        echo json_encode(array(
+            'error' => false
+        ));
     } catch (Exception $e){
         echo json_encode(array(
             'error' => true,
