@@ -7,7 +7,7 @@ body{
     width:40%
 }
 
-.speech img {
+.speech {
     float: right;
     width: 40px
 }
@@ -16,7 +16,7 @@ body{
     float: left;
 }
 
-div#layer1 {
+#layer1 {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -24,7 +24,7 @@ div#layer1 {
     padding-top: 50px;
 }
 
-div#layer2 {
+#layer2 {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -40,7 +40,7 @@ div#layer2 {
     opacity: 1 !important;
 }
 
-div.numpad{
+.numpad{
     background-color: transparent;
     z-index: 10;
 }
@@ -54,12 +54,14 @@ div.numpad{
     bottom:0;
     margin:40px 20px;
 }
+
 #keyboard {
     margin: 0;
     padding: 0;
     list-style: none;
     display: inline-block;
 }
+
 #keyboard li {
     float: left;
     margin: 0 5px 5px 0;
@@ -72,18 +74,28 @@ div.numpad{
     border: 1px solid #f9f9f9;
     border-radius: 5px;
 }
-.capslock, .tab, .left-shift, .clearl, .switch {
+
+.capslock,
+.tab,
+.left-shift,
+.clearl,
+.switch {
     clear: left;
 }
-#keyboard .tab, #keyboard .delete {
+
+#keyboard .tab,
+#keyboard .delete {
     width: 60px;
 }
+
 #keyboard .capslock {
     width: 80px;
 }
+
 #keyboard .return {
     width: 90px;
 }
+
 #keyboard .left-shift{
     width: 70px;
 }
@@ -91,25 +103,34 @@ div.numpad{
 #keyboard .switch {
     width: 90px;
 }
+
 #keyboard .rightright-shift {
     width: 109px;
 }
+
 .lastitem {
     margin-right: auto;
 }
+
 .uppercase {
     text-transform: uppercase;
 }
+
 #keyboard .space {
     float: left;
     width: 556px;
 }
-#keyboard .switch, #keyboard .space, #keyboard .return{
+
+#keyboard .switch,
+#keyboard .space,
+#keyboard .return{
     font-size: 16px;
 }
+
 .on {
     display: none;
 }
+
 #keyboard li:hover {
     position: relative;
     top: 1px;
