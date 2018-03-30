@@ -35,14 +35,14 @@ function wilsonScoreWithTime(commentVar){
 /** @param{string} argument */
 function sortBy(argument){
     if (argument === "time"){
-        comments.sort(function(a, b){
+        comments.sort((a, b) => {
             let d1 = new Date(a['time']);
             let d2 = new Date(b['time']);
             return (d1 > d2) ? -1 : 1;
         });
     }
     if (argument === "popularity"){
-        comments.sort(function(a,b){
+        comments.sort((a,b) => {
                 const A = parseInt(a['ups'])-parseInt(a['downs']);
                 const B = parseInt(b['ups'])-parseInt(b['downs']);
                 if (A === B){
@@ -56,9 +56,7 @@ function sortBy(argument){
     }
 
     if (argument === "trending"){
-        comments.sort(function(a,b){
-            return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);
-        });
+        comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a));
     }
 
     const COOKIE = getCookie('vote');

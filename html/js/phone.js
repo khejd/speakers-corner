@@ -1,15 +1,15 @@
-$(document).ready(function () {
+$(document).ready(() => {
     $('#commentText').text(localStorage.getItem("commentText"));
 });
 
-$('#phoneInput button').click(function () {
+$('#phoneInput button').on('click',() => {
     $.ajax({
         url: 'handler/phoneHandler.php',
         type: 'POST',
         data: {
             phone: $('#phone').val()
         },
-        success: function (result) {
+        success: (result) => {
             $('#layer1').removeClass('visible');
             $('#layer2').addClass('visible');
 
@@ -18,7 +18,7 @@ $('#phoneInput button').click(function () {
     });
 });
 
-$('#codeInput button').click(function () {
+$('#codeInput button').on('click', () => {
     $.ajax({
         url: 'handler/codeHandler.php',
         type: 'POST',
@@ -27,7 +27,7 @@ $('#codeInput button').click(function () {
             comment: localStorage.getItem("commentText"),
             phone: $('#phone').val()
         },
-        success: function (result) {
+        success: (result) => {
             let res = $.parseJSON(result);
             if (res.error){
                 $('#code').addClass('is-invalid');

@@ -3,11 +3,11 @@ let layer2 = $('#layer2');
 let transcript = $('#transcript');
 let backToStart = $('#start');
 
-backToStart.click(function(){
+backToStart.on('click', () => {
     window.location.reload();
 });
 
-$('.flag').click(function (){
+$('.flag').on('click', () => {
     layer1.removeClass('visible');
     layer2.addClass('visible');
 });
@@ -21,16 +21,16 @@ if (window.hasOwnProperty('webkitSpeechRecognition')) {
     recognition = new webkitSpeechRecognition();
 }
 
-document.onkeydown = function(e){
+$(document).on('keydown', (e) => {
     if (e.keyCode === 17){ //ctrl
         if (!active){
             active = true;
             startDictation();
         }
     }
-};
+});
 
-document.onkeyup = function(e){
+$(document).on('keyup', (e) => {
     if (e.keyCode === 17){ // stop when keyup ctrl
         active = false;
         recognition.stop();
@@ -41,7 +41,7 @@ document.onkeyup = function(e){
         $('#commentText span').text(transcript.val());
         localStorage.setItem("commentText", transcript.val());
     }
-};
+});
 
 function startDictation() {
 
@@ -53,7 +53,7 @@ function startDictation() {
     recognition.lang = "no-NO";
     recognition.start();
 
-    recognition.onresult = function(e) {
+    recognition.onresult = (e) => {
         let interim_transcript = '';
         for (let i = e.resultIndex; i < e.results.length; ++i) {
             if (e.results[i].isFinal) {
@@ -66,7 +66,7 @@ function startDictation() {
         transcript.val(final_transcript + interim_transcript);
     };
 
-    recognition.onerror = function() {
+    recognition.onerror = () => {
         recognition.stop();
     };
 }

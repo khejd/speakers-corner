@@ -5,15 +5,15 @@ let ids = [];
 $(function () {
     let deferred = getComments();
 
-    deferred.then(function () {
+    deferred.then(() => {
         sortBy('trending');
 
-        $('.sort_selecter').click(function (e) {
+        $('.sort_selecter').on('click', (e) => {
             let sorter = e.target.id;
             sortBy(sorter);
         });
 
-        $('#comments').on('click', 'i', function (e) {
+        $('#comments').on('click', 'i', (e) => {
             let action = e.target.id.split('-')[0];
             let id = e.target.id.replace(action + '-','');
             let votes =  $('#vote-' + id);
@@ -37,7 +37,7 @@ function getComments(){
     $.ajax({
         url: 'handler/commentHandler.php',
         type: 'GET',
-        success: function (result) {
+        success: (result) =>{
             comments = JSON.parse(result);
             deferred.resolve();
         }
@@ -49,7 +49,7 @@ function getComments(){
  * @param{string} action
  * @param{string} id
  */
-function vote(action, id) {
+function vote(action, id){
     if (navigator.cookieEnabled){
         $.ajax({
             url: "handler/voteHandler.php",

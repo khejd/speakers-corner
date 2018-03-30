@@ -1,7 +1,6 @@
-
 let element = '';
 
-$('#numpad li').click(function (e) {
+$('#numpad li').on('click', (e) => {
     if ($('#layer1').hasClass('visible')){
         element = 'phone';
     } else {
@@ -16,14 +15,14 @@ $('#numpad li').click(function (e) {
     }
 });
 
-$('#delete').click(function () {
+$('#delete').on('click', () => {
     let number_string = $('#' + element);
     if (number_string.length>0) {
         number_string.val(number_string.val().slice(0, -1));
     }
 });
 
-$('#clear').click(function () {
+$('#clear').on('click', () =>{
     $('#' + element).val('');
 });
 
