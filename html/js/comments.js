@@ -8,7 +8,7 @@ $(function () {
     deferred.then(() => {
         sortBy('trending');
 
-        if (typeof Cookies.get('accept_cookie') === 'undefined'){
+        if (typeof Cookies.get('accept_cookies') === 'undefined'){
             let popup = $('#cookie_popup');
             popup.addClass('show');
             $('.cookies_span').on('click',() => {
