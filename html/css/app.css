@@ -139,3 +139,66 @@ body{
     cursor: pointer;
 }
 
+/* Cookie popup */
+
+.cookies {
+    position: fixed;
+    z-index: 99;
+    bottom: -100%;
+    width: 100%;
+    -webkit-transition: all 1.5s ease-in-out .3s;
+    -o-transition: all 1.5s ease-in-out .3s;
+    transition: all 1.5s ease-in-out .3s;
+}
+
+.cookies.show {
+    bottom: 0;
+}
+
+.cookies_layout {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #3383fc;
+    min-height: 40px;
+    margin: 0 auto;
+    padding: 10px 35px;
+    text-align: center;
+}
+
+.cookies_text {
+    font-family: "Sofia Pro",sans-serif;
+    font-size: 11px;
+    color: #FFF;
+    display: inline-block;
+}
+
+.cookies_button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: inline-block;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.cookies_span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: #FFF;
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cookies_span:last-child {
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+    -ms-transform: translate(-50%, -50%) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
