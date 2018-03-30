@@ -9,9 +9,11 @@ $(function () {
         sortBy('trending');
 
         if (typeof Cookies.get('accept_cookie') === 'undefined'){
-            cookiePopup();
+            let popup = $('#cookie_popup');
+            popup.addClass('show');
             $('.cookies_span').on('click',() => {
-                $('#cookie_popup').removeClass('show');
+                popup.removeClass('show');
+                Cookies.set('accept_cookies', 1);
             });
         }
 
@@ -69,9 +71,4 @@ function vote(action, id){
     } else {
         alert('Please enable cookies to vote.');
     }
-}
-
-function cookiePopup(){
-    Cookies.set('accept_cookies', 1);
-    $('#cookie_popup').addClass('show');
 }
