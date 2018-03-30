@@ -11,11 +11,7 @@ function idleLogout() {
 /** @param t*/
 function resetTimer(t) {
     clearTimeout(t);
-    t = setTimeout(logout(), 30000);  // time is in milliseconds
-}
-
-function logout() {
-    window.location.href = '../index.html';
+    t = setTimeout(window.location.href = '../index.html', 30000);  // time is in milliseconds
 }
 
 idleLogout();
