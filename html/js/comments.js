@@ -8,6 +8,13 @@ $(function () {
     deferred.then(() => {
         sortBy('trending');
 
+        if (typeof Cookies.get('accept_cookie') === 'undefined'){
+            cookiePopup();
+            $('.cookies_span').on('click',() => {
+                $('#cookie_popup').removeClass('show');
+            });
+        }
+
         $('.sort_selecter').on('click', (e) => {
             let sorter = e.target.id;
             sortBy(sorter);
@@ -50,7 +57,7 @@ function getComments(){
  * @param{string} id
  */
 function vote(action, id){
-    if (navigator.cookieEnabled){
+    if (navigator.cookieEnabled && typeof Cookies.get('accept_cookies') !== 'undefined'){
         $.ajax({
             url: "handler/voteHandler.php",
             type: 'POST',
@@ -62,4 +69,9 @@ function vote(action, id){
     } else {
         alert('Please enable cookies to vote.');
     }
+}
+
+function cookiePopup(){
+    Cookies.set('accept_cookies', 1);
+    $('#cookie_popup').addClass('show');
 }
