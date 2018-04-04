@@ -1,5 +1,6 @@
 <?php
 include_once("../Connections/connection.php");
+include_once("../Connections/sms.php");
 
     $stmt = $conn->prepare("INSERT INTO `user` (`phone_number`, `code`) VALUES (?, ?)");
     $stmt->bind_param("ii", $phone, $code);
@@ -10,8 +11,8 @@ include_once("../Connections/connection.php");
     $stmt->execute();
     $stmt->close();
 
-
     //Send SMS with code
+    $result = $smsGateway->sendMessageToNumber($phone, $code, $deviceID);
     echo $code; // remove when not developing
 
 
