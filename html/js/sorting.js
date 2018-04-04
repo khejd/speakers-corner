@@ -1,92 +1,90 @@
+/** @param{string} name*/
 function getCookie(name){
     return Cookies.getJSON(name);
 }
 
+/** @param{comment} commentVar */
 function wilsonScore(commentVar){
-    var n = commentVar['ups'] + commentVar['downs'];
-    if (n===0) {
+    const N = commentVar['ups'] + commentVar['downs'];
+    if (N===0) {
         return 0;
     }
-    var z = 1.28155156;
-    var p = commentVar["ups"]/n;
-    var left = p + 1/(2*n)*z*z;
-    var right = z*Math.sqrt(p*(1-p)/n +  z*z/(4*n*n));
-    var under = 1+ (1/n)*z*z;
-    return (left-right)/under;
+    const Z = 1.28155156;
+    const P = commentVar['ups']/N;
+    const LEFT = P + 1/(2*N)*Z*Z;
+    const RIGHT = Z*Math.sqrt(P*(1-P)/N + Z*Z/(4*N*N));
+    const UNDER = 1+ (1/N)*Z*Z;
+    return (LEFT-RIGHT)/UNDER;
 }
 
+/** @param{comment} commentVar */
 function hot(commentVar) {
-    var s = commentVar['ups']-commentVar['downs'];
-    var order = Math.log10(Math.max(Math.abs(s),1));
-    var sign = 0;
-    if (s>0){
-        sign = 1;
-    }
-    if (s<0){
-        sign =-1;
-    }
-    var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
-    return order + sign*seconds/45000;
+    const S = commentVar['ups']-commentVar['downs'];
+    const ORDER = Math.log10(Math.max(Math.abs(s),1));
+    const SIGN = (S > 0) ? 1 : -1;
+    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
+    return ORDER + SIGN*SECONDS/45000;
 }
 
+/** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
-    var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar)//-Math.log10(seconds);
+    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
+    return wilsonScore(commentVar)//-Math.log10(SECONDS);
 }
 
+/** @param{string} argument */
 function sortBy(argument){
     if (argument === "time"){
-        myArray.sort(function(a, b){
-            var d1 = new Date(a['time']);
-            var d2 = new Date(b['time']);
-            return d1 > d2 ? -1:1;
+        comments.sort((a, b) => {
+            let d1 = new Date(a['time']);
+            let d2 = new Date(b['time']);
+            return (d1 > d2) ? -1 : 1;
         });
     }
     if (argument === "popularity"){
-        myArray.sort(function(a,b){
-                var va = parseInt(a['ups'])-parseInt(a['downs']);
-                var vb = parseInt(b['ups'])-parseInt(b['downs']);
-                if (va === vb){
-                    var d1 = new Date(a['time']);
-                    var d2 = new Date(b['time']);
-                    return d1> d2 ? -1:1;
+        comments.sort((a,b) => {
+                const A = parseInt(a['ups'])-parseInt(a['downs']);
+                const B = parseInt(b['ups'])-parseInt(b['downs']);
+                if (A === B){
+                    let d1 = new Date(a['time']);
+                    let d2 = new Date(b['time']);
+                    return (d1 > d2) ? -1 : 1;
                 }
-                return vb-va;
+                return B-A;
             }
         );
     }
 
     if (argument === "trending"){
-        myArray.sort(function(a,b){
-            return wilsonScoreWithTime(b)-wilsonScoreWithTime(a);
-        });
+        comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a));
     }
 
-    var cookie = getCookie('vote');
+    const COOKIE = getCookie('vote');
 
-    var table = "<table class='table' id='comments-table'><tbody>";
-    for (let arg of myArray){
-        var disable = false;
-        var bold = '';
-        if (typeof cookie !== 'undefined'){
-            for (var i = 0; i < cookie.length; i++){
-                if (cookie[i]['id'] === arg['id']){
+    let table = "<table class='table' id='comments-table'><tbody>";
+    for (let arg of comments){
+        let disable = false;
+        let bold = '';
+        if (typeof COOKIE !== 'undefined'){
+            for (let i = 0; i < COOKIE.length; i++){
+                if (COOKIE[i]['id'] === arg['id']){
                     disable = true;
-                    bold = cookie[i]['vote'];
+                    bold = COOKIE[i]['vote'];
                 }
             }
         }
-        var votes =  parseInt(arg['ups'])-parseInt(arg['downs']);
+        const VOTES =  parseInt(arg['ups'])-parseInt(arg['downs']);
 
         table += (
-            "<tr><td>" + arg[1] + "</td><td>" +
+            "<tr><td>" + arg[1] +
+            "<td>" +
             "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>" +
-            "<span id='vote-" + arg['id'] + "'>" + votes + "</span>" +
-            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span></tr>"
+            "<span id='vote-" + arg['id'] + "'>" + VOTES + "</span>" +
+            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>"
         );
 
     }
-    table += "</tbody></table>";
+    table += "</table>";
     $('#comments-table').remove();
     $('#comments').append(table);
 

@@ -1,20 +1,17 @@
 function idleLogout() {
-    var t;
-    window.onload = resetTimer;
-    window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer; // catches touchscreen presses
-    window.onclick = resetTimer;     // catches touchpad clicks
-    window.onscroll = resetTimer;    // catches scrolling with arrow keys
-    window.onkeypress = resetTimer;
-
-function logout() {
-    window.location.href = '../index.html';
+        let t = '';
+        window.onload = resetTimer(t);
+        window.onmousemove = resetTimer(t);
+        window.onmousedown = resetTimer(t); // catches touchscreen presses
+        window.onclick = resetTimer(t);     // catches touchpad clicks
+        window.onscroll = resetTimer(t);    // catches scrolling with arrow keys
+        window.onkeypress = resetTimer(t);
 }
 
-function resetTimer() {
+/** @param t*/
+function resetTimer(t) {
     clearTimeout(t);
-    t = setTimeout(logout, 30000);  // time is in milliseconds
-}
+    t = setTimeout(window.location.href = '../index.html', 30000);  // time is in milliseconds
 }
 
 idleLogout();

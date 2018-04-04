@@ -1,14 +1,12 @@
-<html lang="no">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-    <link rel="stylesheet" type="text/css" href="css/noselect.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Speakers-corner test site</title>
+<!DOCTYPE html>
 
-</head>
-<body>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/noselect.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Speakers-corner test site</title>
+
 <br>
 <div class="container">
 
@@ -22,7 +20,7 @@
         <div class="card-body text-center">
             <br>
             <div class="container center_div" id="comments">
-                <table class='table' id='comments-table'>
+                <table class="table" id="comments-table">
                     <tbody></tbody>
                 </table>
             </div>
@@ -31,7 +29,15 @@
     </div>
 </div>
 
-</body>
+<div class="cookies" id="cookie_popup">
+    <div class="cookies_layout">
+        <p class="cookies_text">Som de fleste andre nettsider bruker speaktrondheim.no informasjonskapsler. Ved å lukke denne boksen aksepterer du vår bruk av informasjonskapsler.</p>
+        <div class="cookies_button">
+            <span class="cookies_span"></span>
+            <span class="cookies_span"></span>
+        </div>
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -42,66 +48,5 @@
 <!-- https://github.com/js-cookie/js-cookie -->
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="js/sorting.js"></script>
+<script src="js/comments.js"></script>
 
-<script>
-    var myArray = '';
-    var ids = [];
-
-    $(function () {
-        var deferred = getComments();
-
-        deferred.then(function () {
-            sortBy('trending');
-
-            $('.sort_selecter').click(function (e) {
-                var id = e.target.id;
-                sortBy(id);
-            });
-
-            $('#comments').on('click', 'i', function (e) {
-                var action = e.target.id.split('-')[0];
-                var id = e.target.id.replace(action + '-','');
-                var votes =  $('#vote-' + id);
-                vote(action, id);
-                if (action === 'up' && !$(e.target).hasClass('disabled') && !ids.includes(id)){ // and not disabled
-                    votes.text(parseInt(votes.text()) + 1);
-                    $(e.target).addClass('fa-lg disabled');
-                    ids.push(id);
-                } else if(action === 'down' && !$(e.target).hasClass('disabled') && !ids.includes(id)){ // and not disabled
-                    votes.text(parseInt(votes.text()) - 1);
-                    $(e.target).addClass('fa-lg disabled');
-                    ids.push(id);
-                }
-            });
-        });
-
-    });
-
-    function getComments(){
-        var deferred = $.Deferred();
-        $.ajax({
-            url: 'handler/commentHandler.php',
-            type: 'GET',
-            success: function (result) {
-                myArray = JSON.parse(result);
-                deferred.resolve();
-            }
-        });
-        return deferred;
-    }
-
-    function vote(action, id) {
-        $.ajax({
-            url: "handler/voteHandler.php",
-            type: 'POST',
-            data: {
-                action: action,
-                id: id
-            }
-        });
-    }
-
-</script>
-
-
-</html>
