@@ -11,8 +11,8 @@
 <div class="container">
 
     <a href="#" class="sort_selecter" id="trending">Trending</a>
-    <a href="#" class="sort_selecter" id="popularity">Most Popular</a>
-    <a href="#" class="sort_selecter" id="time">Most Recent</a>
+    <a href="#" class="sort_selecter change-language" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær"></a>
+    <a href="#" class="sort_selecter change-language" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste"></a>
     <div class = "card">
         <div class="card-header">
             Speakers corner
@@ -31,7 +31,11 @@
 
 <div class="cookies" id="cookie_popup">
     <div class="cookies_layout">
-        <p class="cookies_text">Som de fleste andre nettsider bruker speaktrondheim.no informasjonskapsler. Ved å lukke denne boksen aksepterer du vår bruk av informasjonskapsler.</p>
+        <p class="cookies_text change-language"
+           text-en="Like most other websites, speaktrondheim.no use cookies. Accept our use of cookies by closing this box."
+           text-sv="Vi gör som de flesta andra webbplatser och använder cookies. Godkänn vår användning av cookies genom att stänga den här rutan."
+           text-no="Som de fleste andre nettsider bruker speaktrondheim.no informasjonskapsler. Ved å lukke denne boksen aksepterer du vår bruk av informasjonskapsler.">
+        </p>
         <div class="cookies_button">
             <span class="cookies_span"></span>
             <span class="cookies_span"></span>
@@ -48,5 +52,6 @@
 <!-- https://github.com/js-cookie/js-cookie -->
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="js/sorting.js"></script>
+<script src="js/translate.js"></script>
 <script src="js/comments.js"></script>
 

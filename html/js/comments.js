@@ -7,6 +7,7 @@ $(() => {
 
     deferred.then(() => {
         sortBy('trending');
+        changeLanguage(localStorage.getItem("language"));
 
         if (typeof Cookies.get('accept_cookies') === 'undefined'){
             let popup = $('#cookie_popup');

@@ -139,6 +139,11 @@ body{
     cursor: pointer;
 }
 
+.flag-icon {
+    line-height: 10em;
+    width: 18em;
+}
+
 /* Cookie popup */
 
 .cookies {
@@ -201,4 +206,3 @@ body{
     -ms-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
 }
-
