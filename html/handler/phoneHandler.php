@@ -12,8 +12,8 @@ include_once("../Connections/sms.php");
     $stmt->close();
 
     //Send SMS with code
-    $result = $smsGateway->sendMessageToNumber($phone, $code, $deviceID);
-    echo $code; // remove when not developing
+
+    echo $code; // replace with $result = $smsGateway->sendMessageToNumber($phone, $code, $deviceID);
 
 
 ?>
