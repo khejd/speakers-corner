@@ -2,7 +2,7 @@
 let comments = '';
 let ids = [];
 
-$(function () {
+$(() => {
     let deferred = getComments();
 
     deferred.then(() => {
