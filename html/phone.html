@@ -11,18 +11,18 @@
 <div id="layer1" class="container-fluid visible">
     <div class="row">
         <div  class="col-md-8 offset-md-2">
-            <h1 class="text-uppercase text-white">Skriv inn telefonnummer</h1>
+            <h1 class="text-uppercase text-white change-language" text-en="Type your phone number" text-sv="Skriv inn ditt telefonnummer" text-no="Skriv inn telefonnummeret ditt"></h1>
         <br>
             <div id="phoneInput">
                 <div class="form-row">
                     <div class="col-sm-4">
-                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="Telefonnummer" required>
+                        <input type="text" class="form-control form-control-lg change-language" id="phone" text-en="Phone number" text-sv="Telefonnummer" text-no="Telefonnummer" required>
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary btn-lg">Neste</button>
+                        <button type="button" class="btn btn-primary btn-lg change-language" text-en="Next" text-sv="Nästa" text-no="Neste"></button>
                     </div>
                 </div>
-                <small class="form-text text-dark">Vi kommer ikke til å dele telefonnummeret ditt med andre enn Adresavisen.</small>
+                <small class="form-text text-dark change-language" text-en="Your phone number will only be shared with Adresavisen." text-sv="Ditt telefonnummer blir bara delat med Adresavisen." text-no="Telefonnummeret ditt blir bare delt med Adresavisen."></small>
             </div>
         </div>
     </div>
@@ -31,16 +31,16 @@
 <div id="layer2" class="container-fluid">
     <div class="row">
         <div  class="col-md-8 offset-md-2">
-            <h1 class="text-uppercase text-white">Skriv inn kode</h1>
+            <h1 class="text-uppercase text-white change-language" text-en="Type in code" text-sv="Skriv inn koden" text-no="Skriv inn kode"></h1>
             <br>
             <div id="codeInput">
                 <div class="form-row">
                     <div class="col-sm-4">
-                        <input type="text" class="form-control form-control-lg" id="code" placeholder="Kode" required>
+                        <input type="text" class="form-control form-control-lg change-language" id="code"  text-en="Code" text-sv="Kod" text-no="Kode" required>
                         <div id="errorMsg" class="form-text text-danger"></div>
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary btn-lg">Publiser</button>
+                        <button type="button" class="btn btn-primary btn-lg change-language"  text-en="Publish" text-sv="Publisera" text-no="Publiser"></button>
                     </div>
                 </div>
                 <small class="form-text text-muted" id="commentText"></small>
@@ -77,5 +77,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!--<script src="js/timeout.js"></script>-->
+<script src="js/translate.js"></script>
 <script src="js/numpad.js"></script>
 <script src="js/phone.js"></script>

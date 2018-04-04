@@ -1,5 +1,6 @@
 $(document).ready(() => {
     $('#commentText').text(localStorage.getItem("commentText"));
+    changeLanguage(localStorage.getItem("language"));
 });
 
 $('#phoneInput button').on('click',() => {

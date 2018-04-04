@@ -2,6 +2,7 @@
 
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/noselect.css">
 <title>Speakers-corner test site</title>
@@ -26,10 +27,10 @@
 <div id="layer2" class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h1 class="text-uppercase text-white text-center change-language" text-en="What is on your mind?" text-sv="Vad bränner du for?" >Hva brenner du for?</h1>
+            <h1 class="text-uppercase text-white text-center change-language" text-en="What is on your mind?" text-sv="Vad bränner du for?" text-no="Hva brenner du for?"></h1>
             <form method="post" action="phone.html">
                 <div class="form-group">
-                    <textarea class="form-control change-language" rows="3" id="transcript" name="comment" placeholder="Hold inne den røde knappen for å si din mening" text-en="Press the red button" text-sv="Hold inne den röda knappen"></textarea>
+                    <textarea class="form-control change-language" rows="3" id="transcript" name="comment"  text-en="Press the red button" text-sv="Hold inne den röda knappen" text-no="Hold inne den røde knappen for å si din mening"></textarea>
                 </div>
 
                 <!-- Modal -->
@@ -37,7 +38,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title change-language" id="confirmationModalLongTitle" text-en="Do you want to publish your opinion?" text-sv="Vill du publisera din mening?">Vil du publisere din mening?</h5>
+                                <h5 class="modal-title change-language" id="confirmationModalLongTitle" text-en="Do you want to publish your opinion?" text-sv="Vill du publisera din mening?" text-no="Vil du publisere din mening?"></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -46,8 +47,8 @@
                                 <span></span>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-lg change-language" data-dismiss="modal" id="start" text-en="No" text-sv="Nej" >Nei</button>
-                                <button type="submit" class="btn btn-primary btn-lg change-language" text-en="Yes" text-sv="Ja" >Ja</button>
+                                <button type="button" class="btn btn-secondary btn-lg change-language" data-dismiss="modal" id="start" text-en="No" text-sv="Nej" text-no="Nei"></button>
+                                <button type="submit" class="btn btn-primary btn-lg change-language" text-en="Yes" text-sv="Ja" text-no="Ja"></button>
                             </div>
                         </div>
                     </div>
@@ -63,5 +64,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script src="js/translate.js"></script>
 <!-- HTML5 Speech Recognition API -->
 <script src="js/speechRec.js"></script>

@@ -2,16 +2,21 @@ let layer1 = $('#layer1');
 let layer2 = $('#layer2');
 let transcript = $('#transcript');
 let backToStart = $('#start');
+let language = 'no-NO'; // default
 
 backToStart.on('click', () => {
     window.location.reload();
 });
 
-$('.flag').on('click', () => {
+$('.flag').on('click', (e) => {
     layer1.removeClass('visible');
     layer2.addClass('visible');
-});
+    language = e.target.id;
 
+    //Changing language
+    changeLanguage(language);
+    localStorage.setItem("language", language);
+});
 
 // Speech recognition
 let active = false;
@@ -50,7 +55,7 @@ function startDictation() {
     recognition.continuous = true;
     recognition.interimResults = true;
 
-    recognition.lang = "no-NO";
+    recognition.lang = language;
     recognition.start();
 
     recognition.onresult = (e) => {
