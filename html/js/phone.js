@@ -3,7 +3,7 @@ $(document).ready(() => {
     changeLanguage(localStorage.getItem("language"));
 });
 
-$('#phoneInput button').on('click',() => {
+$('#phoneSubmit').on('click',() => {
     $.ajax({
         url: 'handler/phoneHandler.php',
         type: 'POST',
@@ -19,7 +19,7 @@ $('#phoneInput button').on('click',() => {
     });
 });
 
-$('#codeInput button').on('click', () => {
+$('#codeSubmit').on('click', () => {
     $.ajax({
         url: 'handler/codeHandler.php',
         type: 'POST',
