@@ -1,7 +1,7 @@
 <?php
     include_once("../Connections/connection.php");
 
-    function updateVote($action, $conn){
+    function updateVote($action, $id, $conn){
         if ($action == 'up') {
             $sql = "UPDATE `comment` SET `ups` = `ups` + 1 WHERE `comment`.`id` = $id";
             mysqli_query($conn, $sql);
@@ -22,14 +22,14 @@
     if(!isset($_COOKIE[$cookie_name])){
         $cookie_value = array();
         array_push($cookie_value, $new_entry);
-        updateVote($action, $conn);
+        updateVote($action, $id, $conn);
 
     } else {
         $cookie_value = json_decode($_COOKIE[$cookie_name], true);
 
         if (!in_array($id, array_column($cookie_value, 'id'))){
             array_push($cookie_value, $new_entry);
-            updateVote($action, $conn);
+            updateVote($action, $id, $conn);
         }
 
     }
