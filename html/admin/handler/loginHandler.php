@@ -30,10 +30,11 @@ try {
         'error' => false
     ));
 } catch (Exception $e){
+    $admin = getAdmin('admin', $conn);
     echo json_encode(array(
         'error' => true,
         'msg' => $e->getMessage(),
-        'admin' => getAdmin('admin', $conn)
+        'admin' => $admin
     ));
 }
 
