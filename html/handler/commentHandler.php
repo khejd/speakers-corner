@@ -1,12 +1,15 @@
 <?php
 include_once("../Connections/connection.php");
 
-    $sql = "SELECT * FROM `comment` ORDER BY `time` LIMIT 20";
-    $result = mysqli_query($conn, $sql);
+    function getComments($conn){
+        $sql = "SELECT * FROM `comment`";
+        return mysqli_query($conn, $sql);
+    }
 
+    $comments = getComments($conn);
     $array = array();
 
-    while ($row = mysqli_fetch_array($result)){
+    while ($row = mysqli_fetch_array($comments)){
         array_push($array, $row);
     }
 

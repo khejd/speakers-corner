@@ -1,16 +1,13 @@
 <?php
 include_once("../Connections/connection.php");
 
-    function insert($code, $phone, $comment, $conn){
-        $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result);
+    function insertRecord($code, $user, $comment, $conn){
 
-        if ($code != $row['code']){
+        if ($code != $user['code']){
             throw new Exception('Wrong code');
         }
 
-        $user_id = $row['id'];
+        $user_id = $user['id'];
         $stmt = $conn->prepare("INSERT INTO `comment` (`user_id`, `text`) VALUES (?, ?)");
         $stmt->bind_param("is", $user_id, $comment);
 
@@ -18,12 +15,19 @@ include_once("../Connections/connection.php");
         $stmt->close();
     }
 
-    $code = intval($_POST['code']);
-    $phone = intval($_POST['phone']);
+    function getUser($phone, $conn){
+        $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
+        $result = mysqli_query($conn, $sql);
+        return mysqli_fetch_array($result);
+    }
+
+    $code = $_POST['code'];
+    $phone = $_POST['phone'];
     $comment =  $_POST['comment'];
+    $user = getUser($phone, $conn);
 
     try {
-        insert($code, $phone, $comment, $conn);
+        insertRecord($code, $user, $comment, $conn);
         echo json_encode(array(
             'error' => false
         ));
@@ -33,6 +37,5 @@ include_once("../Connections/connection.php");
             'msg' => $e->getMessage()
         ));
     }
-
 
 ?>
