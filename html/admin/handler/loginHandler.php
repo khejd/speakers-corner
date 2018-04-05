@@ -4,7 +4,7 @@ include_once("../../Connections/connection.php");
 session_start();
 
 function getAdmin($username, $conn){
-    $sql = "SELECT * FROM `admin` WHERE `username` LIKE $username";
+    $sql = "SELECT * FROM `admin` WHERE `username` = $username";
     return mysqli_query($conn, $sql);
 }
 

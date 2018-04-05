@@ -1,5 +1,6 @@
 // When submit button is clicked
 $('#login').on('click', () => {
+    console.log($('#username').val());
     $.ajax({
         url: 'handler/loginHandler.php',
         type: 'POST',
