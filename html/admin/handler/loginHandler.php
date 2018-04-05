@@ -4,7 +4,7 @@ include_once("../../Connections/connection.php");
 session_start();
 
 function getAdmin($username, $conn){
-    $sql = "SELECT * FROM `admin` WHERE `username` = 'admin'";
+    $sql = "SELECT * FROM `admin` WHERE `username` = '$username'";
     $result = mysqli_query($conn, $sql);
     return mysqli_fetch_array($result);
 }
