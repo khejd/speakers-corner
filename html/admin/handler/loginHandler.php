@@ -20,7 +20,9 @@ function login($username, $password, $conn){
 
 $username = $_POST['username'];
 $password = MD5($_POST['password']);
-echo login('admin', MD5('1234'));
+echo getAdmin('admin', $conn);
+echo $username;
+echo $password;
 
 /*
 try {
