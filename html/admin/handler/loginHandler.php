@@ -22,6 +22,8 @@ function login($username, $password, $conn){
 $username = $_POST['username'];
 $password = MD5($_POST['password']);
 
+echo getAdmin('admin', $conn);
+
 try {
     login($username, $password, $conn);
     $_SESSION['loggedIn'] = true;
