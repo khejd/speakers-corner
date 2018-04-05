@@ -1,14 +1,16 @@
-
 let comments = '';
 let ids = [];
 
+// On document ready
 $(() => {
     let deferred = getComments();
 
+    // When all comments are fetched
     deferred.then(() => {
         sortBy('trending');
         changeLanguage(localStorage.getItem("language"));
 
+        // If cookies are not accepted yet, show popup
         if (typeof Cookies.get('accept_cookies') === 'undefined'){
             let popup = $('#cookie_popup');
             popup.addClass('show');
@@ -18,16 +20,20 @@ $(() => {
             });
         }
 
+        // Sort comments
         $('.sort_selecter').on('click', (e) => {
             let sorter = e.target.id;
             sortBy(sorter);
         });
 
+        // Click on comment
         $('#comments').on('click', 'i', (e) => {
             let action = e.target.id.split('-')[0];
             let id = e.target.id.replace(action + '-','');
             let votes =  $('#vote-' + id);
             vote(action, id);
+
+            // Increment/decrement vote when click on vote-arrow
             if (action === 'up' && !$(e.target).hasClass('disabled') && !ids.includes(id)){
                 votes.text(parseInt(votes.text()) + 1);
                 $(e.target).addClass('fa-lg disabled');

@@ -40,8 +40,7 @@ function sortBy(argument){
             let d2 = new Date(b['time']);
             return (d1 > d2) ? -1 : 1;
         });
-    }
-    if (argument === "popularity"){
+    } else if (argument === "popularity"){
         comments.sort((a,b) => {
                 const A = parseInt(a['ups'])-parseInt(a['downs']);
                 const B = parseInt(b['ups'])-parseInt(b['downs']);
@@ -53,18 +52,21 @@ function sortBy(argument){
                 return B-A;
             }
         );
-    }
-
-    if (argument === "trending"){
+    } else if (argument === "trending"){
         comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a));
     }
+    updateTable();
+}
 
+function updateTable(){
     const COOKIE = getCookie('vote');
 
     let table = "<table class='table' id='comments-table'><tbody>";
     for (let arg of comments){
         let disable = false;
         let bold = '';
+
+        // Highlight vote arrow if already voted
         if (typeof COOKIE !== 'undefined'){
             for (let i = 0; i < COOKIE.length; i++){
                 if (COOKIE[i]['id'] === arg['id']){
@@ -87,5 +89,4 @@ function sortBy(argument){
     table += "</table>";
     $('#comments-table').remove();
     $('#comments').append(table);
-
 }

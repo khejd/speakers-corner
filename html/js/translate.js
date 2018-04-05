@@ -2,6 +2,8 @@
 function changeLanguage(language){
     let elements = $('.change-language');
     let attribute = '';
+
+    // Set attribute
     switch(language) {
         case 'en-GB':
             attribute = 'text-en';
@@ -16,6 +18,7 @@ function changeLanguage(language){
             attribute = 'text-no';
     }
     for (let element of elements){
+        // Check if input field or not
         if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT'){
             element.setAttribute('placeholder', element.getAttribute(attribute))
         } else {
