@@ -33,7 +33,8 @@ try {
     echo json_encode(array(
         'error' => true,
         'msg' => $e->getMessage(),
-        getAdmin('admin', $conn)
+        $username,
+        $password
     ));
 }
 
