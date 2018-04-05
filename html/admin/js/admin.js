@@ -10,5 +10,12 @@ $.ajax({
     }
 });
 
-
+$('#logout').on('click', () => {
+    $.ajax({
+        url: 'handler/logoutHandler.php',
+        success: () => {
+            window.location.href = 'index.html'
+        }
+    });
+});
 
