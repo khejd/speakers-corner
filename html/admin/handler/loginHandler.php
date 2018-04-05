@@ -10,9 +10,9 @@ function getAdmin($username, $conn){
 
 function login($username, $password, $conn){
     $admin = getAdmin($username, $conn);
-    if (mysqli_num_rows($admin) != 1){
+    /*if (mysqli_num_rows($admin) != 1){
         throw new Exception('User does not exist');
-    }
+    } */
     if ($admin['password'] != $password){
         throw new Exception('Wrong password');
     }
