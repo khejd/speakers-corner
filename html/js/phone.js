@@ -1,8 +1,10 @@
-$(document).ready(() => {
+// On document ready
+$(() => {
     $('#commentText').text(localStorage.getItem("commentText"));
     changeLanguage(localStorage.getItem("language"));
 });
 
+// When phone submit button is clicked
 $('#phoneSubmit').on('click',() => {
     $.ajax({
         url: 'handler/phoneHandler.php',
@@ -19,6 +21,7 @@ $('#phoneSubmit').on('click',() => {
     });
 });
 
+// When code submit button is blicked
 $('#codeSubmit').on('click', () => {
     $.ajax({
         url: 'handler/codeHandler.php',

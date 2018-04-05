@@ -1,5 +1,6 @@
 let element = '';
 
+// Click on numbers
 $('#numpad li').on('click', (e) => {
     if ($('#layer1').hasClass('visible')){
         element = 'phone';
@@ -7,6 +8,7 @@ $('#numpad li').on('click', (e) => {
         element = 'code';
     }
 
+    // Check which number is clicked
     for (let i = 0; i < 10; i++){
         if (parseInt(e.target.id) === i){
             typeNumber(element, i);
@@ -15,6 +17,7 @@ $('#numpad li').on('click', (e) => {
     }
 });
 
+// Click on delete, remove last number
 $('#delete').on('click', () => {
     let number_string = $('#' + element);
     if (number_string.length>0) {
@@ -22,6 +25,7 @@ $('#delete').on('click', () => {
     }
 });
 
+// Click on clear, remove all numbers
 $('#clear').on('click', () =>{
     $('#' + element).val('');
 });
