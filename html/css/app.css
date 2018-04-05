@@ -140,8 +140,8 @@ body{
 }
 
 .flag-icon {
-    line-height: 10em;
-    width: 18em;
+    line-height: 10em !important;
+    width: 18em !important;
 }
 
 /* Cookie popup */
