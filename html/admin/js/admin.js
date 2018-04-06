@@ -75,6 +75,7 @@ function getCommentAndPhone(){
 }
 
 function deleteComment(id){
+    if (window.confirm('Vil du virkelig slette denne kommentaren?'))
     $.ajax({
         url: 'handler/deleteCommentHandler.php',
         type: 'POST',
