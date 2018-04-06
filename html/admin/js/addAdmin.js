@@ -20,6 +20,12 @@ $('#add').on('click', (e) => {
     let username = $('#username');
     let phone  = $('#phone');
     let errorMsg = $('#errorMsg');
+
+    password.removeClass('is-invalid');
+    retypePassword.removeClass('is-invalid');
+    username.removeClass('is-invalid');
+    phone.removeClass('is-invalid');
+
     if(password.val() !== retypePassword.val()){
         password.addClass('is-invalid');
         retypePassword.addClass('is-invalid');
