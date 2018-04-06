@@ -41,6 +41,7 @@ $('#add').on('click', (e) => {
 });
 
 function checkUsernameAndPhone(username, phone){
+    let value = '';
     $.ajax({
         url: 'handler/usernameHandler.php',
         type: 'POST',
@@ -50,9 +51,10 @@ function checkUsernameAndPhone(username, phone){
         },
         success: (result) => {
             let res = $.parseJSON(result);
-            return res.error
+            value = res.error
         }
     });
+    return value;
 }
 
 function add(username, phone, password){
