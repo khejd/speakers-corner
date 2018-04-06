@@ -4,7 +4,7 @@ session_start();
 $loggedInId = $_SESSION['admin']['id'];
 
 function getAdmins($id, $conn){
-    $sql = "SELECT * FROM `admin` ORDER BY `username` WHERE `id` != '$id'";
+    $sql = "SELECT * FROM `admin` WHERE `id` != '$id' ORDER BY `username`";
     return mysqli_query($conn, $sql);
 }
 
