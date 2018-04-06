@@ -16,12 +16,12 @@ function phoneExists($phone, $conn){
 $username = $_POST['username'];
 $phone = $_POST['phone'];
 
-if (!usernameExists($username, $conn) && !phoneExists($phone, $conn)){
+if (usernameExists($username, $conn) || phoneExists($phone, $conn)){
     echo json_encode(array(
-        'error' => false
+        'error' => true
     ));
 } else {
     echo json_encode(array(
-        'error' => true
+        'error' => false
     ));
 }
