@@ -2,7 +2,7 @@
 include_once("../../Connections/connection.php");
 
 function usernameExists($username, $conn){
-    $sql = "SELECT * FROM `admin` WHERE `username` = '$username''";
+    $sql = "SELECT * FROM `admin` WHERE `username` = '$username'";
     $result = mysqli_query($conn, $sql);
     return mysqli_num_rows($result) == 1;
 }
@@ -14,6 +14,7 @@ function phoneExists($phone, $conn){
 }
 
 $username = $_POST['username'];
+$phone = $_POST['phone'];
 
 if (usernameExists($username, $conn) || phoneExists($phone, $conn)){
     echo json_encode(array(
@@ -21,6 +22,6 @@ if (usernameExists($username, $conn) || phoneExists($phone, $conn)){
     ));
 } else {
     echo json_encode(array(
-        'error' => true,
+        'error' => true
     ));
 }
