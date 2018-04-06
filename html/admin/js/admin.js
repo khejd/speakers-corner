@@ -15,33 +15,69 @@ $.ajax({
 // On document ready
 $(() => {
     let comments = '';
-    let deferred = getCommentAndPhone();
+    let admins = '';
+    let deferredAdmin = getAdmins();
+    let deferredComments = getCommentAndPhone();
 
-    // When all comments are fetched
-    deferred.then(() => {
-        printTable();
+    // When all admins are fetched
+    deferredAdmin.then(() => {
+        printAdminsTable();
 
-        // Delete comment
-        $('.delete').on('click', (e) => {
-            let id = e.target.id;
-            deleteComment(id);
-        });
+        // When all comments are fetched
+        deferredComments.then(() => {
+            printCommentsTable();
 
-        // Logout
-        $('#logout').on('click', () => {
-            $.ajax({
-                url: 'handler/logoutHandler.php',
-                success: () => {
-                    window.location.href = 'index.html'
-                }
+            // Delete comment
+            $('.delete').on('click', (e) => {
+                let id = e.target.id;
+                deleteComment(id);
+            });
+
+            // Logout
+            $('#logout').on('click', () => {
+                $.ajax({
+                    url: 'handler/logoutHandler.php',
+                    success: () => {
+                        window.location.href = 'index.html'
+                    }
+                });
             });
         });
+
 
     });
 });
 
+function getAdmins(){
+    let deferred = $.Deferred();
+    $.ajax({
+        url: 'handler/adminHandler.php',
+        type: 'GET',
+        success: (result) =>{
+            admins = JSON.parse(result);
+            deferred.resolve();
+        }
+    });
+    return deferred;
+}
 
-function printTable(){
+function printAdminsTable(){
+    let table = "<table class='table' id='admins-table'><thead>" +
+        "<th>Brukernavn<th>Telefonnummer<th><th><tbody>";
+    for (let arg of admins){
+        table += (
+            "<tr><td>" + arg['username'] +
+            "<td>" + arg['phone'] +
+            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete'></i></td>"
+        );
+    }
+    table += "</table>";
+    $('#admins-table').remove();
+    $('#admins').append(table);
+}
+
+
+function printCommentsTable(){
     let table = "<table class='table' id='comments-table'><thead>" +
         "<th>Telefonnummer<th>Kommentar<th>Upvotes<th>Downvotes<th>Publisert<th><tbody>";
     for (let arg of comments){
@@ -85,7 +121,7 @@ function deleteComment(id){
         success: () =>{
             let deferred = getCommentAndPhone();
             deferred.then(() =>{
-                printTable();
+                printCommentsTable();
             });
 
         }
