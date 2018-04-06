@@ -1,19 +1,19 @@
+// Check if logged in
+$.ajax({
+    url: 'handler/loggedInHandler.php',
+    type: 'GET',
+    success: (result) => {
+        let res = $.parseJSON(result);
+        if (res.error){
+            window.location.href = 'index.html'
+        } else {
+        $('body').css('display', 'block');
+        }
+    }
+});
+
 // On document ready
 $(() => {
-    // Check if logged in
-    $.ajax({
-        url: 'handler/loggedInHandler.php',
-        type: 'GET',
-        success: (result) => {
-            let res = $.parseJSON(result);
-            if (res.error){
-                window.location.href = 'index.html'
-            } else {
-                $('body').css('display', 'block');
-            }
-        }
-    });
-
     let comments = '';
     let deferred = getCommentAndPhone();
 
@@ -36,18 +36,6 @@ $(() => {
     });
 });
 
-function getCommentAndPhone(){
-    let deferred = $.Deferred();
-    $.ajax({
-        url: 'handler/commentAndPhoneHandler.php',
-        type: 'GET',
-        success: (result) =>{
-            comments = JSON.parse(result);
-            deferred.resolve();
-        }
-    });
-    return deferred;
-}
 
 function printTable(comments){
     let table = "<table class='table' id='comments-table'><thead>" +
@@ -62,9 +50,23 @@ function printTable(comments){
             "<td>" + arg['downs'] +
             "<td>" + arg['time'] +
             "<td><i id='"+ arg['id'] + "' class='fas fa-trash'></i></td>"
-            );
+        );
     }
     table += "</table>";
     $('#comments-table').remove();
     $('#comments').append(table);
 }
+
+function getCommentAndPhone(){
+    let deferred = $.Deferred();
+    $.ajax({
+        url: 'handler/commentAndPhoneHandler.php',
+        type: 'GET',
+        success: (result) =>{
+            comments = JSON.parse(result);
+            deferred.resolve();
+        }
+    });
+    return deferred;
+}
+
