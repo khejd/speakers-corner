@@ -36,7 +36,7 @@ $(() => {
 function getCommentAndPhone(){
     let deferred = $.Deferred();
     $.ajax({
-        url: '../handler/commentAndPhoneHandler.php',
+        url: 'handler/commentAndPhoneHandler.php',
         type: 'GET',
         success: (result) =>{
             comments = JSON.parse(result);
