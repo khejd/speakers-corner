@@ -54,9 +54,7 @@ function checkUsernameAndPhone(username, phone){
         },
         success: (result) => {
             let res = $.parseJSON(result);
-            if (!res.error){
-                ok = true;
-            }
+            ok = !(res.error);
         }
     });
 }
