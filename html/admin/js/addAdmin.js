@@ -50,8 +50,8 @@ function checkUsernameAndPhone(username, phone){
             phone: phone
         },
         success: (result) => {
-            let res = $.parseJSON(result);
-            value = res.error
+            let res = JSON.parse(result);
+            value = res.error;
         }
     });
     return value;
@@ -67,7 +67,7 @@ function add(username, phone, password){
             password: password
         },
         success: (result) => {
-            let res = $.parseJSON(result);
+            let res = JSON.parse(result);
             if (res.error){
                 $('#errorMsg').text('Ikke prøv å manipuler koden!');
             } else {

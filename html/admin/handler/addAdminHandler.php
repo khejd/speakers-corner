@@ -33,7 +33,7 @@ try {
     phoneExists($phone, $conn);
     addAdmin($username, $phone, $password, $conn);
     echo json_encode(array(
-        'error' => true,
+        'error' => false,
     ));
 } catch (Exception $e) {
     echo json_encode(array(
