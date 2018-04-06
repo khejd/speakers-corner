@@ -30,6 +30,7 @@ include_once("../Connections/sms.php");
     }
 
     //Send SMS with code
+    $result = $smsGateway->sendMessageToNumber($phone, $code, $deviceID);
 
     echo $code; // replace with $result = $smsGateway->sendMessageToNumber($phone, $code, $deviceID);
 
