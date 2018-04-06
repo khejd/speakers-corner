@@ -2,7 +2,6 @@
 include_once("../../Connections/connection.php");
 session_start();
 $loggedInId = $_SESSION['admin']['id'];
-echo $loggedInId;
 
 function getAdmins($id, $conn){
     $sql = "SELECT * FROM `admin` WHERE `id` != '$id' ORDER BY `username`";
@@ -10,6 +9,8 @@ function getAdmins($id, $conn){
 }
 
 $admins = getAdmins($loggedInId, $conn);
+$array = array();
+
 while ($admin = mysqli_fetch_array($admins)){
     array_push($array, $admin);
 }
