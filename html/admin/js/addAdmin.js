@@ -15,25 +15,32 @@ $.ajax({
 // When submit button is clicked
 $('#add').on('click', (e) => {
     e.preventDefault();
-    if($('#password').val() !== $('#retype-password').val()){
-        $('#password').addClass('is-invalid');
-        $('#retype-password').addClass('is-invalid');
-        $('#errorMsg').text('Passordene er ikke like');
-    } else if (!checkUsername($('#username').val())){
-        $('#password').addClass('is-invalid');
-        $('#errorMsg').text('Brukernavnet er allerede registrert');
+    let password = $('#password');
+    let retypePassword = $('#retype-password');
+    let username = $('#username');
+    let phone  = $('#phone');
+    let errorMsg = $('#errorMsg');
+    if(password.val() !== retypePassword.val()){
+        password.addClass('is-invalid');
+        retypePassword.addClass('is-invalid');
+        errorMsg.text('Passordene er ikke like');
+    } else if (!checkUsernameAndPhone(username.val(), phone.val())){
+        username.addClass('is-invalid');
+        phone.addClass('is-invalid');
+        errorMsg.text('Brukernavnet eller telefonnummeret er allerede registrert');
     } else {
-        add($('#username').val(), $('#phone').val(), $('#password').val());
+        add(username.val(), phone.val(), password.val());
     }
 
 });
 
-function checkUsername(username){
+function checkUsernameAndPhone(username, phone){
     $.ajax({
         url: 'handler/usernameHandler.php',
         type: 'POST',
         data: {
-            username: username
+            username: username,
+            phone: phone
         },
         success: (result) => {
             let res = $.parseJSON(result);
