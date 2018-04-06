@@ -19,7 +19,7 @@ $(() => {
 
     // When all comments are fetched
     deferred.then(() => {
-        printTable(comments);
+        printTable();
 
 
 
@@ -37,7 +37,7 @@ $(() => {
 });
 
 
-function printTable(comments){
+function printTable(){
     let table = "<table class='table' id='comments-table'><thead>" +
         "<th>Telefonnummer<th>Kommentar<th>Upvotes<th>Downvotes<th>Publisert<th><tbody>";
     for (let arg of comments){
