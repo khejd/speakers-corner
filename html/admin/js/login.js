@@ -1,15 +1,12 @@
-// On document ready
-$(() => {
-    $.ajax({
-        url: 'handler/loggedInHandler.php',
-        type: 'GET',
-        success: (result) => {
-            let res = $.parseJSON(result);
-            if (!res.error){
-                window.location.href = 'index.html'
-            }
+$.ajax({
+    url: 'handler/loggedInHandler.php',
+    type: 'GET',
+    success: (result) => {
+        let res = $.parseJSON(result);
+        if (!res.error){
+            window.location.href = 'index.html'
         }
-    });
+    }
 });
 
 // When submit button is clicked
