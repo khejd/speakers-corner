@@ -27,8 +27,14 @@ $(() => {
         deferredComments.then(() => {
             printCommentsTable();
 
+            // Delete admin
+            $('.delete-admin').on('click', (e) => {
+                let id = e.target.id;
+                deleteAdmin(id);
+            });
+
             // Delete comment
-            $('.delete').on('click', (e) => {
+            $('.delete-comment').on('click', (e) => {
                 let id = e.target.id;
                 deleteComment(id);
             });
@@ -68,7 +74,7 @@ function printAdminsTable(){
         table += (
             "<tr><td>" + arg['username'] +
             "<td>" + arg['phone'] +
-            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete'></i></td>"
+            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete-admin'></i></td>"
         );
     }
     table += "</table>";
@@ -76,6 +82,23 @@ function printAdminsTable(){
     $('#admins').append(table);
 }
 
+function deleteAdmin(id){
+    if (window.confirm('Vil du virkelig slette denne administratoren?'))
+        $.ajax({
+            url: 'handler/deleteAdminHandler.php',
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: () =>{
+                let deferred = getAdmins();
+                deferred.then(() =>{
+                    printAdminsTable();
+                });
+
+            }
+        });
+}
 
 function printCommentsTable(){
     let table = "<table class='table' id='comments-table'><thead>" +
@@ -89,7 +112,7 @@ function printCommentsTable(){
             "<td>" + arg['ups'] +
             "<td>" + arg['downs'] +
             "<td>" + arg['time'] +
-            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete'></i></td>"
+            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete-comment'></i></td>"
         );
     }
     table += "</table>";
