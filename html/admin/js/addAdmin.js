@@ -28,23 +28,24 @@ $('#add').on('click', (e) => {
     username.removeClass('is-invalid');
     phone.removeClass('is-invalid');
 
-    checkUsernameAndPhone(username.val(), phone.val());
-
-    if(password.val() !== retypePassword.val()){
-        password.addClass('is-invalid');
-        retypePassword.addClass('is-invalid');
-        errorMsg.text('Passordene er ikke like');
-    } else if (!ok){
-        username.addClass('is-invalid');
-        phone.addClass('is-invalid');
-        errorMsg.text('Brukernavnet eller telefonnummeret er allerede registrert.');
-    } else {
-        add(username.val(), phone.val(), password.val());
-    }
-
+    let deferred = checkUsernameAndPhone(username.val(), phone.val());
+    deferred.then(() => {
+        if(password.val() !== retypePassword.val()){
+            password.addClass('is-invalid');
+            retypePassword.addClass('is-invalid');
+            errorMsg.text('Passordene er ikke like');
+        } else if (!ok){
+            username.addClass('is-invalid');
+            phone.addClass('is-invalid');
+            errorMsg.text('Brukernavnet eller telefonnummeret er allerede registrert.');
+        } else {
+            add(username.val(), phone.val(), password.val());
+        }
+    });
 });
 
 function checkUsernameAndPhone(username, phone){
+    let deferred = $.Deferred();
     $.ajax({
         url: 'handler/usernameHandler.php',
         type: 'POST',
@@ -55,8 +56,10 @@ function checkUsernameAndPhone(username, phone){
         success: (result) => {
             let res = $.parseJSON(result);
             ok = !(res.error);
+            deferred.resolve();
         }
     });
+    return deferred;
 }
 
 function add(username, phone, password){
