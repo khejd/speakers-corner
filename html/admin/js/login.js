@@ -1,5 +1,6 @@
 // When submit button is clicked
-$('#login').on('click', () => {
+$('#login').on('click', (e) => {
+    e.preventDefault();
     $.ajax({
         url: 'handler/loginHandler.php',
         type: 'POST',

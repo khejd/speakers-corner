@@ -6,10 +6,13 @@ $.ajax({
         let res = $.parseJSON(result);
         if (res.error){
             window.location.href = 'index.html'
+        } else {
+        $('body').css('display', 'block');
         }
     }
 });
 
+// Logout
 $('#logout').on('click', () => {
     $.ajax({
         url: 'handler/logoutHandler.php',
