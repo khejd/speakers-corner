@@ -21,16 +21,22 @@ $(() => {
     deferred.then(() => {
         printTable();
 
-
-
-        // Logout
-        $('#logout').on('click', () => {
+        $('.delete').on('click', () => {
             $.ajax({
-                url: 'handler/logoutHandler.php',
+                url: 'handler/deleteCommentHandler.php',
+                type: 'POST',
+                data: 'id',
                 success: () => {
                     window.location.href = 'index.html'
                 }
             });
+        });
+
+
+        // Logout
+        $('#logout').on('click', (e) => {
+            let id = e.target.id;
+            deleteComment(id);
         });
 
     });
@@ -49,7 +55,7 @@ function printTable(){
             "<td>" + arg['ups'] +
             "<td>" + arg['downs'] +
             "<td>" + arg['time'] +
-            "<td><i id='"+ arg['id'] + "' class='fas fa-trash'></i></td>"
+            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete'></i></td>"
         );
     }
     table += "</table>";
@@ -70,3 +76,19 @@ function getCommentAndPhone(){
     return deferred;
 }
 
+function deleteComment(id){
+    $.ajax({
+        url: 'handler/deleteCommentHandler.php',
+        type: 'POST',
+        data: {
+            id: id
+        },
+        success: () =>{
+            let deferred = getComments();
+            deferred.then(() =>{
+                printTable();
+            });
+
+        }
+    });
+}

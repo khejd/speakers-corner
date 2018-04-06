@@ -1,5 +1,6 @@
 <?php
 include_once("../../Connections/connection.php");
+session_start();
 
 function getComments($conn){
     $sql = "SELECT * FROM `comment` ORDER BY TIME DESC";
@@ -21,5 +22,7 @@ while ($comment = mysqli_fetch_array($comments)){
     array_push($array, $comment);
 }
 
-echo json_encode($array);
+if ($_SESSION['loggedIn']){
+    echo json_encode($array);
+}
 
