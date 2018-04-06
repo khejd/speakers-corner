@@ -82,7 +82,7 @@ function deleteComment(id){
             id: id
         },
         success: () =>{
-            let deferred = getComments();
+            let deferred = getCommentAndPhone();
             deferred.then(() =>{
                 printTable();
             });
