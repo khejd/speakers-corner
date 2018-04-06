@@ -9,8 +9,8 @@ include_once("../Connections/connection.php");
     $comments = getComments($conn);
     $array = array();
 
-    while ($row = mysqli_fetch_array($comments)){
-        array_push($array, $row);
+    while ($comment = mysqli_fetch_array($comments)){
+        array_push($array, $comment);
     }
 
     echo json_encode($array);

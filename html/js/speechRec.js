@@ -39,6 +39,7 @@ $(document).on('keydown', (e) => {
 $(document).on('keyup', (e) => {
     if (e.keyCode === 17){ // ctrl
         active = false;
+        setTimeout(1000);
         recognition.stop();
         if (layer2.hasClass('visible')){
             $('#confirmationModal').modal('show');

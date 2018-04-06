@@ -21,7 +21,7 @@ $('#phoneSubmit').on('click',() => {
     });
 });
 
-// When code submit button is blicked
+// When code submit button is clicked
 $('#codeSubmit').on('click', () => {
     $.ajax({
         url: 'handler/codeHandler.php',
