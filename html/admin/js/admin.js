@@ -21,22 +21,20 @@ $(() => {
     deferred.then(() => {
         printTable();
 
-        $('.delete').on('click', () => {
+        // Delete comment
+        $('.delete').on('click', (e) => {
+            let id = e.target.id;
+            deleteComment(id);
+        });
+
+        // Logout
+        $('#logout').on('click', () => {
             $.ajax({
-                url: 'handler/deleteCommentHandler.php',
-                type: 'POST',
-                data: 'id',
+                url: 'handler/logoutHandler.php',
                 success: () => {
                     window.location.href = 'index.html'
                 }
             });
-        });
-
-
-        // Logout
-        $('#logout').on('click', (e) => {
-            let id = e.target.id;
-            deleteComment(id);
         });
 
     });
