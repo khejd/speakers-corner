@@ -8,8 +8,9 @@ function getComments($conn){
 
 function getPhone($comment, $conn){
     $id = $comment['user_id'];
-    $sql = "SELECT * FROM `user` WHERE `id` = '$id'";
-    return mysqli_query($conn, $sql);
+    $sql = "SELECT `phone` FROM `user` WHERE `id` = '$id'";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_array($result);
 }
 
 $comments = getComments($conn);
