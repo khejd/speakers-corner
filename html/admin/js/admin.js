@@ -50,8 +50,10 @@ function printTable(comments){
     let table = "<table class='table' id='comments-table'><thead>" +
         "<th>Telefonnummer<th>Kommentar<th>Upvotes<th>Downvotes<th>Publisert<th><tbody>";
     for (let arg of comments){
+        let phone = arg['phone'];
+        phone = phone['phone_number'];
         table += (
-            "<tr><td>" + arg['phone'] +
+            "<tr><td>" + phone +
             "<td>" + arg['text'] +
             "<td>" + arg['ups'] +
             "<td>" + arg['downs'] +

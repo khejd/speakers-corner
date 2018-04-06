@@ -17,8 +17,6 @@ $comments = getComments($conn);
 $array = array();
 
 while ($comment = mysqli_fetch_array($comments)){
-    $phone = getPhone($comment, $conn);
-    $phone = $phone['phone_number'];
     $comment['phone'] = getPhone($comment, $conn);
     array_push($array, $comment);
 }
