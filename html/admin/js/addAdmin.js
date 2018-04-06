@@ -12,6 +12,8 @@ $.ajax({
     }
 });
 
+let ok = false;
+
 // When submit button is clicked
 $('#add').on('click', (e) => {
     e.preventDefault();
@@ -26,14 +28,16 @@ $('#add').on('click', (e) => {
     username.removeClass('is-invalid');
     phone.removeClass('is-invalid');
 
+    checkUsernameAndPhone(username.val(), phone.val());
+
     if(password.val() !== retypePassword.val()){
         password.addClass('is-invalid');
         retypePassword.addClass('is-invalid');
         errorMsg.text('Passordene er ikke like');
-    } else if (!checkUsernameAndPhone(username.val(), phone.val())){
+    } else if (!ok){
         username.addClass('is-invalid');
         phone.addClass('is-invalid');
-        errorMsg.text('Brukernavnet eller telefonnummeret er allerede registrert');
+        errorMsg.text('Brukernavnet eller telefonnummeret er allerede registrert.');
     } else {
         add(username.val(), phone.val(), password.val());
     }
@@ -41,7 +45,6 @@ $('#add').on('click', (e) => {
 });
 
 function checkUsernameAndPhone(username, phone){
-    let value = '';
     $.ajax({
         url: 'handler/usernameHandler.php',
         type: 'POST',
@@ -51,11 +54,11 @@ function checkUsernameAndPhone(username, phone){
         },
         success: (result) => {
             let res = $.parseJSON(result);
-            console.log(res);
-            value = res.error;
+            if (!res.error){
+                ok = true;
+            }
         }
     });
-    return value;
 }
 
 function add(username, phone, password){
