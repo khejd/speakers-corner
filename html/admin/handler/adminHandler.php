@@ -2,6 +2,7 @@
 include_once("../../Connections/connection.php");
 session_start();
 $loggedInId = $_SESSION['admin']['id'];
+echo $loggedInId;
 
 function getAdmins($id, $conn){
     $sql = "SELECT * FROM `admin` WHERE `id` != '$id' ORDER BY `username`";
