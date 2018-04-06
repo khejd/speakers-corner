@@ -1,9 +1,7 @@
 <?php
 include_once("../../Connections/connection.php");
 
-session_start();
-
-function recordExists($username, $conn){
+function usernameExists($username, $conn){
     $sql = "SELECT * FROM `admin` WHERE `username` = $username";
     $result = mysqli_query($conn, $sql);
     return mysqli_num_rows($result) == 1;
@@ -11,7 +9,7 @@ function recordExists($username, $conn){
 
 $username = $_POST['username'];
 
-if (recordExists($username, $conn)){
+if (usernameExists($username, $conn)){
     echo json_encode(array(
         'error' => false
     ));

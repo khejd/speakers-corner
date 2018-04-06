@@ -22,19 +22,10 @@ $('#add').on('click', (e) => {
     } else if (!checkUsername($('#username').val())){
         $('#password').addClass('is-invalid');
         $('#errorMsg').text('Brukernavnet er allerede registrert');
+    } else {
+        add($('#username').val(), $('#phone').val(), $('#password').val());
     }
-    $.ajax({
-        url: 'handler/addAdminHandler.php',
-        type: 'POST',
-        data: {
-            username: $('#username').val(),
-            phone: $('#phone').val(),
-            password: $('#password').val()
-        },
-        success: () => {
-            window.location.href = 'index.html';
-        }
-    });
+
 });
 
 function checkUsername(username){
@@ -47,6 +38,26 @@ function checkUsername(username){
         success: (result) => {
             let res = $.parseJSON(result);
             return res.error
+        }
+    });
+}
+
+function add(username, phone, password){
+    $.ajax({
+        url: 'handler/addAdminHandler.php',
+        type: 'POST',
+        data: {
+            username: username,
+            phone: phone,
+            password: password
+        },
+        success: (result) => {
+            let res = $.parseJSON(result);
+            if (res.error){
+                $('#errorMsg').text('Ikke prøv å manipuler koden!');
+            } else {
+                window.location.href = 'index.html';
+            }
         }
     });
 }
