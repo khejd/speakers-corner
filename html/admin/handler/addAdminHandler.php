@@ -1,5 +1,6 @@
 <?php
 include_once("../../Connections/connection.php");
+session_start();
 
 function addAdmin($username, $phone, $password, $conn){
     $stmt = $conn->prepare("INSERT INTO `admin` (`username`, `phone`, `password`) VALUES (?, ?, ?)");
@@ -28,15 +29,17 @@ $username = $_POST['username'];
 $phone = $_POST['phone'];
 $password = MD5($_POST['password']);
 
-try {
-    usernameExists($username, $conn);
-    phoneExists($phone, $conn);
-    addAdmin($username, $phone, $password, $conn);
-    echo json_encode(array(
-        'error' => false
-    ));
-} catch (Exception $e) {
-    echo json_encode(array(
-        'error' => true
-    ));
+if($_SESSION['loggedIn']){
+    try {
+        usernameExists($username, $conn);
+        phoneExists($phone, $conn);
+        addAdmin($username, $phone, $password, $conn);
+        echo json_encode(array(
+            'error' => false
+        ));
+    } catch (Exception $e) {
+        echo json_encode(array(
+            'error' => true
+        ));
+    }
 }
