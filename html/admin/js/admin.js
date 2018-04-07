@@ -29,13 +29,13 @@ $(() => {
 
             // Delete admin
             $('.delete-admin').on('click', (e) => {
-                let id = e.target.id;
+                let id = e.target.id.replace('admin' + '-','');
                 deleteAdmin(id);
             });
 
             // Delete comment
             $('.delete-comment').on('click', (e) => {
-                let id = e.target.id;
+                let id = e.target.id.replace('comment' + '-','');
                 deleteComment(id);
             });
 
@@ -72,9 +72,9 @@ function printAdminsTable(){
         "<th>Brukernavn<th>Telefonnummer<th><th><tbody>";
     for (let arg of admins){
         table += (
-            "<tr><td>" + arg['username'] +
+            "<tr id='admin-row-"+ arg['id'] +"'><td>" + arg['username'] +
             "<td>" + arg['phone'] +
-            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete-admin'></i></td>"
+            "<td><i id='admin-"+ arg['id'] + "' class='fa fa-trash delete-admin'></i></td>"
         );
     }
     table += "</table>";
@@ -91,11 +91,7 @@ function deleteAdmin(id){
                 id: id
             },
             success: () =>{
-                let deferred = getAdmins();
-                deferred.then(() =>{
-                    printAdminsTable();
-                });
-
+                $('#admin-row-' + id).remove();
             }
         });
 }
@@ -107,12 +103,12 @@ function printCommentsTable(){
         let phone = arg['phone'];
         phone = phone['phone_number'];
         table += (
-            "<tr><td>" + phone +
+            "<tr id='comment-row-"+ arg['id'] +"'><td>" + phone +
             "<td>" + arg['text'] +
             "<td>" + arg['ups'] +
             "<td>" + arg['downs'] +
             "<td>" + arg['time'] +
-            "<td><i id='"+ arg['id'] + "' class='fa fa-trash delete-comment'></i></td>"
+            "<td><i id='comment-"+ arg['id'] + "' class='fa fa-trash delete-comment'></i></td>"
         );
     }
     table += "</table>";
@@ -142,11 +138,7 @@ function deleteComment(id){
             id: id
         },
         success: () =>{
-            let deferred = getCommentAndPhone();
-            deferred.then(() =>{
-                printCommentsTable();
-            });
-
+            $('#comment-row-' + id).remove();
         }
     });
 }
