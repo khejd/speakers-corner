@@ -4,7 +4,7 @@ $.ajax({
     success: (result) => {
         let res = $.parseJSON(result);
         if (!res.error){
-            window.location.href = 'index.html'
+            window.location.href = '/admin'
         }
     }
 });
@@ -25,7 +25,7 @@ $('#login').on('click', (e) => {
                 $('#code').addClass('is-invalid');
                 $('#errorMsg').text(res.msg);
             } else {
-                window.location.href = 'index.html'
+                window.location.href = '/admin'
             }
         }
     });

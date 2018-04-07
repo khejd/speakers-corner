@@ -76,7 +76,7 @@ function add(username, phone, password){
             if (res.error){
                 $('#errorMsg').text('Ikke prøv å manipuler koden!');
             } else {
-                window.location.href = 'index.html';
+                window.location.href = '/admin';
             }
         }
     });
