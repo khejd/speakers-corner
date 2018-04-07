@@ -14,7 +14,7 @@ $(() => {
         if (typeof Cookies.get('accept_cookies') === 'undefined'){
             let popup = $('#cookie_popup');
             popup.addClass('show');
-            $('.cookies_span').on('click',() => {
+            $('.cookies_button').on('click',() => {
                 popup.removeClass('show');
                 Cookies.set('accept_cookies', 1);
             });
