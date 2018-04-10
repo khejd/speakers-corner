@@ -6,7 +6,7 @@ function getCookie(name){
 /** @param{comment} commentVar */
 function wilsonScore(commentVar){
     const N = parseInt(commentVar['ups']) + parseInt(commentVar['downs']);
-    if (N===0) {
+    if (N==0) {
         return 0.65;
     }
     const Z = 1.28155156;
@@ -22,7 +22,7 @@ function wilsonScore(commentVar){
 
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
-    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
+    //const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
     return wilsonScore(commentVar);//-Math.log10(SECONDS);
 }
 
