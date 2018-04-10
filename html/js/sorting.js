@@ -25,7 +25,7 @@ function sigmoid(x)
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
     const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(x-SECONDS/(3600*24)));
+    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(SECONDS/(3600*24)-6));
 }
 
 /** @param{string} argument */
