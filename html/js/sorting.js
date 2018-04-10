@@ -24,7 +24,7 @@ function sigmoid(x)
 
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
-    var SECONDS = 1000;//= new Date().getTime()/1000 - commentVar['time']/1000;
+    var SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
     var days = SECONDS/(3600*24);
     if(SECONDS < 4*60*60)
     {
