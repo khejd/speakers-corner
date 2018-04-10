@@ -5,12 +5,12 @@ function getCookie(name){
 
 /** @param{comment} commentVar */
 function wilsonScore(commentVar){
-    const N = commentVar['ups'] + commentVar['downs'];
-    if (N==0) {
+    const N = parseInt(commentVar['ups']) + parseInt(commentVar['downs']);
+    if (N===0) {
         return 0.65;
     }
     const Z = 1.28155156;
-    const P = commentVar['ups']/N;
+    const P = parseInt(commentVar['ups'])/N;
     const LEFT = P + 1/(2*N)*Z*Z;
     const RIGHT = Z*Math.sqrt(P*(1-P)/N + Z*Z/(4*N*N));
     const UNDER = 1+ (1/N)*Z*Z;
