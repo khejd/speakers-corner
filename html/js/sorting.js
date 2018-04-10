@@ -28,6 +28,7 @@ function wilsonScoreWithTime(commentVar){
 
 /** @param{string} argument */
 function sortBy(argument){
+    console.log(argument);
     if (argument === "time"){
         comments.sort((a, b) => {
             let d1 = new Date(a['time']);
