@@ -17,13 +17,15 @@ function wilsonScore(commentVar){
     return (LEFT-RIGHT)/UNDER;
 }
 
-
-
+function sigmoid(x)
+{
+    return Math.exp(x)/(Math.exp(x)+1);
+}
 
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
-    //const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar);//-Math.log10(SECONDS);
+    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
+    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(x-SECONDS/(3600*24)));
 }
 
 /** @param{string} argument */
