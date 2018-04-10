@@ -17,14 +17,8 @@ function wilsonScore(commentVar){
     return (LEFT-RIGHT)/UNDER;
 }
 
-/** @param{comment} commentVar */
-function hot(commentVar) {
-    const S = commentVar['ups']-commentVar['downs'];
-    const ORDER = Math.log10(Math.max(Math.abs(s),1));
-    const SIGN = (S > 0) ? 1 : -1;
-    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
-    return ORDER + SIGN*SECONDS/45000;
-}
+
+
 
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
