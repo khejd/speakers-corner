@@ -6,8 +6,8 @@ function getCookie(name){
 /** @param{comment} commentVar */
 function wilsonScore(commentVar){
     const N = commentVar['ups'] + commentVar['downs'];
-    if (N===0) {
-        return 0;
+    if (N==0) {
+        return 0.65;
     }
     const Z = 1.28155156;
     const P = commentVar['ups']/N;
@@ -29,7 +29,7 @@ function hot(commentVar) {
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
     const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar)//-Math.log10(SECONDS);
+    return wilsonScore(commentVar);//-Math.log10(SECONDS);
 }
 
 /** @param{string} argument */
@@ -40,7 +40,9 @@ function sortBy(argument){
             let d2 = new Date(b['time']);
             return (d1 > d2) ? -1 : 1;
         });
-    } else if (argument === "popularity"){
+    } 
+    else if (argument === "popularity")
+    {
         comments.sort((a,b) => {
                 const A = parseInt(a['ups'])-parseInt(a['downs']);
                 const B = parseInt(b['ups'])-parseInt(b['downs']);
@@ -52,7 +54,9 @@ function sortBy(argument){
                 return B-A;
             }
         );
-    } else if (argument === "trending"){
+    } 
+    else if (argument === "trending")
+    {
         comments.sort((a,b) => 
             {
                 return wilsonScoreWithTime(b) - wilsonScoreWithTime(a);
