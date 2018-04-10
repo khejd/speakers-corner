@@ -20,6 +20,8 @@ $('.flag').on('click', (e) => {
 // Speech recognition variables
 let active = false;
 let recognition = '';
+let start = '';
+let delta = 0;
 
 if (window.hasOwnProperty('webkitSpeechRecognition')) {
     recognition = new webkitSpeechRecognition();
@@ -27,8 +29,8 @@ if (window.hasOwnProperty('webkitSpeechRecognition')) {
 
 // Start speech rec on hold down ctrl
 $(document).on('keydown', (e) => {
-    if (e.keyCode === 17){ //ctrl
-        if (!active){
+    if (e.keyCode === 17) { //ctrl
+        if (!active) {
             active = true;
             startDictation();
         }
@@ -38,8 +40,19 @@ $(document).on('keydown', (e) => {
 // Stop speech rec on keyup ctrl and store the text in local storage
 $(document).on('keyup', (e) => {
     if (e.keyCode === 17){ // ctrl
+        start = Date.now();
+    }
+});
+
+const TIMEOUT = 1000; // 1 sec
+window.setInterval(() => {
+    checkKeyUp();
+}, TIMEOUT);
+
+function checkKeyUp(){
+    delta = Date.now() - start;
+    if (active && delta > TIMEOUT){
         active = false;
-        setTimeout(1000);
         recognition.stop();
         if (layer2.hasClass('visible')){
             $('#confirmationModal').modal('show');
@@ -48,7 +61,7 @@ $(document).on('keyup', (e) => {
         $('#commentText span').text(transcript.val());
         localStorage.setItem("commentText", transcript.val());
     }
-});
+}
 
 function startDictation() {
     let final_transcript = '';
