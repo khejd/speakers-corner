@@ -43,7 +43,7 @@ $(document).on('keyup', (e) => {
         recognition.stop();
 
 
-        if (layer2.hasClass('visible') &&  !transcript.val()){
+        if (layer2.hasClass('visible') &&  transcript.val()!==""){
             $('#confirmationModal').modal('show');
             layer2.css('z-index', 'auto');
         }
