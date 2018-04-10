@@ -95,11 +95,17 @@ function hot(commentVar)
 
 }
 
+function sigmoid(x)
+{
+    return Math.exp(x)/(1+Math.exp(x));
+}
+
 function wilsonScoreWithTime(commentVar)
 {
     var seconds = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar)//-Math.log10(seconds);
+    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(seconds/(3600*24)-6));
 }
+
 
 function sortBy(argument)
 {
