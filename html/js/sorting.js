@@ -26,10 +26,13 @@ function sigmoid(x)
 function wilsonScoreWithTime(commentVar){
     var SECONDS = new Date().getTime()/1000 - new Date(commentVar['time'])/1000;
     var days = SECONDS/(3600*24);
+    /*
     if(SECONDS < 4*60*60)
     {
         return 1- 1.5*sigmoid(0.6*(days-6));//alle kommentarer som er yngre enn 4timer sortere kunn etter tid.
     }
+
+    */
     return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(days-6));//ellers brukes willsonscore med tid
 }
 
