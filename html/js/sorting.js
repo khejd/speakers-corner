@@ -54,7 +54,7 @@ function sortBy(argument){
     } 
     else if (argument === "trending")
     {
-        comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a););
+        comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a));
     }
     updateTable();
 }
