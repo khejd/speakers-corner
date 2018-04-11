@@ -25,18 +25,16 @@ function sigmoid(x){
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
     const SECONDS = new Date().getTime()/1000 - new Date(commentVar['time'])/1000;
-    const days = SECONDS/(3600*24);
+    const DAYS = SECONDS/(3600*24);
 
     if(SECONDS < 4*60*60){
-        return 1- 1.5*sigmoid(0.6*(days-6)); //alle kommentarer som er yngre enn 4 timer sorteres kun etter tid.
+        return 1- 1.5*sigmoid(0.6*(DAYS-6)); //alle kommentarer som er yngre enn 4 timer sorteres kun etter tid.
     }
-    
-    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(days-6));//ellers brukes willsonscore med tid
+    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(DAYS-6));//ellers brukes willsonscore med tid
 }
 
 /** @param{string} argument */
 function sortBy(argument){
-    console.log(argument);
     if (argument === "time"){
         comments.sort((a, b) => {
             let d1 = new Date(a['time']);
@@ -44,8 +42,7 @@ function sortBy(argument){
             return (d1 > d2) ? -1 : 1;
         });
     } 
-    else if (argument === "popularity")
-    {
+    else if (argument === "popularity"){
         comments.sort((a,b) => {
                 const A = parseInt(a['ups'])-parseInt(a['downs']);
                 const B = parseInt(b['ups'])-parseInt(b['downs']);
@@ -58,8 +55,7 @@ function sortBy(argument){
             }
         );
     } 
-    else if (argument === "trending")
-    {
+    else if (argument === "trending"){
         comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a));
     }
     updateTable();
