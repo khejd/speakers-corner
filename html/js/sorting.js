@@ -6,7 +6,7 @@ function getCookie(name){
 /** @param{comment} commentVar */
 function wilsonScore(commentVar){
     const N = parseInt(commentVar['ups']) + parseInt(commentVar['downs']);
-    if (N==0) {
+    if (N === 0) {
         return 0.65;
     }
     const Z = 1.28155156;
@@ -17,22 +17,20 @@ function wilsonScore(commentVar){
     return (LEFT-RIGHT)/UNDER;
 }
 
-function sigmoid(x)
-{
+/** @param{int} x*/
+function sigmoid(x){
     return Math.exp(x)/(Math.exp(x)+1);
 }
 
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
-    var SECONDS = new Date().getTime()/1000 - new Date(commentVar['time'])/1000;
-    var days = SECONDS/(3600*24);
-    /*
-    if(SECONDS < 4*60*60)
-    {
-        return 1- 1.5*sigmoid(0.6*(days-6));//alle kommentarer som er yngre enn 4timer sortere kunn etter tid.
-    }
+    const SECONDS = new Date().getTime()/1000 - new Date(commentVar['time'])/1000;
+    const days = SECONDS/(3600*24);
 
-    */
+    if(SECONDS < 4*60*60){
+        return 1- 1.5*sigmoid(0.6*(days-6)); //alle kommentarer som er yngre enn 4 timer sorteres kun etter tid.
+    }
+    
     return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(days-6));//ellers brukes willsonscore med tid
 }
 
