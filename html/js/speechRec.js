@@ -1,3 +1,4 @@
+let layer0 = $('#layer0');
 let layer1 = $('#layer1');
 let layer2 = $('#layer2');
 let transcript = $('#transcript');
@@ -5,6 +6,11 @@ let language = 'no-NO'; // default
 
 $('#start').on('click', () => {
     window.location.reload();
+});
+
+$('#layer0').on('click', () => {
+    layer0.removeClass('visible');
+    layer1.addClass('visible');
 });
 
 $('.flag').on('click', (e) => {
