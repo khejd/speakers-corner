@@ -8,14 +8,9 @@ $('#start').on('click', () => {
     window.location.reload();
 });
 
-$('.layer0').on('click', () => {
+$('#layer0').on('click', () => {
     layer0.removeClass('visible');
     layer1.addClass('visible');
-    language = e.target.id;
-
-    //Changing language and store in local storage
-    changeLanguage(language);
-    localStorage.setItem("language", language);
 });
 
 $('.flag').on('click', (e) => {
