@@ -8,13 +8,13 @@ $('#start').on('click', () => {
     window.location.reload();
 });
 
-$('#layer0').on('click', () => {
-    layer0.removeClass('visible');
+layer0.on('click', () => {
+    layer0.remove();
     layer1.addClass('visible');
 });
 
 $('.flag').on('click', (e) => {
-    layer1.removeClass('visible');
+    layer1.remove();
     layer2.addClass('visible');
     language = e.target.id;
 
@@ -60,7 +60,6 @@ function checkKeyUp(){
     if (active && delta > TIMEOUT){
         active = false;
         recognition.stop();
-
 
         if (layer2.hasClass('visible') &&  transcript.val()!==""){
             $('#confirmationModal').modal('show');
