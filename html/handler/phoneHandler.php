@@ -3,13 +3,13 @@ include_once("../Connections/connection.php");
 include_once("../Connections/sms.php");
 
     function recordExists($phone, $conn){
-        $sql = "SELECT * FROM `user` WHERE `phone_number` = $phone";
+        $sql = "SELECT * FROM `user` WHERE `phone_number` = '$phone'";
         $result = mysqli_query($conn, $sql);
         return mysqli_num_rows($result) > 0;
     }
 
     function updateCode($phone, $code, $conn){
-        $sql = "UPDATE `user` SET `code` = $code WHERE `phone_number` = $phone";
+        $sql = "UPDATE `user` SET `code` = $code WHERE `phone_number` = '$phone'";
         mysqli_query($conn, $sql);
     }
 

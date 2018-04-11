@@ -5,31 +5,32 @@ function getCookie(name){
 
 /** @param{comment} commentVar */
 function wilsonScore(commentVar){
-    const N = commentVar['ups'] + commentVar['downs'];
-    if (N===0) {
-        return 0;
+    const N = parseInt(commentVar['ups']) + parseInt(commentVar['downs']);
+    if (N === 0) {
+        return 0.65;
     }
     const Z = 1.28155156;
-    const P = commentVar['ups']/N;
+    const P = parseInt(commentVar['ups'])/N;
     const LEFT = P + 1/(2*N)*Z*Z;
     const RIGHT = Z*Math.sqrt(P*(1-P)/N + Z*Z/(4*N*N));
     const UNDER = 1+ (1/N)*Z*Z;
     return (LEFT-RIGHT)/UNDER;
 }
 
-/** @param{comment} commentVar */
-function hot(commentVar) {
-    const S = commentVar['ups']-commentVar['downs'];
-    const ORDER = Math.log10(Math.max(Math.abs(s),1));
-    const SIGN = (S > 0) ? 1 : -1;
-    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
-    return ORDER + SIGN*SECONDS/45000;
+/** @param{int} x*/
+function sigmoid(x){
+    return Math.exp(x)/(Math.exp(x)+1);
 }
 
 /** @param{comment} commentVar */
 function wilsonScoreWithTime(commentVar){
-    const SECONDS = new Date().getTime()/1000 - commentVar['time']/1000;
-    return wilsonScore(commentVar)//-Math.log10(SECONDS);
+    const SECONDS = new Date().getTime()/1000 - new Date(commentVar['time'])/1000;
+    const DAYS = SECONDS/(3600*24);
+
+    if(SECONDS < 4*60*60){
+        return 1- 1.5*sigmoid(0.6*(DAYS-6)); //alle kommentarer som er yngre enn 4 timer sorteres kun etter tid.
+    }
+    return wilsonScore(commentVar) - 1.5*sigmoid(0.6*(DAYS-6));//ellers brukes willsonscore med tid
 }
 
 /** @param{string} argument */
@@ -40,7 +41,8 @@ function sortBy(argument){
             let d2 = new Date(b['time']);
             return (d1 > d2) ? -1 : 1;
         });
-    } else if (argument === "popularity"){
+    } 
+    else if (argument === "popularity"){
         comments.sort((a,b) => {
                 const A = parseInt(a['ups'])-parseInt(a['downs']);
                 const B = parseInt(b['ups'])-parseInt(b['downs']);
@@ -52,7 +54,8 @@ function sortBy(argument){
                 return B-A;
             }
         );
-    } else if (argument === "trending"){
+    } 
+    else if (argument === "trending"){
         comments.sort((a,b) => wilsonScoreWithTime(b) - wilsonScoreWithTime(a));
     }
     updateTable();
