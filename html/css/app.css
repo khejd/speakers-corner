@@ -1,5 +1,10 @@
 body{
     background: #005379 !important;
+        /*THIS SHOLD DISABLE SCROLLING*/
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden
+
 }
 
 .center_div{

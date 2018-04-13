@@ -17,6 +17,11 @@
   </h1>
 </div>
 
+    /*THIS SHOLD DISABLE SCROLLING*/
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden
+
 
 <div id="layer1" class="container-fluid mt-5">
   <h1 class="text-uppercase text-white text-center">Select language</h1>
@@ -71,7 +76,7 @@
     if('serviceWorker' in navigator){
         navigator.serviceWorker.register('sw.js');
     }
-    console.log("change is made, this shuld be deleted");
+
 </script>
 
 <!-- Optional JavaScript -->
