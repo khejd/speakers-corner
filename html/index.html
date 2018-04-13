@@ -8,17 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
 
-
-<style type="text/css">
-    body 
-    {
-    overflow:hidden;
-    }
-</style>
-
-
 <title>Speaktrondheim</title>
-
 
 
 <div id="layer0" class="container-fluid visible mt-5">
@@ -29,7 +19,6 @@
     <span>&nbsp;La verden høre din mening! &nbsp;Tell the world your thoughts! &nbsp;Låt världen höra din åsikt!&nbsp;</span>
   </h1>
 </div>
-
 
 <div id="layer1" class="container-fluid mt-5">
   <h1 class="text-uppercase text-white text-center">Select language</h1>
@@ -80,21 +69,10 @@
     </div>
 </div>
 
-
 <script>
     if('serviceWorker' in navigator){
         navigator.serviceWorker.register('sw.js');
     }
-    function noscroll() {
-    window.scrollTo( 0, 0 );
-    }
-
-    // add listener to disable scroll
-    window.addEventListener('scroll', noscroll);
-
-    //disable right click
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
 </script>
 
 <!-- Optional JavaScript -->

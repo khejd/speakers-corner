@@ -4,6 +4,14 @@ let layer2 = $('#layer2');
 let transcript = $('#transcript');
 let language = 'no-NO'; // default
 
+// add listener to disable scroll
+window.addEventListener('scroll', () =>{
+    window.scrollTo(0,0);
+});
+
+//disable right click
+window.oncontextmenu = () => false;
+
 $('#start').on('click', () => {
     window.location.reload();
 });
