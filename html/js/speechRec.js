@@ -17,8 +17,8 @@ if (navigator.platform !== 'Linux armv7l'){
     window.location.replace('comments.html')
 }
 
-$('#start').on('click', () => {
-    window.location.reload();
+$('#modalNo').on('click', () => {
+    $('#modal').modal('toggle');
 });
 
 layer0.on('click', () => {
@@ -70,7 +70,7 @@ window.setInterval(() => {
 
 function checkKeyUp(){
     delta = Date.now() - start;
-    if (active && delta > TIMEOUT){
+    if (active && (delta > TIMEOUT)){
         active = false;
         recognition.stop();
 
