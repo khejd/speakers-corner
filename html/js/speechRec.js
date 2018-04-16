@@ -65,7 +65,7 @@ window.setInterval(() => {
 
 function checkKeyUp(){
     delta = Date.now() - start;
-    if (active && (delta > TIMEOUT)){
+    if (active && delta > TIMEOUT){
         active = false;
         recognition.stop();
 
