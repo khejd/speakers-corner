@@ -12,11 +12,6 @@ window.addEventListener('scroll', () =>{
 //disable right click
 window.oncontextmenu = () => false;
 
-// If not Raspberry Pi, redirect to comments. Not very secure, but effective
-if (navigator.platform !== 'Linux armv7l'){
-    window.location.replace('comments.html')
-}
-
 $('#modalNo').on('click', () => {
     $('#modal').modal('toggle');
 });
@@ -70,7 +65,7 @@ window.setInterval(() => {
 
 function checkKeyUp(){
     delta = Date.now() - start;
-    if (active && (delta > TIMEOUT)){
+    if (active && delta > TIMEOUT){
         active = false;
         recognition.stop();
 
