@@ -3,42 +3,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../static/css/app.css">
+<link rel="stylesheet" href="../static/css/noselect.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/vnd.microsoft.icon" href="https://speaktrondheim.no/favicon.ico" />
-<title>Speaktrondheim - Administrasjonspanel</title>
+<title>Speaktrondheim - Comments</title>
 
-<br>
-<div class="container">
-    <div class = "card">
-        <div class="card-header">
-            Administrasjonspanel
-        </div>
-        <div class="card-body">
-            <br>
-            <h5>Administratorer - <a href="add.html">Legg til</a></h5>
-            <div class="container center_div" id="admins">
-                <table class="table" id="admins-table">
-                    <tbody></tbody>
-                </table>
-            </div>
-            <br>
-            <h5>Kommentarer</h5>
-            <div class="container center_div" id="comments">
-                <table class="table" id="comments-table">
-                    <tbody></tbody>
-                </table>
-            </div>
-            <button type="button" class="btn btn-primary left" id="logout">Logg ut</button>
-        </div>
-    </div>
+
+<div class="container mt-5">
+
+    <nav class="nav nav-pills nav-justified navbar-light mb-3">
+        <h5><a class="nav-item nav-link" href="#comments">Sorter kommentarer</a></h5>
+        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="trending">Trending</a></h5>
+        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær">Mest populær</a></h5>
+        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste">Nyeste</a></h5>
+    </nav>
+
+    <div id="comments"></div>
+
 </div>
 
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>$('body').css('display', 'none');</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="js/admin.js"></script>
+
+<!-- https://github.com/js-cookie/js-cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="../static/js/sorting.js"></script>
+<script src="../static/js/translate.js"></script>
+<script src="../static/js/comments.js"></script>
+
+

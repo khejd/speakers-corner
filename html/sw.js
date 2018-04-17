@@ -1,13 +1,13 @@
 const CACHE_NAME = 'speak-v1';
 let urlsToCache = [
-    '/css/',
-    '/js/',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css',
-    'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
-    'https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js'
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+    'https://speaktrondheim.no/favicon.ico',
+    'index.html',
+    '/static/css/app.css',
+    '/phone/index.html',
+    '/comment/index.html'
 ];
 
 self.addEventListener('install', (event) => {
@@ -16,7 +16,8 @@ self.addEventListener('install', (event) => {
         caches.open(CACHE_NAME)
             .then((cache) => {
                 cache.addAll(urlsToCache.map((url) => {
-                    return new Request(url, { mode: 'no-cors' });
+                    const REQUEST =  new Request(url, { mode: 'no-cors' });
+                    fetch(REQUEST).then((response) => cache.put(REQUEST, response));
                 }));
             })
     );

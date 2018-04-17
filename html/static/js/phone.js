@@ -7,7 +7,7 @@ $(() => {
 // When phone submit button is clicked
 $('#phoneSubmit').on('click',() => {
     $.ajax({
-        url: 'handler/phoneHandler.php',
+        url: '../handler/phoneHandler.php',
         type: 'POST',
         data: {
             phone: $('#phone').val()
@@ -24,7 +24,7 @@ $('#phoneSubmit').on('click',() => {
 // When code submit button is clicked
 $('#codeSubmit').on('click', () => {
     $.ajax({
-        url: 'handler/codeHandler.php',
+        url: '../handler/codeHandler.php',
         type: 'POST',
         data: {
             code: $('#code').val(),
@@ -37,7 +37,7 @@ $('#codeSubmit').on('click', () => {
                 $('#code').addClass('is-invalid');
                 $('#errorMsg').text(res.msg);
             } else {
-                window.location.href = 'comments.html'
+                window.location.replace('../comment/');
             }
         }
     });
