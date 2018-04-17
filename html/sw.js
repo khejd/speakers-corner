@@ -5,7 +5,7 @@ let urlsToCache = [
     '/phone/',
     '/comment/',
     'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
-    'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css'
 ];
 
 self.addEventListener('install', (event) => {
