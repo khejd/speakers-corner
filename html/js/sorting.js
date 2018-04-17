@@ -82,14 +82,16 @@ function updateTable(){
 
         cards += (
             "<div class='card'>" +
-            "<div class='row'><div class='col-9'>" +
+            "<div class='row'><div class='col-10'>" +
             "<blockquote class='blockquote mb-0 card-body'>" +
             "<p>" + arg[1] +"</p>" +
             "</blockquote>" +
-            "</div><div class='col-1'>" +
-            "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>" +
-            "<span id='vote-" + arg['id'] + "'>" + VOTES + "</span>" +
-            "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>" +
+            "</div><div class='col-2'>" +
+            "<span class='votes'>" +
+            "<i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+            "<div id='vote-" + arg['id'] + "'>" + VOTES + "</div>" +
+            "<i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+            "</span>" +
             "</div></div></div>"
         );
 

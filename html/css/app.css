@@ -255,3 +255,15 @@ body{
     height: 200px;
     width: 100%;
 }
+
+.votes {
+    height: 40px;
+    width: 40px;
+    float: left;
+    text-align: center;
+}
+
+.votes div {
+    margin-left: auto;
+    margin-right: auto;
+}
