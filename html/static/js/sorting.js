@@ -69,31 +69,42 @@ function updateTable(){
         let disable = false;
         let bold = '';
 
-        // Highlight vote arrow if already voted
-        if (typeof COOKIE !== 'undefined'){
-            for (let i = 0; i < COOKIE.length; i++){
-                if (COOKIE[i]['id'] === arg['id']){
-                    disable = true;
-                    bold = COOKIE[i]['vote'];
+        if (location.pathname === '/comment'){
+            cards += (
+                "<div class='card'>" +
+                "<div class='row'><div class='col-10 col-md-8 col-sm-8 col-lg-10'>" +
+                "<blockquote class='blockquote mb-0 card-body'>" +
+                "<p>" + arg[1] +"</p>" +
+                "</blockquote>" +
+                "</div></div></div>"
+            );
+        } else {
+            // Highlight vote arrow if already voted
+            if (typeof COOKIE !== 'undefined'){
+                for (let i = 0; i < COOKIE.length; i++){
+                    if (COOKIE[i]['id'] === arg['id']){
+                        disable = true;
+                        bold = COOKIE[i]['vote'];
+                    }
                 }
             }
-        }
-        const VOTES =  parseInt(arg['ups'])-parseInt(arg['downs']);
+            const VOTES =  parseInt(arg['ups'])-parseInt(arg['downs']);
 
-        cards += (
-            "<div class='card'>" +
-            "<div class='row'><div class='col-10 col-md-8 col-sm-8 col-lg-10'>" +
-            "<blockquote class='blockquote mb-0 card-body'>" +
-            "<p>" + arg[1] +"</p>" +
-            "</blockquote>" +
-            "</div><div class='col-2'>" +
-            "<span class='votes'>" +
-            "<i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
-            "<div id='vote-" + arg['id'] + "'>" + VOTES + "</div>" +
-            "<i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
-            "</span>" +
-            "</div></div></div>"
-        );
+            cards += (
+                "<div class='card'>" +
+                "<div class='row'><div class='col-10 col-md-8 col-sm-8 col-lg-10'>" +
+                "<blockquote class='blockquote mb-0 card-body'>" +
+                "<p>" + arg[1] +"</p>" +
+                "</blockquote>" +
+                "</div><div class='col-2'>" +
+                "<span class='votes'>" +
+                "<i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+                "<div id='vote-" + arg['id'] + "'>" + VOTES + "</div>" +
+                "<i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+                "</span>" +
+                "</div></div></div>"
+            );
+        }
 
     }
     cards += "</div>";

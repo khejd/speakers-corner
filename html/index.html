@@ -1,95 +1,56 @@
 <!DOCTYPE html>
 
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/app.css">
-<link rel="stylesheet" href="css/noselect.css">
+<link rel="stylesheet" href="static/css/app.css">
+<link rel="stylesheet" href="static/css/noselect.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
-<style>
-    body{
-        overflow: hidden;
-    }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Speaktrondheim - Comments</title>
 
-<title>Speaktrondheim</title>
-
-
-<div id="layer0" class="container-fluid visible mt-5">
-  <h1 class="text-uppercase text-white text-center marquee">
-    <span>&nbsp;La verden høre din mening! &nbsp;Tell the world your thoughts! &nbsp;Låt världen höra din åsikt!&nbsp;</span>
-  </h1>
-  <h1 class="text-uppercase text-white text-center marquee marquee2">
-    <span>&nbsp;La verden høre din mening! &nbsp;Tell the world your thoughts! &nbsp;Låt världen höra din åsikt!&nbsp;</span>
-  </h1>
-</div>
-
-<div id="layer1" class="container-fluid mt-5">
-  <h1 class="text-uppercase text-white text-center">Select language</h1>
-    <div class="row flag">
-        <div class="col-12 col-sm-4">
-            <span class="flag-icon flag-icon-no" id="no-NO"></span>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Speaker's Box!</h1>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="lead">Speaker's Box er en moderne vri på det urgamle soapbox-konseptet kjent fra Speaker's Corner i Hyde Park.</p>
+            </div>
+            <div class="col-12 col-md-6">
+                <p class="lead">Hvor er Speaker's Box plassert?</p>
+                <div id="map"></div>
+            </div>
         </div>
-        <div class="col-12 col-sm-4">
-            <span class="flag-icon flag-icon-gb" id="en-GB"></span>
-        </div>
-        <div class="col-12 col-sm-4">
-            <span class="flag-icon flag-icon-se" id="sv-SE"></span>
-        </div>
+        <hr class="my-4">
+        <p>Les og avgi en stemme på kommentarer fra Trondheim.</p>
     </div>
 </div>
 
-<div id="layer2" class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h1 class="text-uppercase text-white text-center change-language" text-en="What is on your mind?" text-sv="Vad bränner du för?" text-no="Hva brenner du for?"></h1>
-            <form method="post" action="phone.html">
-                <div class="form-group">
-                    <textarea class="form-control change-language" rows="3" id="transcript" name="comment" aria-label="Comment" text-en="Press the red button" text-sv="Hold inne den röda knappen" text-no="Hold inne den røde knappen for å si din mening"></textarea>
-                </div>
+<div class="container mt-5">
 
-                <!-- Modal -->
-                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title change-language" id="confirmationModalLongTitle" text-en="Do you want to publish your opinion?" text-sv="Vill du publisera din mening?" text-no="Vil du publisere din mening?"></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" id="commentText">
-                                <span></span>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-lg change-language" data-dismiss="modal" id="modalNo" text-en="No" text-sv="Nej" text-no="Nei"></button>
-                                <button type="submit" class="btn btn-primary btn-lg change-language" text-en="Yes" text-sv="Ja" text-no="Ja"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="row flag mt-5 pt-5">
-        <div class="col-12 col-sm-2 offset-sm-6">
-            <span class="flag-icon flag-icon-no" id="no-NO"></span>
-        </div>
-        <div class="col-12 col-sm-2">
-            <span class="flag-icon flag-icon-gb" id="en-GB"></span>
-        </div>
-        <div class="col-12 col-sm-2">
-            <span class="flag-icon flag-icon-se" id="sv-SE"></span>
+    <nav class="nav nav-pills nav-justified navbar-light mb-3">
+        <h5><a class="nav-item nav-link" href="#comments">Sorter kommentarer</a></h5>
+        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="trending">Trending</a></h5>
+        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær">Mest populær</a></h5>
+        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste">Nyeste</a></h5>
+    </nav>
+
+    <div id="comments"></div>
+
+</div>
+
+<div class="cookies" id="cookie_popup">
+    <div class="cookies_layout">
+        <p class="cookies_text change-language"
+           text-en="Like most other websites, speaktrondheim.no use cookies. Accept our use of cookies by closing this box."
+           text-sv="Vi gör som de flesta andra webbplatser och använder cookies. Godkänn vår användning av cookies genom att stänga den här rutan."
+           text-no="Som de fleste andre nettsider bruker speaktrondheim.no informasjonskapsler. Ved å lukke denne boksen aksepterer du vår bruk av informasjonskapsler.">
+        </p>
+        <div class="cookies_button" aria-label="Close">
+            <span class="cookies_span"></span>
+            <span class="cookies_span"></span>
         </div>
     </div>
 </div>
-
-<script>
-    if('serviceWorker' in navigator){
-        navigator.serviceWorker.register('sw.js');
-    }
-</script>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -97,7 +58,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="js/secret.js"></script>
-<script src="js/translate.js"></script>
-<!-- HTML5 Speech Recognition API -->
-<script src="js/speechRec.js"></script>
+<!-- https://github.com/js-cookie/js-cookie -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="static/js/sorting.js"></script>
+<script src="static/js/translate.js"></script>
+<script src="static/js/comments.js"></script>
+
+<script>
+    function initMap() {
+        var uluru = {lat: 63.432534, lng: 10.407167};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhtkGgx24FdCmrajIYdbPaC_w-j5vGwgY&callback=initMap">
+</script>
+
