@@ -1,10 +1,5 @@
 body{
     background: #005379 !important;
-        /*THIS SHOLD DISABLE SCROLLING*/
-    margin: 0; 
-    height: 100%; 
-    overflow: hidden
-
 }
 
 .center_div{
@@ -248,4 +243,27 @@ body{
     -webkit-transform: translate(-50%, -50%) rotate(-45deg);
     -ms-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.sort_selector,
+.nav-item,
+.nav-link a:link a:active {
+    color: #e9ecef;
+}
+
+#map {
+    height: 200px;
+    width: 100%;
+}
+
+.votes {
+    height: 40px;
+    width: 40px;
+    float: left;
+    text-align: center;
+}
+
+.votes div {
+    margin-left: auto;
+    margin-right: auto;
 }
