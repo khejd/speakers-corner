@@ -69,7 +69,7 @@ function updateTable(){
         let disable = false;
         let bold = '';
 
-        if (location.pathname === '/comment'){
+        if (location.pathname === '/comment/'){
             cards += (
                 "<div class='card'>" +
                 "<div class='row'><div class='col-10 col-md-8 col-sm-8 col-lg-10'>" +
