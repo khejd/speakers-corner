@@ -64,7 +64,7 @@ function sortBy(argument){
 function updateTable(){
     const COOKIE = getCookie('vote');
 
-    let table = "<table class='table' id='comments-table'><tbody>";
+    let cards = "<div class='card-columns' id='comments-cards'>";
     for (let arg of comments){
         let disable = false;
         let bold = '';
@@ -80,16 +80,18 @@ function updateTable(){
         }
         const VOTES =  parseInt(arg['ups'])-parseInt(arg['downs']);
 
-        table += (
-            "<tr><td>" + arg[1] +
-            "<td>" +
+        cards += (
+            "<div class='card'>" +
+            "<blockquote class='blockquote mb-0 card-body'>" +
+            "<p>" + arg[1] +"</p>" +
+            "</blockquote>" +
             "<span><i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>" +
             "<span id='vote-" + arg['id'] + "'>" + VOTES + "</span>" +
             "<span><i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i></span>"
         );
 
     }
-    table += "</table>";
-    $('#comments-table').remove();
-    $('#comments').append(table);
+    cards += "</div>";
+    $('#comments-cards').remove();
+    $('#comments').append(cards);
 }
