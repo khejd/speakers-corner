@@ -1,9 +1,9 @@
 const CACHE_NAME = 'speak-v1';
 let urlsToCache = [
-    '/',
-    '/static/',
-    '/phone/',
-    '/comment/',
+    '/static/js/',
+    '/static/css/app.css',
+    '/phone/index.html',
+    '/comment/index.html',
     'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css'
 ];
@@ -14,7 +14,8 @@ self.addEventListener('install', (event) => {
         caches.open(CACHE_NAME)
             .then((cache) => {
                 cache.addAll(urlsToCache.map((url) => {
-                    return new Request(url, { mode: 'no-cors' });
+                    const REQUEST =  new Request(url, { mode: 'no-cors' });
+                    fetch(REQUEST).then((response) => cache.put(REQUEST, response));
                 }));
             })
     );
