@@ -65,7 +65,7 @@ function updateTable(){
     const COOKIE = getCookie('vote');
 
     let cards = "<div class='card-columns' id='comments-cards'>";
-    for (let arg of comments[0:3]){
+    for (let arg of comments){
         let disable = false;
         let bold = '';
 
