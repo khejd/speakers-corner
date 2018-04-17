@@ -3,8 +3,8 @@ let urlsToCache = [
     'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css',
     'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+    'https://speaktrondheim.no/favicon.ico',
     'index.html',
-    'favicon.ico',
     '/static/css/app.css',
     '/phone/index.html',
     '/comment/index.html'
