@@ -21,7 +21,7 @@ $(() => {
         }
 
         // Sort comments
-        $('.sort_selector .nav-item .nav-link').on('click', (e) => {
+        $('.sort-selector').on('click', (e) => {
             let sorter = e.target.id;
             sortBy(sorter);
         });
