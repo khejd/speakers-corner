@@ -4,6 +4,7 @@ let urlsToCache = [
     'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
     'index.html',
+    'favicon.ico',
     '/static/css/app.css',
     '/phone/index.html',
     '/comment/index.html'
