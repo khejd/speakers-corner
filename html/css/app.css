@@ -252,6 +252,7 @@ body{
 
 .sort_selector,
 .nav-item,
-.nav-link a:link {
+.nav-link a:link a:active {
     color: #e9ecef;
 }
+
