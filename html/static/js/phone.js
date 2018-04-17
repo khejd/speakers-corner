@@ -37,7 +37,7 @@ $('#codeSubmit').on('click', () => {
                 $('#code').addClass('is-invalid');
                 $('#errorMsg').text(res.msg);
             } else {
-                window.location.replace('comments/');
+                window.location.replace('../comment/');
             }
         }
     });
