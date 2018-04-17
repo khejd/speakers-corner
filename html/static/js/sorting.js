@@ -98,9 +98,9 @@ function updateTable(){
                 "</blockquote>" +
                 "</div><div class='col-2'>" +
                 "<span class='votes'>" +
-                "<i id='up-" + arg['id'] + "' class='fa fa-angle-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+                "<i id='up-" + arg['id'] + "' class='fa fa-sort-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
                 "<div id='vote-" + arg['id'] + "'>" + VOTES + "</div>" +
-                "<i id='down-" + arg['id'] + "' class='fa fa-angle-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+                "<i id='down-" + arg['id'] + "' class='fa fa-sort-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
                 "</span>" +
                 "</div></div></div>"
             );
