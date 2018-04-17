@@ -1,10 +1,5 @@
 body{
     background: #005379 !important;
-        /*THIS SHOLD DISABLE SCROLLING*/
-    margin: 0; 
-    height: 100%; 
-    overflow: hidden
-
 }
 
 .center_div{
@@ -256,3 +251,7 @@ body{
     color: #e9ecef;
 }
 
+#map {
+    height: 200px;
+    width: 100%;
+}
