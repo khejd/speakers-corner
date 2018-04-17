@@ -268,11 +268,18 @@ body{
     margin-right: auto;
 }
 
-.card-columns {
-    @include media-breakpoint-only(sm) {
+@media (min-width: 576px) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
         column-count: 2;
     }
-    @include media-breakpoint-only(md) {
-        column-count: 2;
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
     }
 }
