@@ -4,7 +4,7 @@ function getLocation(){
         url: '../handler/getGeolocationHandler.php',
         type: 'GET',
         success: (result) =>{
-            location = JSON.parse(result);
+            coords = JSON.parse(result);
             deferred.resolve();
         }
     });
@@ -12,11 +12,11 @@ function getLocation(){
 }
 
 function initMap() {
-    let location = '';
+    let coords = '';
     let deferred = getLocation();
     deferred.then(() => {
-        let lat = location['latitude'];
-        let lng = location['longitude'];
+        let lat = coords['latitude'];
+        let lng = coords['longitude'];
         let uluru = {lat: lat, lng: lng};
         let map = new google.maps.Map($('#map'), {
             zoom: 12,
