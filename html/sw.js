@@ -1,7 +1,9 @@
 const CACHE_NAME = 'speak-v1';
 let urlsToCache = [
-    '/css/',
-    '/js/',
+    '/static/css/',
+    '/static/js/',
+    '/comment/',
+    '/phone/',
     'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css',
     'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
