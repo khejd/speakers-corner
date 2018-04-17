@@ -80,13 +80,13 @@
         deferred.then(() => {
             let lat = parseInt(coords['latitude']);
             let lng = parseInt(coords['longitude']);
-            let uluru = {lat: lat, lng: lng};
+            let pos = {lat: lat, lng: lng};
             let map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
-                center: uluru
+                center: pos
             });
             let marker = new google.maps.Marker({
-                position: uluru,
+                position: pos,
                 map: map
             });
         });
