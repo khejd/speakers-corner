@@ -73,6 +73,25 @@
 <script src="static/js/translate.js"></script>
 <script src="static/js/comments.js"></script>
 <script src="static/js/map.js"></script>
+<script>
+    function initMap() {
+        let coords = '';
+        let deferred = getLocation();
+        deferred.then(() => {
+            let lat = coords['latitude'];
+            let lng = coords['longitude'];
+            let uluru = {lat: lat, lng: lng};
+            let map = new google.maps.Map($('#map'), {
+                zoom: 12,
+                center: uluru
+            });
+            let marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        });
+    }
+</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhtkGgx24FdCmrajIYdbPaC_w-j5vGwgY&callback=initMap">
 </script>
 
