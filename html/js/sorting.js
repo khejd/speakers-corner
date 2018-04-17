@@ -82,7 +82,7 @@ function updateTable(){
 
         cards += (
             "<div class='card'>" +
-            "<div class='row'><div class='col-10 col-md-8 col-sm-8'>" +
+            "<div class='row'><div class='col-10 col-md-8 col-sm-8 col-lg-10'>" +
             "<blockquote class='blockquote mb-0 card-body'>" +
             "<p>" + arg[1] +"</p>" +
             "</blockquote>" +
