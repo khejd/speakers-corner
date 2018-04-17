@@ -51,7 +51,7 @@ $(() => {
 function getComments(){
     let deferred = $.Deferred();
     $.ajax({
-        url: 'handler/commentHandler.php',
+        url: '../handler/commentHandler.php',
         type: 'GET',
         success: (result) =>{
             comments = JSON.parse(result);
@@ -68,7 +68,7 @@ function getComments(){
 function vote(action, id){
     if (navigator.cookieEnabled && typeof Cookies.get('accept_cookies') !== 'undefined'){
         $.ajax({
-            url: "handler/voteHandler.php",
+            url: "../handler/voteHandler.php",
             type: 'POST',
             data: {
                 action: action,
