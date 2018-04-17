@@ -249,3 +249,9 @@ body{
     -ms-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+.sort_selector,
+.nav-item,
+.nav-link a:link {
+    color: #e9ecef;
+}

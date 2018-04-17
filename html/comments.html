@@ -8,14 +8,32 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Speaktrondheim - Comments</title>
 
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Speaker's Box!</h1>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <p class="lead">Speaker's Box er en moderne vri på det urgamle soapbox-konseptet kjent fra Speaker's Corner i Hyde Park.</p>
+            </div>
+            <div class="col-12 col-md-6">
+                <p class="lead">Hvor er Speaker's Box plassert?</p>
+            </div>
+        </div>
+        <hr class="my-4">
+        <p>Les og avgi en stemme på kommentarer fra Trondheim.</p>
+    </div>
+</div>
+
 <div class="container mt-5">
 
-    <a href="#" class="sort_selecter" id="trending">Trending</a>
-    <a href="#" class="sort_selecter change-language" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær"></a>
-    <a href="#" class="sort_selecter change-language" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste"></a>
-    <div id="comments">
+    <nav class="nav nav-pills nav-justified">
+        <a class="sort_selector nav-item nav-link" href="#">Trending</a>
+        <a class="sort_selector nav-item nav-link" href="#" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær"></a>
+        <a class="sort_selector nav-item nav-link" href="#" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste"></a>
+    </nav>
 
-    </div>
+    <div id="comments"></div>
+
 </div>
 
 <div class="cookies" id="cookie_popup">
