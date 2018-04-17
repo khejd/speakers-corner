@@ -2,6 +2,7 @@ $(() =>{
    let location = '';
    let deferred = getLocation();
    deferred.then(() =>{
+       console.log(location);
       let lat = location['latitude'];
       let lng = location['longitude'];
       initMap(lat, lng);
