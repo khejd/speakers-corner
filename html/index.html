@@ -83,12 +83,11 @@
             let lng = parseFloat(coords['longitude']);
             let pos = {lat: lat, lng: lng};
             let latLng = new google.maps.LatLng(pos);
-            googleMap.setZoom(12);
+            googleMap.setZoom(13);
             googleMap.setCenter(latLng);
             let marker = new google.maps.Marker({
                 position: latLng,
                 map: googleMap,
-                title: "Speaker's Box"
             });
             let accuracy = coords['accuracy'];
             if (accuracy){
