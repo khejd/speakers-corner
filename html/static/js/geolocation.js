@@ -5,7 +5,8 @@ if ('geolocation' in navigator){
             type: 'POST',
             data: {
                 longitude: position.coords.longitude,
-                latitude: position.coords.latitude
+                latitude: position.coords.latitude,
+                accuracy: position.coords.accuracy
             },
         });
     });
