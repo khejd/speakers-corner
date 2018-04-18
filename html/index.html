@@ -18,6 +18,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <p class="lead">Hvor er Speaker's Box plassert?</p>
+                <small class="text-muted" id="accuracy"></small>
                 <div id="map"></div>
             </div>
         </div>
@@ -72,21 +73,29 @@
 <script src="static/js/sorting.js"></script>
 <script src="static/js/translate.js"></script>
 <script src="static/js/comments.js"></script>
-
+<script src="static/js/map.js"></script>
 <script>
+    let coords = '';
     function initMap() {
-        var uluru = {lat: 63.432534, lng: 10.407167};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: uluru
-        });
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
+        let googleMap = new google.maps.Map(document.getElementById("map"));
+        getLocation().then(() => {
+            let lat = parseFloat(coords['latitude']);
+            let lng = parseFloat(coords['longitude']);
+            let pos = {lat: lat, lng: lng};
+            let latLng = new google.maps.LatLng(pos);
+            googleMap.setZoom(12);
+            googleMap.setCenter(latLng);
+            let marker = new google.maps.Marker({
+                position: latLng,
+                map: googleMap
+            });
+            let accuracy = coords['accuracy'];
+            if (accuracy){
+                $('#accuracy').text('Nøyaktighet på ' + parseInt(coords['accuracy']) + ' meter.');
+            }
         });
     }
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhtkGgx24FdCmrajIYdbPaC_w-j5vGwgY&callback=initMap">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhtkGgx24FdCmrajIYdbPaC_w-j5vGwgY&callback=initMap"
+async defer></script>
 
