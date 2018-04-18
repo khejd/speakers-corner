@@ -79,8 +79,8 @@
         let deferred = getLocation();
         let map = new google.maps.Map(document.getElementById('map'));
         deferred.then(() => {
-            let lat = parseInt(coords['latitude']);
-            let lng = parseInt(coords['longitude']);
+            let lat = parseFloat(coords['latitude']);
+            let lng = parseFloat(coords['longitude']);
             let pos = {lat: lat, lng: lng};
             let latLng = new google.maps.LatLng(pos);
             map.setZoom(12);
