@@ -93,14 +93,14 @@ function updateTable(){
             cards += (
                 "<div class='card'>" +
                 "<div class='row'><div class='col-10 col-md-8 col-sm-8 col-lg-10'>" +
-                "<blockquote class='blockquote mb-0 card-body'>" +
+                "<blockquote class='mb-0 card-body'>" +
                 "<p>" + arg[1] +"</p>" +
                 "</blockquote>" +
                 "</div><div class='col-2'>" +
                 "<span class='votes'>" +
-                "<i id='up-" + arg['id'] + "' class='fa fa-sort-up " + (bold === 'up' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
-                "<div id='vote-" + arg['id'] + "'>" + VOTES + "</div>" +
-                "<i id='down-" + arg['id'] + "' class='fa fa-sort-down " + (bold === 'down' ? 'fa-lg' : '') + " param " + (disable ? 'disabled' : '') + "'></i>" +
+                "<i id='up-" + arg['id'] + "' class='fa fa-sort-up" + (bold === 'up' ? ' fa-lg ' : ' ') + "param mr-2" + (disable ? ' disabled ' : ' ') + "'></i>" +
+                "<div id='vote-" + arg['id'] + "' class='mr-2'>" + VOTES + "</div>" +
+                "<i id='down-" + arg['id'] + "' class='fa fa-sort-down" + (bold === 'down' ? ' fa-lg ' : ' ') + "param mr-2" + (disable ? ' disabled ' : ' ') + "'></i>" +
                 "</span>" +
                 "</div></div></div>"
             );

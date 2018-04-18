@@ -245,10 +245,12 @@ body{
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.sort_selector,
-.nav-item,
-.nav-link a:link a:active {
+.nav-link, a.nav-link:visited {
     color: #e9ecef;
+}
+
+a.nav-link:active{
+    color: #bdc0c3;
 }
 
 #map {
@@ -266,4 +268,8 @@ body{
 .votes div {
     margin-left: auto;
     margin-right: auto;
+}
+
+i {
+    padding: 7px;
 }

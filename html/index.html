@@ -17,7 +17,7 @@
                 <p class="lead">Speaker's Box er en moderne vri på det urgamle soapbox-konseptet kjent fra Speaker's Corner i Hyde Park.</p>
             </div>
             <div class="col-12 col-md-6">
-                <p class="lead">Hvor er Speaker's Box plassert?</p>
+                <p class="lead">Oppsøk Speaker's Box for å dele din mening!</p>
                 <small class="text-muted" id="accuracy"></small>
                 <div id="map"></div>
             </div>
@@ -27,13 +27,17 @@
     </div>
 </div>
 
-<div class="container mt-5">
+<div class="container-fluid mt-5">
 
-    <nav class="nav nav-pills nav-justified navbar-light mb-3">
-        <h5><a class="nav-item nav-link" href="#comments">Sorter kommentarer</a></h5>
-        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="trending">Trending</a></h5>
-        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær">Mest populær</a></h5>
-        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste">Nyeste</a></h5>
+    <nav class="nav nav-pills nav-justified navbar-light mb-3 justify-content-center" id="nav">
+        <div class="row">
+            <h6 class="col-12 nav-item nav-link">Sorter kommentarer</h6>
+        </div>
+        <div class="row">
+            <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="trending">Trending</a></h6>
+            <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær">Mest populær</a></h6>
+            <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste">Nyeste</a></h6>
+        </div>
     </nav>
 
     <div id="comments"></div>
@@ -83,11 +87,11 @@
             let lng = parseFloat(coords['longitude']);
             let pos = {lat: lat, lng: lng};
             let latLng = new google.maps.LatLng(pos);
-            googleMap.setZoom(12);
+            googleMap.setZoom(13);
             googleMap.setCenter(latLng);
             let marker = new google.maps.Marker({
                 position: latLng,
-                map: googleMap
+                map: googleMap,
             });
             let accuracy = coords['accuracy'];
             if (accuracy){
