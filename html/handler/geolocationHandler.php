@@ -6,7 +6,7 @@ function updateLocation($lat, $lng, $conn){
         mysqli_query($conn, $sql);
 }
 
-$lat = $_POST['longitude'];
-$lng = $_POST['latitude'];
+$lat = $_POST['latitude'];
+$lng = $_POST['longitude'];
 
 updateLocation($lat, $lng, $conn);

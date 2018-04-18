@@ -78,7 +78,6 @@
     function initMap() {
         let googleMap = new google.maps.Map(document.getElementById("map"));
         getLocation().then(() => {
-            console.log(coords);
             let lat = parseFloat(coords['latitude']);
             let lng = parseFloat(coords['longitude']);
             let pos = {lat: lat, lng: lng};
