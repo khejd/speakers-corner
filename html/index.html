@@ -27,13 +27,17 @@
     </div>
 </div>
 
-<div class="container mt-5">
+<div class="container-fluid mt-5">
 
-    <nav class="nav nav-pills nav-justified navbar-light mb-3">
-        <h5><a class="nav-item nav-link" href="#comments">Sorter kommentarer</a></h5>
-        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="trending">Trending</a></h5>
-        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær">Mest populær</a></h5>
-        <h5><a class="sort-selector nav-item nav-link" href="#comments" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste">Nyeste</a></h5>
+    <nav class="nav nav-pills nav-justified navbar-light mb-3 justify-content-center" id="nav">
+        <div class="row">
+            <h6 class="col-12 nav-item nav-link">Sorter kommentarer</h6>
+        </div>
+        <div class="row">
+            <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="trending">Trending</a></h6>
+            <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="popularity" text-en="Most popular" text-sv="Mest populär" text-no="Mest populær">Mest populær</a></h6>
+            <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="time" text-en="Most recent" text-sv="Senaste" text-no="Nyeste">Nyeste</a></h6>
+        </div>
     </nav>
 
     <div id="comments"></div>
