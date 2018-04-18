@@ -74,13 +74,13 @@
 <script src="static/js/comments.js"></script>
 <script src="static/js/map.js"></script>
 <script>
+    let coords = '';
     function initMap() {
-        let coords = '';
         let googleMap = new google.maps.Map(document.getElementById("map"));
         getLocation().then(() => {
+            console.log(coords);
             let lat = parseFloat(coords['latitude']);
             let lng = parseFloat(coords['longitude']);
-            console.log(lat + ', ' + lng);
             let pos = {lat: lat, lng: lng};
             let latLng = new google.maps.LatLng(pos);
             googleMap.setZoom(12);
