@@ -77,17 +77,17 @@
     function initMap() {
         let coords = '';
         let deferred = getLocation();
-        let map = new google.maps.Map(document.getElementById("map"));
+        let googleMap = new google.maps.Map(document.getElementById("map"));
         deferred.then(() => {
             let lat = parseFloat(coords['latitude']);
             let lng = parseFloat(coords['longitude']);
             let pos = {lat: lat, lng: lng};
             let latLng = new google.maps.LatLng(pos);
-            map.setZoom(12);
-            map.setCenter(latLng);
+            googleMap.setZoom(12);
+            googleMap.setCenter(latLng);
             let marker = new google.maps.Marker({
                 position: latLng,
-                map: map
+                map: googleMap
             });
         });
     }
