@@ -81,12 +81,13 @@
             let lat = parseInt(coords['latitude']);
             let lng = parseInt(coords['longitude']);
             let pos = {lat: lat, lng: lng};
+            let latLng = new google.maps.LatLng(pos);
             let map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
-                center: pos
+                center: latLng
             });
             let marker = new google.maps.Marker({
-                position: pos,
+                position: latLng,
                 map: map
             });
         });
