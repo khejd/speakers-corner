@@ -89,7 +89,10 @@
                 position: latLng,
                 map: googleMap
             });
-            $('#accuracy').text('Nøyaktighet på ' + coords['accuracy'] + ' meter.');
+            let accuracy = coords['accuracy'];
+            if (accuracy){
+                $('#accuracy').text('Nøyaktighet på ' + parseInt(coords['accuracy']) + ' meter.');
+            }
         });
     }
 </script>
