@@ -17,7 +17,7 @@
                 <p class="lead">Speaker's Box er en moderne vri på det urgamle soapbox-konseptet kjent fra Speaker's Corner i Hyde Park.</p>
             </div>
             <div class="col-12 col-md-6">
-                <p class="lead">Hvor er Speaker's Box plassert?</p>
+                <p class="lead">Oppsøk Speaker's Box for å dele din mening!</p>
                 <small class="text-muted" id="accuracy"></small>
                 <div id="map"></div>
             </div>
@@ -87,7 +87,8 @@
             googleMap.setCenter(latLng);
             let marker = new google.maps.Marker({
                 position: latLng,
-                map: googleMap
+                map: googleMap,
+                title: "Speaker's Box"
             });
             let accuracy = coords['accuracy'];
             if (accuracy){
