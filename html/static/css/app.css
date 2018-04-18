@@ -267,3 +267,7 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
+i {
+    padding: 5px;
+}
