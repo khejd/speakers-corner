@@ -3,7 +3,7 @@ $.ajax({
     url: 'handler/loggedInHandler.php',
     type: 'GET',
     success: (result) => {
-        let res = $.parseJSON(result);
+        let res = Array.from(JSON.parse(result));
         if (res.error){
             window.location.href = 'login.html'
         } else {
@@ -60,7 +60,7 @@ function getAdmins(){
         url: 'handler/adminHandler.php',
         type: 'GET',
         success: (result) =>{
-            admins = JSON.parse(result);
+            admins = Arrar.from(JSON.parse(result));
             deferred.resolve();
         }
     });
@@ -122,7 +122,7 @@ function getCommentAndPhone(){
         url: 'handler/commentAndPhoneHandler.php',
         type: 'GET',
         success: (result) =>{
-            comments = JSON.parse(result);
+            comments = Array.from(JSON.parse(result));
             deferred.resolve();
         }
     });

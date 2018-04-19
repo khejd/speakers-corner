@@ -4,7 +4,7 @@ function getLocation(){
         url: '../handler/getGeolocationHandler.php',
         type: 'GET',
         success: (result) =>{
-            coords = JSON.parse(result);
+            coords = Array.from(JSON.parse(result));
             deferred.resolve();
         }
     });

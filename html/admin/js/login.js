@@ -20,7 +20,7 @@ $('#login').on('click', (e) => {
             password: $('#password').val()
         },
         success: (result) => {
-            let res = $.parseJSON(result);
+            let res = Array.from(JSON.parse(result));
             if (res.error){
                 $('#code').addClass('is-invalid');
                 $('#errorMsg').text(res.msg);

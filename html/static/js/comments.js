@@ -54,7 +54,7 @@ function getComments(){
         url: '../handler/commentHandler.php',
         type: 'GET',
         success: (result) =>{
-            comments = JSON.parse(result);
+            comments = Array.from(JSON.parse(result));
             deferred.resolve();
         }
     });
