@@ -1,20 +1,19 @@
-function idleLogout() {
-        let t = '';
-        window.onload = resetTimer(t);
-        window.onmousemove = resetTimer(t);
-        window.onmousedown = resetTimer(t); // catches touchscreen presses
-        window.onclick = resetTimer(t);     // catches touchpad clicks
-        window.onscroll = resetTimer(t);    // catches scrolling with arrow keys
-        window.onkeypress = resetTimer(t);
-}
+function idleTimer() {
+    let t;
+    window.onload = resetTimer;
+    window.onmousemove = resetTimer; // catches mouse movements
+    window.onmousedown = resetTimer; // catches mouse movements
+    window.onclick = resetTimer;     // catches mouse clicks
+    window.onscroll = resetTimer;    // catches scrolling
+    window.onkeypress = resetTimer;  //catches keyboard actions
 
-/** @param t*/
-function resetTimer(t) {
-    clearTimeout(t);
-    t = window.setTimeout(redirect, 6000);  // time is in milliseconds
-}
+    function redirect(){
+        window.location.href = '/speak';
+    }
 
-function redirect(){
-    window.location.href = '/speak';
+    function resetTimer() {
+        clearTimeout(t);
+        t = setTimeout(redirect, 7000);  // time is in milliseconds (1000 is 1 second)
+    }
 }
-idleLogout();
+idleTimer();
