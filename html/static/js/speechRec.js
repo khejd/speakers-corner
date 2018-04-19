@@ -16,10 +16,17 @@ $('#modalNo').on('click', () => {
     $('#modal').modal('toggle');
 });
 
-layer0.on('click', () => {
-    layer0.remove();
-    layer1.addClass('visible');
-});
+if (layer0.hasClass('visible')){
+    $(document).on('click', () =>{
+        layer0.remove();
+        layer1.addClass('visible');
+    })
+    $(document).on('keydown', () =>{
+        layer0.remove();
+        layer1.addClass('visible');
+    })
+}
+
 
 $('.flag').on('click', (e) => {
     layer1.remove();
