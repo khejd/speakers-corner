@@ -2,9 +2,9 @@
 $.ajax({
     url: 'handler/loggedInHandler.php',
     type: 'GET',
+    dataType: 'json',
     success: (result) => {
-        let res = $.parseJSON(result);
-        if (res.error){
+        if (result.error){
             window.location.href = 'login.html'
         } else {
             $('body').css('display', 'block');
@@ -49,13 +49,13 @@ function checkUsernameAndPhone(username, phone){
     $.ajax({
         url: 'handler/usernameHandler.php',
         type: 'POST',
+        dataType: 'json',
         data: {
             username: username,
             phone: phone
         },
         success: (result) => {
-            let res = $.parseJSON(result);
-            ok = !(res.error);
+            ok = !(result.error);
             deferred.resolve();
         }
     });
@@ -66,14 +66,14 @@ function add(username, phone, password){
     $.ajax({
         url: 'handler/addAdminHandler.php',
         type: 'POST',
+        dataType: 'json',
         data: {
             username: username,
             phone: phone,
             password: password
         },
         success: (result) => {
-            let res = $.parseJSON(result);
-            if (res.error){
+            if (result.error){
                 $('#errorMsg').text('Ikke prøv å manipuler koden!');
             } else {
                 window.location.href = '/admin';

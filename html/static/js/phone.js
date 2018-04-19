@@ -26,16 +26,16 @@ $('#codeSubmit').on('click', () => {
     $.ajax({
         url: '../handler/codeHandler.php',
         type: 'POST',
+        dataType: 'json',
         data: {
             code: $('#code').val(),
             comment: localStorage.getItem("commentText"),
             phone: $('#phone').val()
         },
         success: (result) => {
-            let res = $.parseJSON(result);
-            if (res.error){
+            if (result.error){
                 $('#code').addClass('is-invalid');
-                $('#errorMsg').text(res.msg);
+                $('#errorMsg').text(result.msg);
             } else {
                 window.location.replace('../comment/');
             }

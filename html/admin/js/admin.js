@@ -2,9 +2,9 @@
 $.ajax({
     url: 'handler/loggedInHandler.php',
     type: 'GET',
+    dataType: 'json',
     success: (result) => {
-        let res = Array.from(JSON.parse(result));
-        if (res.error){
+        if (result.error){
             window.location.href = 'login.html'
         } else {
         $('body').css('display', 'block');
@@ -59,8 +59,9 @@ function getAdmins(){
     $.ajax({
         url: 'handler/adminHandler.php',
         type: 'GET',
+        dataType: 'json',
         success: (result) =>{
-            admins = Arrar.from(JSON.parse(result));
+            admins = result;
             deferred.resolve();
         }
     });
@@ -121,8 +122,9 @@ function getCommentAndPhone(){
     $.ajax({
         url: 'handler/commentAndPhoneHandler.php',
         type: 'GET',
+        dataType: 'json',
         success: (result) =>{
-            comments = Array.from(JSON.parse(result));
+            comments = result;
             deferred.resolve();
         }
     });
