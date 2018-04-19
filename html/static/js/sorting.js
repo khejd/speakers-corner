@@ -1,3 +1,7 @@
+$(() => {
+    changeLanguage(localStorage.getItem("language"));
+});
+
 /** @param{string} name*/
 function getCookie(name){
     return Cookies.getJSON(name);
