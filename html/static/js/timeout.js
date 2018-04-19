@@ -11,7 +11,7 @@ function idleLogout() {
 /** @param t*/
 function resetTimer(t) {
     clearTimeout(t);
-    t = setTimeout(window.location.href = window.location.hostname + '/speak', 100000);  // time is in milliseconds
+    t = setTimeout(window.location.href = '/speak', 100000);  // time is in milliseconds
 }
 
 idleLogout();
