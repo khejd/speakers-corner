@@ -7,23 +7,35 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/vnd.microsoft.icon" href="https://speaktrondheim.no/favicon.ico" />
-<title>Speaktrondheim - Comments</title>
+<title>Speaktrondheim</title>
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Speaker's Box!</h1>
         <div class="row">
             <div class="col-12 col-md-6">
-                <p class="lead">Speaker's Box er en moderne vri på det urgamle soapbox-konseptet kjent fra Speaker's Corner i Hyde Park.</p>
+                <p class="lead change-language"
+                   text-en="Speaker's Box is a modern twist on the ancient soapbox concept known from Speaker's Corner in Hyde Park."
+                   text-sv="Speaker's Box är en modern variant av det urgamla soapbox-konceptet känd från Speaker's Corner i Hyde Park."
+                   text-no="Speaker's Box er en moderne vri på det urgamle soapbox-konseptet kjent fra Speaker's Corner i Hyde Park.">
+                    </p>
             </div>
             <div class="col-12 col-md-6">
-                <p class="lead">Oppsøk Speaker's Box for å dele din mening!</p>
+                <p class="lead change-language"
+                   text-en="Locate Speaker's Box to share your thoughts!"
+                   text-sv="Uppsök Speaker's Box för att dela din åsikt!"
+                   text-no="Oppsøk Speaker's Box for å dele din mening!">
+                </p>
                 <small class="text-muted" id="accuracy"></small>
                 <div id="map"></div>
             </div>
         </div>
         <hr class="my-4">
-        <p>Les og avgi en stemme på kommentarer fra Trondheim.</p>
+        <p class="change-language"
+            text-en="Read and vote on comments from Trondheim."
+            text-sv="Läs och rösta på kommentarer från Trondheim."
+            text-no="Les og avgi en stemme på kommentarer fra Trondheim.">
+        </p>
     </div>
 </div>
 
@@ -32,7 +44,7 @@
     <nav class="nav nav-pills nav-justified navbar-light mb-3 justify-content-center" id="nav">
         <div class="row">
             <h6 class="col-12 nav-item nav-link change-language"
-                text-en="Sort comments" text-sv="Sortera kommentarer" text-no="Sorter kommentarer">Sorter kommentarer</h6>
+                text-en="Sort comments" text-sv="Sortera kommentarer" text-no="Sorter kommentarer"></h6>
         </div>
         <div class="row">
             <h6 class="col-4"><a class="sort-selector nav-item nav-link" href="#nav" id="trending">Trending</a></h6>
@@ -96,7 +108,7 @@
             });
             let accuracy = coords['accuracy'];
             if (accuracy){
-                $('#accuracy').text('Nøyaktighet på ' + parseInt(coords['accuracy']) + ' meter.');
+                $('#accuracy').text('Accuracy ± ' + parseInt(coords['accuracy']) + ' meter.');
             }
         });
     }
