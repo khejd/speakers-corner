@@ -53,8 +53,9 @@ function getComments(){
     $.ajax({
         url: '../handler/commentHandler.php',
         type: 'GET',
+        dataType: 'json',
         success: (result) =>{
-            comments = JSON.parse(result);
+            comments = result;
             deferred.resolve();
         }
     });

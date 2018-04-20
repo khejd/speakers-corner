@@ -3,8 +3,9 @@ function getLocation(){
     $.ajax({
         url: '../handler/getGeolocationHandler.php',
         type: 'GET',
+        dataType: 'json',
         success: (result) =>{
-            coords = JSON.parse(result);
+            coords = result;
             deferred.resolve();
         }
     });

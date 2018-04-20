@@ -9,7 +9,7 @@ include_once("../Connections/sms.php");
     }
 
     function updateCode($phone, $code, $conn){
-        $sql = "UPDATE `user` SET `code` = $code WHERE `phone_number` = '$phone'";
+        $sql = "UPDATE `user` SET `code` = '$code' WHERE `phone_number` = '$phone'";
         mysqli_query($conn, $sql);
     }
 

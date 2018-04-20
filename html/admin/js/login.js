@@ -1,9 +1,9 @@
 $.ajax({
     url: 'handler/loggedInHandler.php',
     type: 'GET',
+    dataType: 'json',
     success: (result) => {
-        let res = $.parseJSON(result);
-        if (!res.error){
+        if (!result.error){
             window.location.href = '/admin'
         }
     }
@@ -15,15 +15,15 @@ $('#login').on('click', (e) => {
     $.ajax({
         url: 'handler/loginHandler.php',
         type: 'POST',
+        dataType: 'json',
         data: {
             username: $('#username').val(),
             password: $('#password').val()
         },
         success: (result) => {
-            let res = $.parseJSON(result);
-            if (res.error){
+            if (result.error){
                 $('#code').addClass('is-invalid');
-                $('#errorMsg').text(res.msg);
+                $('#errorMsg').text(result.msg);
             } else {
                 window.location.href = '/admin'
             }

@@ -13,7 +13,7 @@ function idleTimer() {
 
     function resetTimer() {
         clearTimeout(t);
-        t = setTimeout(redirect, 60000);  // time is in milliseconds (1000 is 1 second)
+        t = setTimeout(redirect, 120000);  // time is in milliseconds (1000 is 1 second)
     }
 }
 idleTimer();
