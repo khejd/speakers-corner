@@ -26,6 +26,14 @@ $(() => {
             sortBy(sorter);
         });
 
+        // Click on flag
+        $('.flag').on('click', (e) => {
+            language = e.target.id;
+            //Changing language and store in local storage
+            changeLanguage(language);
+            localStorage.setItem("language", language);
+        });
+
         // Click on comment
         $('#comments').on('click', 'i', (e) => {
             let action = e.target.id.split('-')[0];

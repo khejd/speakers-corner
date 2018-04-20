@@ -182,6 +182,14 @@ body{
     width: 100% !important;
 }
 
+.flags-small{
+    line-height: 1em !important;
+}
+
+.icon-bar{
+    position: absolute;
+    right: 0;
+}
 /* Cookie popup */
 
 .cookies {

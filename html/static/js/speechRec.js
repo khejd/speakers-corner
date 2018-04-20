@@ -48,9 +48,9 @@ if (window.hasOwnProperty('webkitSpeechRecognition')) {
     recognition = new webkitSpeechRecognition();
 }
 
-// Start speech rec on hold down ctrl
+// Start speech rec on hold down alt
 $(document).on('keydown', (e) => {
-    if (e.keyCode === 17) { //ctrl
+    if (e.keyCode === 18) { //alt
         if (!active) {
             active = true;
             startDictation();
@@ -58,9 +58,9 @@ $(document).on('keydown', (e) => {
     }
 });
 
-// Stop speech rec on keyup ctrl and store the text in local storage
+// Stop speech rec on keyup alt and store the text in local storage
 $(document).on('keyup', (e) => {
-    if (e.keyCode === 17){ // ctrl
+    if (e.keyCode === 18){ // alt
         start = Date.now();
     }
 });
