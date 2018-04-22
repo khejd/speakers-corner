@@ -18,13 +18,32 @@
 
 
 <div id="layer0" class="container-fluid visible mt-5">
-  <h1 class="text-uppercase text-white text-center marquee">
-    <span>&nbsp;La verden høre din mening! &nbsp;Tell the world your thoughts! &nbsp;Låt världen höra din åsikt!&nbsp;</span>
-  </h1>
-  <h1 class="text-uppercase text-white text-center marquee marquee2">
-    <span>&nbsp;La verden høre din mening! &nbsp;Tell the world your thoughts! &nbsp;Låt världen höra din åsikt!&nbsp;</span>
+  <h1 id="scrollingtext" class="text-uppercase text-white animate">
+    <span>&nbsp;La verden høre din mening! &nbsp;Share your opinion with the world! &nbsp;Låt världen höra din åsikt!&nbsp;La verden høre din mening!</span>
   </h1>
 </div>
+
+
+<script>
+
+function myMove() {
+  var elem = document.getElementById("scrollingtext");
+  var pos = elem.style.right;
+  var id = setInterval(frame, 0.01);
+  function frame() {
+    if (pos == 4810) {
+      pos=0;
+      elem.style.right = pos + 'px';
+    } else {
+      pos++;
+      elem.style.right = pos + 'px';
+    }
+  }
+}
+myMove();
+
+
+</script>
 
 <div id="layer1" class="container-fluid mt-5">
   <h1 class="text-uppercase text-white text-center">Select language</h1>
