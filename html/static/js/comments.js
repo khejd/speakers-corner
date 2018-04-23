@@ -17,7 +17,7 @@ $(() => {
             popup.addClass('show');
             $('.cookies_button').on('click',() => {
                 popup.removeClass('show');
-                Cookies.set('accept_cookies', 1);
+                Cookies.set('accept_cookies', 1, { expires: 7 });
             });
         }
 
