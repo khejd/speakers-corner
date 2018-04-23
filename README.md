@@ -2,7 +2,9 @@
 
 #####Setup:
 1. Install [`Node.js`](https://nodejs.org/en/)
-2. `npm run setup`
+2. `npm install`
+
+To build static files: `npm run build`
  
  ##About
  Speaker's Box is a group project by [ELSYS](https://www.ntnu.no/studier/mtelsys)-students at the Norwegian University of Science and Technology (NTNU) in the subject 'Electronic System Design, Project'.
