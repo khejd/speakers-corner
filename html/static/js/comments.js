@@ -1,5 +1,6 @@
 let comments = '';
 let ids = [];
+let language = 'no-NO'; // default
 
 // On document ready
 $(() => {

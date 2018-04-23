@@ -2,6 +2,7 @@
 
 var comments = '';
 var ids = [];
+var language = 'no-NO'; // default
 
 // On document ready
 $(function () {
