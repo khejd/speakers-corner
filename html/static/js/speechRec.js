@@ -88,7 +88,7 @@ function startDictation() {
 
     recognition.continuous = true;
     recognition.interimResults = true;
-    recognition.lang = language;
+    recognition.lang = language; // Set by flag click
     recognition.start();
 
     recognition.onresult = (e) => {
