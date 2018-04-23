@@ -89,7 +89,7 @@
 
 <script>
     if('serviceWorker' in navigator){
-        window.addEventListener('load', () => {
+        window.addEventListener('load', function () {
             navigator.serviceWorker.register('sw.js');
         });
     }
@@ -103,28 +103,28 @@
 
 <!-- https://github.com/js-cookie/js-cookie -->
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="static/js/sorting.js"></script>
-<script src="static/js/translate.js"></script>
-<script src="static/js/comments.js"></script>
-<script src="static/js/map.js"></script>
+<script src="static/transpiled/sorting.js"></script>
+<script src="static/transpiled/translate.js"></script>
+<script src="static/transpiled/comments.js"></script>
+<script src="static/transpiled/map.js"></script>
 <script>
-    let coords = '';
+    var coords = '';
     function initMap() {
-        let googleMap = new google.maps.Map(document.getElementById("map"));
-        getLocation().then(() => {
-            let lat = parseFloat(coords['latitude']);
-            let lng = parseFloat(coords['longitude']);
-            let pos = {lat: lat, lng: lng};
-            let latLng = new google.maps.LatLng(pos);
+        var googleMap = new google.maps.Map(document.getElementById("map"));
+        getLocation().then(function (){
+            var lat = parseFloat(coords['latitude']);
+            var lng = parseFloat(coords['longitude']);
+            var pos = {lat: lat, lng: lng};
+            var latLng = new google.maps.LatLng(pos);
             googleMap.setZoom(13);
             googleMap.setCenter(latLng);
-            let marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: latLng,
                 map: googleMap,
             });
-            let accuracy = coords['accuracy'];
+            var accuracy = coords['accuracy'];
             if (accuracy){
-                $('#accuracy').text('Accuracy ± ' + parseInt(coords['accuracy']) + ' meter.');
+                $('#accuracy').text('Accuracy ± ' + parseInt(coords['accuracy']) + ' meters.');
             }
         });
     }

@@ -1,34 +1,36 @@
-let comments = '';
-let ids = [];
-let language = 'no-NO'; // default
+'use strict';
+
+var comments = '';
+var ids = [];
+var language = 'no-NO'; // default
 
 // On document ready
-$(() => {
-    let deferred = getComments();
+$(function () {
+    var deferred = getComments();
 
     // When all comments are fetched
-    deferred.then(() => {
+    deferred.then(function () {
         sortBy('trending');
         changeLanguage(localStorage.getItem("language"));
 
         // If cookies are not accepted yet, show popup
-        if (typeof Cookies.get('accept_cookies') === 'undefined'){
-            let popup = $('#cookie_popup');
+        if (typeof Cookies.get('accept_cookies') === 'undefined') {
+            var popup = $('#cookie_popup');
             popup.addClass('show');
-            $('.cookies_button').on('click',() => {
+            $('.cookies_button').on('click', function () {
                 popup.removeClass('show');
                 Cookies.set('accept_cookies', 1);
             });
         }
 
         // Sort comments
-        $('.sort-selector').on('click', (e) => {
-            let sorter = e.target.id;
+        $('.sort-selector').on('click', function (e) {
+            var sorter = e.target.id;
             sortBy(sorter);
         });
 
         // Click on flag
-        $('.flag').on('click', (e) => {
+        $('.flag').on('click', function (e) {
             language = e.target.id;
             //Changing language and store in local storage
             changeLanguage(language);
@@ -36,34 +38,33 @@ $(() => {
         });
 
         // Click on comment
-        $('#comments').on('click', 'i', (e) => {
-            let action = e.target.id.split('-')[0];
-            let id = e.target.id.replace(action + '-','');
-            let votes =  $('#vote-' + id);
+        $('#comments').on('click', 'i', function (e) {
+            var action = e.target.id.split('-')[0];
+            var id = e.target.id.replace(action + '-', '');
+            var votes = $('#vote-' + id);
             vote(action, id);
 
             // Increment/decrement vote when click on vote-arrow
-            if (action === 'up' && !$(e.target).hasClass('disabled') && !ids.includes(id)){
+            if (action === 'up' && !$(e.target).hasClass('disabled') && !ids.includes(id)) {
                 votes.text(parseInt(votes.text()) + 1);
                 $(e.target).addClass('fa-lg disabled');
                 ids.push(id);
-            } else if(action === 'down' && !$(e.target).hasClass('disabled') && !ids.includes(id)){
+            } else if (action === 'down' && !$(e.target).hasClass('disabled') && !ids.includes(id)) {
                 votes.text(parseInt(votes.text()) - 1);
                 $(e.target).addClass('fa-lg disabled');
                 ids.push(id);
             }
         });
     });
-
 });
 
-function getComments(){
-    let deferred = $.Deferred();
+function getComments() {
+    var deferred = $.Deferred();
     $.ajax({
         url: '../handler/commentHandler.php',
         type: 'GET',
         dataType: 'json',
-        success: (result) =>{
+        success: function success(result) {
             comments = result;
             deferred.resolve();
         }
@@ -75,8 +76,8 @@ function getComments(){
  * @param{string} action
  * @param{string} id
  */
-function vote(action, id){
-    if (navigator.cookieEnabled && typeof Cookies.get('accept_cookies') !== 'undefined'){
+function vote(action, id) {
+    if (navigator.cookieEnabled && typeof Cookies.get('accept_cookies') !== 'undefined') {
         $.ajax({
             url: "../handler/voteHandler.php",
             type: 'POST',

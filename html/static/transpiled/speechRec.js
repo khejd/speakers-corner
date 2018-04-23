@@ -1,34 +1,37 @@
-let layer0 = $('#layer0');
-let layer1 = $('#layer1');
-let layer2 = $('#layer2');
-let transcript = $('#transcript');
-let language = 'no-NO'; // default
+'use strict';
+
+var layer0 = $('#layer0');
+var layer1 = $('#layer1');
+var layer2 = $('#layer2');
+var transcript = $('#transcript');
+var language = 'no-NO'; // default
 
 // add listener to disable scroll
-window.addEventListener('scroll', () =>{
-    window.scrollTo(0,0);
+window.addEventListener('scroll', function () {
+    window.scrollTo(0, 0);
 });
 
 //disable right click
-window.oncontextmenu = () => false;
+window.oncontextmenu = function () {
+    return false;
+};
 
-$('#modalNo').on('click', () => {
+$('#modalNo').on('click', function () {
     $('#modal').modal('toggle');
 });
 
-if (layer0.hasClass('visible')){
-    $(document).on('click', () =>{
+if (layer0.hasClass('visible')) {
+    $(document).on('click', function () {
         layer0.remove();
         layer1.addClass('visible');
-    })
-    $(document).on('keydown', () =>{
+    });
+    $(document).on('keydown', function () {
         layer0.remove();
         layer1.addClass('visible');
-    })
+    });
 }
 
-
-$('.flag').on('click', (e) => {
+$('.flag').on('click', function (e) {
     layer1.remove();
     layer2.addClass('visible');
     language = e.target.id;
@@ -39,18 +42,19 @@ $('.flag').on('click', (e) => {
 });
 
 // Speech recognition variables
-let active = false;
-let recognition = '';
-let start = '';
-let delta = 0;
+var active = false;
+var recognition = '';
+var start = '';
+var delta = 0;
 
 if (window.hasOwnProperty('webkitSpeechRecognition')) {
     recognition = new webkitSpeechRecognition();
 }
 
 // Start speech rec on hold down alt
-$(document).on('keydown', (e) => {
-    if (e.keyCode === 17) { // ctrl
+$(document).on('keydown', function (e) {
+    if (e.keyCode === 17) {
+        // ctrl
         if (!active) {
             active = true;
             startDictation();
@@ -59,22 +63,23 @@ $(document).on('keydown', (e) => {
 });
 
 // Stop speech rec on keyup ctrl and store the text in local storage
-$(document).on('keyup', (e) => {
-    if (e.keyCode === 17){ // ctrl
+$(document).on('keyup', function (e) {
+    if (e.keyCode === 17) {
+        // ctrl
         start = Date.now();
     }
 });
 
-const TIMEOUT = 1000; // 1 sec
+var TIMEOUT = 1000; // 1 sec
 window.setInterval(checkKeyUp, TIMEOUT);
 
-function checkKeyUp(){
+function checkKeyUp() {
     delta = Date.now() - start;
-    if (active && delta > TIMEOUT){
+    if (active && delta > TIMEOUT) {
         active = false;
         recognition.stop();
 
-        if (layer2.hasClass('visible') &&  transcript.val()!==""){
+        if (layer2.hasClass('visible') && transcript.val() !== "") {
             $('#confirmationModal').modal('show');
             layer2.css('z-index', 'auto');
         }
@@ -84,16 +89,16 @@ function checkKeyUp(){
 }
 
 function startDictation() {
-    let final_transcript = '';
+    var final_transcript = '';
 
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = language; // Set by flag click
     recognition.start();
 
-    recognition.onresult = (e) => {
-        let interim_transcript = '';
-        for (let i = e.resultIndex; i < e.results.length; ++i) {
+    recognition.onresult = function (e) {
+        var interim_transcript = '';
+        for (var i = e.resultIndex; i < e.results.length; ++i) {
             if (e.results[i].isFinal) {
                 final_transcript += e.results[i][0].transcript;
             } else {
@@ -103,7 +108,7 @@ function startDictation() {
         // Write to textarea
         transcript.val(final_transcript + interim_transcript);
     };
-    recognition.onerror = () => {
+    recognition.onerror = function () {
         recognition.stop();
     };
 }

@@ -1,0 +1,24 @@
+{
+  "name": "speakers-corner",
+  "version": "1.0.0",
+  "description": "Setup:\r 1. Last ned Git\r 2. `git clone git_repo`\r 3. `cd my_dir`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel html/static/js -d html/static/transpiled"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khejd/speakers-corner.git"
+  },
+  "author": "Karl Henrik Ejdfors",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khejd/speakers-corner/issues"
+  },
+  "homepage": "https://github.com/khejd/speakers-corner#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
