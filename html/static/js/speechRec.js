@@ -4,6 +4,11 @@ let layer2 = $('#layer2');
 let transcript = $('#transcript');
 let language = 'no-NO'; // default
 
+$(() => {
+    transcript.val('');
+    localStorage.setItem("commentText", transcript.val());
+});
+
 // add listener to disable scroll
 window.addEventListener('scroll', () =>{
     window.scrollTo(0,0);
@@ -14,13 +19,15 @@ window.oncontextmenu = () => false;
 
 $('#modalNo').on('click', () => {
     $('#modal').modal('toggle');
+    transcript.val('');
+    localStorage.setItem("commentText", transcript.val());
 });
 
 if (layer0.hasClass('visible')){
     $(document).on('click', () =>{
         layer0.remove();
         layer1.addClass('visible');
-    })
+    });
     $(document).on('keydown', () =>{
         layer0.remove();
         layer1.addClass('visible');
@@ -53,7 +60,9 @@ $(document).on('keydown', (e) => {
     if (e.keyCode === 17) { // ctrl
         if (!active) {
             active = true;
-            startDictation();
+            if (layer2.hasClass('visible')){
+                startDictation();
+            }
         }
     }
 });
@@ -65,7 +74,7 @@ $(document).on('keyup', (e) => {
     }
 });
 
-const TIMEOUT = 1000; // 1 sec
+const TIMEOUT = 500; // 1 sec
 window.setInterval(checkKeyUp, TIMEOUT);
 
 function checkKeyUp(){
