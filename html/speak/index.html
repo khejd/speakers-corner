@@ -27,11 +27,11 @@
 <script>
 
 function myMove() {
-  var elem = document.getElementById("scrollingtext");
-  var pos = elem.style.right;
-  var id = setInterval(frame, 0.01);
+  let elem = document.getElementById("scrollingtext");
+  let pos = elem.style.right;
+  let id = setInterval(frame, 0.01);
   function frame() {
-    if (pos == 4810) {
+    if (pos === 5030) {
       pos=0;
       elem.style.right = pos + 'px';
     } else {
