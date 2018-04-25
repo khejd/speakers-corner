@@ -1,5 +1,7 @@
 // On document ready
 $(() => {
+    //disable right click
+    window.oncontextmenu = () => false;
     $('#commentText').text(localStorage.getItem("commentText"));
     changeLanguage(localStorage.getItem("language"));
 });
