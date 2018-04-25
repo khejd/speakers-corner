@@ -2,7 +2,7 @@
 include_once("../Connections/connection.php");
 
     function getComments($conn){
-        $sql = "SELECT * FROM `comment`";
+        $sql = "SELECT * FROM `comment` ORDER BY TIME DESC";
         return mysqli_query($conn, $sql);
     }
 
