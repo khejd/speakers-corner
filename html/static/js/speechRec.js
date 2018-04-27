@@ -62,6 +62,9 @@ $(document).on('keydown', (e) => {
             active = true;
             if (layer2.hasClass('visible')){
                 startDictation();
+                $('#header').text('Recording...');
+                $('#header').removeClass('text-white');
+                $('#header').addClass('text-red');
             }
         }
     }
@@ -81,7 +84,10 @@ function checkKeyUp(){
     delta = Date.now() - start;
     if (active && delta > TIMEOUT){
         active = false;
-        recognition.stop();
+        recognition.abort();
+        $('#header').removeClass('text-red');
+        $('#header').addClass('text-white');
+        changeLanguage(language);
 
         if (layer2.hasClass('visible') &&  transcript.val()!==""){
             $('#confirmationModal').modal('show');
@@ -113,6 +119,6 @@ function startDictation() {
         transcript.val(final_transcript + interim_transcript);
     };
     recognition.onerror = () => {
-        recognition.stop();
+        recognition.abort();
     };
 }
